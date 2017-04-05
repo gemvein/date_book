@@ -1,0 +1,19 @@
+// 'bootstrap-sprockets' must be imported before 'bootstrap' and 'bootstrap/variables'
+@import 'bootstrap-sprockets';
+@import 'bootstrap-everything';
+@import 'bootstrap/theme';
+
+.navbar-header {
+  overflow: hidden;
+}
+
+.navbar-brand {
+  display: block;
+  width: 300px;
+}
+
+.logo {
+  float: left;
+  height: 2em;
+  margin: -.5em 1em -.5em 0;
+}

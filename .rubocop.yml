@@ -1,0 +1,22 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - gem_template.gemspec
+    - spec/dummy/db/schema.rb
+    - spec/dummy/db/migrate/*
+
+Metrics/BlockLength:
+  Exclude:
+    - config/routes.rb
+    - spec/*
+    - spec/*/*
+    - spec/*/*/*
+    - spec/dummy/db/seeds/*
+
+Metrics/ModuleLength:
+  Exclude:
+    - spec/*
+    - spec/*/*
+    - spec/*/*/*
