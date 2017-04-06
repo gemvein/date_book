@@ -1,5 +1,8 @@
-# frozen_string_literal: true
-
+# Message Train module
 module GemTemplate
-  VERSION = '0.1.0'
+  VERSION = File.read(File.expand_path('../../../VERSION', __FILE__))
+
+  def self.version_string
+    "GemTemplate version #{GemTemplate::VERSION}"
+  end
 end
