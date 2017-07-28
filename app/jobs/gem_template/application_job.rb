@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module GemTemplate
+module DateBook
   class ApplicationJob < ActiveJob::Base
   end
 end

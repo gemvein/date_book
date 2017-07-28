@@ -3,7 +3,7 @@ inherit_from: .rubocop_todo.yml
 AllCops:
   DisplayCopNames: true
   Exclude:
-    - gem_template.gemspec
+    - date_book.gemspec
     - spec/dummy/db/schema.rb
     - spec/dummy/db/migrate/*
 

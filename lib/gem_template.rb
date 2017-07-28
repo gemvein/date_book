@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'gem_template/engine'
+require 'date_book/engine'
 
 # Some documentation goes here
-module GemTemplate
+module DateBook
   # Your code goes here...
 end

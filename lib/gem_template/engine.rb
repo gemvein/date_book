@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module GemTemplate
+module DateBook
   # Some documentation goes here
   class Engine < ::Rails::Engine
-    isolate_namespace GemTemplate
+    isolate_namespace DateBook
     config.generators do |g|
       g.hidden_namespaces << :test_unit << :mongoid
       g.orm             :active_record

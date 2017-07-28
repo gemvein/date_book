@@ -1,4 +1,4 @@
 # frozen_string_literal: true
 
-GemTemplate::Engine.routes.draw do
+DateBook::Engine.routes.draw do
 end

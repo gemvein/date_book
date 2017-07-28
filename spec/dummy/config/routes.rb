@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  mount GemTemplate::Engine => '/gem_template'
+  mount DateBook::Engine => '/date_book'
 end

@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 # desc "Explaining what the task does"
-# task :gem_template do
+# task :date_book do
 #   # Task goes here
 # end

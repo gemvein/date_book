@@ -1,8 +1,8 @@
 # Message Train module
-module GemTemplate
+module DateBook
   VERSION = File.read(File.expand_path('../../../VERSION', __FILE__))
 
   def self.version_string
-    "GemTemplate version #{GemTemplate::VERSION}"
+    "DateBook version #{DateBook::VERSION}"
   end
 end

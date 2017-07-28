@@ -1,4 +1,4 @@
-# GemTemplate
+# DateBook
 Short description and motivation.
 
 ## Usage
@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'gem_template'
+gem 'date_book'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install gem_template
+$ gem install date_book
 ```
 
 ## Contributing

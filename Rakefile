@@ -17,8 +17,8 @@ require 'juwelier'
 Juwelier::Tasks.new do |gem|
   # gem is a Gem::Specification...
   # see http://guides.rubygems.org/specification-reference/ for more options
-  gem.name = 'gem_template'
-  gem.homepage = 'http://www.gemvein.com/museum/cases/gem_template'
+  gem.name = 'date_book'
+  gem.homepage = 'http://www.gemvein.com/museum/cases/date_book'
   gem.license = 'MIT'
   gem.summary = 'Rails 4 & 5 Engine that does stuff.'
   gem.email = 'karen.e.lundgren@gmail.com'

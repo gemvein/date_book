@@ -13,7 +13,7 @@ require 'action_cable/engine'
 require 'sprockets/railtie'
 
 Bundler.require(*Rails.groups)
-require 'gem_template'
+require 'date_book'
 
 module Dummy
   class Application < Rails::Application

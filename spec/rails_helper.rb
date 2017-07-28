@@ -30,9 +30,9 @@ require 'rake'
 # of increasing the boot-up time by auto-requiring all files in the support
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
-Dir[GemTemplate::Engine.root.join('spec/support/*.rb')]
+Dir[DateBook::Engine.root.join('spec/support/*.rb')]
   .each { |f| require f }
-Dir[GemTemplate::Engine.root.join('spec/support/**/*.rb')]
+Dir[DateBook::Engine.root.join('spec/support/**/*.rb')]
   .each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
@@ -50,9 +50,11 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = false
-
   config.before(:suite) do
+    FactoryGirl.definition_file_paths << File.join(
+      File.dirname(__FILE__), 'factories'
+    )
+    FactoryGirl.find_definitions
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
     Dummy::Application.load_tasks
@@ -66,7 +68,6 @@ RSpec.configure do |config|
   end
 
   config.include RSpecHtmlMatchers, type: :helper
-  config.include FactoryGirl::Syntax::Methods
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

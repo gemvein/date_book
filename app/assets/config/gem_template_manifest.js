@@ -1,2 +1,2 @@
-//= link_directory ../javascripts/gem_template .js
-//= link_directory ../stylesheets/gem_template .css
+//= link_directory ../javascripts/date_book .js
+//= link_directory ../stylesheets/date_book .css
