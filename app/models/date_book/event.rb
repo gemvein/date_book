@@ -6,5 +6,11 @@ module DateBook
 
     # Schedulable Gem
     acts_as_schedulable :schedule
+
+    # Rolify Gem
+    resourcify
+
+    scope :ending_after, -> (start_date) { where nil }
+    scope :starting_before, -> (end_date) { where nil }
   end
 end

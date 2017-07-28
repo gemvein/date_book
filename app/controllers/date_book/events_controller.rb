@@ -1,7 +1,5 @@
-require_dependency "date_book/application_controller"
-
 module DateBook
-  class EventsController < ApplicationController
+  class EventsController < DateBookController
     load_and_authorize_resource
 
     # GET /events

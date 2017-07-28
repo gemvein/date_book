@@ -42,10 +42,17 @@ module DateBook
       generate('rolify', 'Role User')
     end
 
+    def install_bootstrap_leather
+      output(
+        'To make building in bootstrap easier, we use Bootstrap Leather.',
+        :magenta
+      )
+      generate('bootstrap_leather:install')
+    end
+
     def add_initializer
       output(
-        "Next, you'll need an initializer.  This is where you put your "\
-          'configuration options.',
+        "Next, you'll need an initializer for Date Book.",
         :magenta
       )
       template 'initializer.rb', 'config/initializers/date_book.rb'

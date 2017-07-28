@@ -13,6 +13,8 @@ And then execute:
 $ bundle
 ```
 
+Now, restart the rails server.
+
 Create a User model if you don't have one:
 ```bash
 $ rails g model User name:string
@@ -22,6 +24,11 @@ $ rake db:migrate
 Then run the generator:
 ```bash
 $ rails g date_book:install
+```
+
+Add to the end of application.html:
+```html
+<%= render_footer_javascript %> 
 ```
 
 ## Contributing to Paid Up

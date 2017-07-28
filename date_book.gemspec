@@ -32,35 +32,56 @@ Gem::Specification.new do |s|
     "README.md",
     "Rakefile",
     "VERSION",
-    "app/assets/config/gem_template_manifest.js",
-    "app/assets/images/gem_template/.keep",
-    "app/assets/javascripts/gem_template/application.js",
-    "app/assets/stylesheets/gem_template/application.css",
-    "app/controllers/gem_template/application_controller.rb",
-    "app/helpers/gem_template/application_helper.rb",
-    "app/jobs/gem_template/application_job.rb",
-    "app/mailers/gem_template/application_mailer.rb",
-    "app/models/gem_template/application_record.rb",
-    "app/views/layouts/gem_template/application.html.erb",
+    "app/assets/images/date_book/.keep",
+    "app/assets/javascripts/date_book/index.js",
+    "app/assets/stylesheets/date_book/index.css.scss",
+    "app/controllers/date_book/date_book_controller.rb",
+    "app/controllers/date_book/events_controller.rb",
+    "app/helpers/date_book/application_helper.rb",
+    "app/helpers/date_book/events_helper.rb",
+    "app/jobs/date_book/application_job.rb",
+    "app/mailers/date_book/application_mailer.rb",
+    "app/models/date_book/ability.rb",
+    "app/models/date_book/application_record.rb",
+    "app/models/date_book/event.rb",
+    "app/models/schedule.rb",
+    "app/views/date_book/calendars/show.html.haml",
+    "app/views/date_book/events/_form.html.haml",
+    "app/views/date_book/events/edit.html.haml",
+    "app/views/date_book/events/index.html.haml",
+    "app/views/date_book/events/new.html.haml",
+    "app/views/date_book/events/show.html.haml",
     "bin/rails",
     "config/routes.rb",
     "date_book.gemspec",
+    "db/migrate/20170728155826_create_schedules.rb",
+    "db/migrate/20170728155902_create_date_book_events.rb",
     "lib/date_book.rb",
+    "lib/date_book/configuration.rb",
     "lib/date_book/engine.rb",
+    "lib/date_book/localization.rb",
     "lib/date_book/version.rb",
+    "lib/generators/date_book/install/install_generator.rb",
+    "lib/generators/date_book/install/templates/ability.rb",
+    "lib/generators/date_book/install/templates/initializer.rb",
+    "lib/generators/date_book/utils.rb",
     "lib/tasks/date_book_tasks.rake",
+    "spec/controllers/date_book/events_controller_spec.rb",
     "spec/dummy/Rakefile",
     "spec/dummy/app/assets/config/manifest.js",
     "spec/dummy/app/assets/images/.keep",
     "spec/dummy/app/assets/javascripts/application.js",
-    "spec/dummy/app/assets/stylesheets/application.scss",
+    "spec/dummy/app/assets/stylesheets/application.css.scss",
     "spec/dummy/app/assets/stylesheets/bootstrap-everything.scss",
     "spec/dummy/app/controllers/application_controller.rb",
     "spec/dummy/app/controllers/concerns/.keep",
     "spec/dummy/app/helpers/application_helper.rb",
     "spec/dummy/app/mailers/application_mailer.rb",
+    "spec/dummy/app/models/ability.rb",
     "spec/dummy/app/models/application_record.rb",
     "spec/dummy/app/models/concerns/.keep",
+    "spec/dummy/app/models/role.rb",
+    "spec/dummy/app/models/user.rb",
     "spec/dummy/app/views/layouts/application.html.haml",
     "spec/dummy/app/views/pages/index.html.haml",
     "spec/dummy/bin/bundle",
@@ -80,24 +101,47 @@ Gem::Specification.new do |s|
     "spec/dummy/config/initializers/assets.rb",
     "spec/dummy/config/initializers/backtrace_silencers.rb",
     "spec/dummy/config/initializers/cookies_serializer.rb",
+    "spec/dummy/config/initializers/date_book.rb",
+    "spec/dummy/config/initializers/devise.rb",
     "spec/dummy/config/initializers/filter_parameter_logging.rb",
     "spec/dummy/config/initializers/high_voltage.rb",
     "spec/dummy/config/initializers/inflections.rb",
     "spec/dummy/config/initializers/mime_types.rb",
     "spec/dummy/config/initializers/new_framework_defaults.rb",
+    "spec/dummy/config/initializers/rolify.rb",
     "spec/dummy/config/initializers/session_store.rb",
     "spec/dummy/config/initializers/wrap_parameters.rb",
+    "spec/dummy/config/locales/devise.en.yml",
     "spec/dummy/config/locales/en.yml",
     "spec/dummy/config/puma.rb",
     "spec/dummy/config/routes.rb",
     "spec/dummy/config/secrets.yml",
     "spec/dummy/config/spring.rb",
+    "spec/dummy/db/migrate/20170728171103_create_users_table.rb",
+    "spec/dummy/db/migrate/20170728171649_add_devise_to_users.rb",
+    "spec/dummy/db/migrate/20170728171653_rolify_create_roles.rb",
+    "spec/dummy/db/migrate/20170728171655_create_schedules.date_book.rb",
+    "spec/dummy/db/migrate/20170728171656_create_date_book_events.date_book.rb",
     "spec/dummy/db/schema.rb",
     "spec/dummy/db/seeds.rb",
+    "spec/dummy/db/seeds/events.seeds.rb",
     "spec/dummy/lib/assets/.keep",
+    "spec/dummy/lib/basic_benchmark.rb",
     "spec/dummy/log/.keep",
+    "spec/factories/events.rb",
+    "spec/factories/roles.rb",
+    "spec/factories/users.rb",
+    "spec/helpers/date_book/events_helper_spec.rb",
+    "spec/models/date_book/event_spec.rb",
+    "spec/models/role_spec.rb",
+    "spec/models/user_spec.rb",
     "spec/rails_helper.rb",
-    "spec/spec_helper.rb"
+    "spec/routing/date_book/events_routing_spec.rb",
+    "spec/spec_helper.rb",
+    "spec/views/date_book/events/edit.html.haml_spec.rb",
+    "spec/views/date_book/events/index.html.haml_spec.rb",
+    "spec/views/date_book/events/new.html.haml_spec.rb",
+    "spec/views/date_book/events/show.html.haml_spec.rb"
   ]
   s.homepage = "http://www.gemvein.com/museum/cases/date_book".freeze
   s.licenses = ["MIT".freeze]
@@ -113,6 +157,14 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<bootstrap_leather>.freeze, ["< 1", ">= 0.9"])
       s.add_runtime_dependency(%q<haml-rails>.freeze, ["< 2", ">= 1.0"])
       s.add_runtime_dependency(%q<jquery-rails>.freeze, ["~> 4"])
+      s.add_runtime_dependency(%q<devise>.freeze, ["< 5", ">= 4.3"])
+      s.add_runtime_dependency(%q<cancancan>.freeze, ["< 3", ">= 2.0"])
+      s.add_runtime_dependency(%q<rolify>.freeze, ["< 6", ">= 5.1"])
+      s.add_runtime_dependency(%q<friendly_id>.freeze, ["< 6", ">= 5.2"])
+      s.add_runtime_dependency(%q<ice_cube>.freeze, ["< 1", ">= 0.16"])
+      s.add_runtime_dependency(%q<schedulable>.freeze, ["< 1", ">= 0.0.10"])
+      s.add_runtime_dependency(%q<fullcalendar-rails>.freeze, ["< 4", ">= 3.4"])
+      s.add_runtime_dependency(%q<momentjs-rails>.freeze, ["< 3", ">= 2.17"])
       s.add_development_dependency(%q<bundler>.freeze, ["~> 1.0"])
       s.add_development_dependency(%q<juwelier>.freeze, ["~> 2.4"])
       s.add_development_dependency(%q<rubocop>.freeze, [">= 0"])
@@ -131,6 +183,14 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bootstrap_leather>.freeze, ["< 1", ">= 0.9"])
       s.add_dependency(%q<haml-rails>.freeze, ["< 2", ">= 1.0"])
       s.add_dependency(%q<jquery-rails>.freeze, ["~> 4"])
+      s.add_dependency(%q<devise>.freeze, ["< 5", ">= 4.3"])
+      s.add_dependency(%q<cancancan>.freeze, ["< 3", ">= 2.0"])
+      s.add_dependency(%q<rolify>.freeze, ["< 6", ">= 5.1"])
+      s.add_dependency(%q<friendly_id>.freeze, ["< 6", ">= 5.2"])
+      s.add_dependency(%q<ice_cube>.freeze, ["< 1", ">= 0.16"])
+      s.add_dependency(%q<schedulable>.freeze, ["< 1", ">= 0.0.10"])
+      s.add_dependency(%q<fullcalendar-rails>.freeze, ["< 4", ">= 3.4"])
+      s.add_dependency(%q<momentjs-rails>.freeze, ["< 3", ">= 2.17"])
       s.add_dependency(%q<bundler>.freeze, ["~> 1.0"])
       s.add_dependency(%q<juwelier>.freeze, ["~> 2.4"])
       s.add_dependency(%q<rubocop>.freeze, [">= 0"])
@@ -150,6 +210,14 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bootstrap_leather>.freeze, ["< 1", ">= 0.9"])
     s.add_dependency(%q<haml-rails>.freeze, ["< 2", ">= 1.0"])
     s.add_dependency(%q<jquery-rails>.freeze, ["~> 4"])
+    s.add_dependency(%q<devise>.freeze, ["< 5", ">= 4.3"])
+    s.add_dependency(%q<cancancan>.freeze, ["< 3", ">= 2.0"])
+    s.add_dependency(%q<rolify>.freeze, ["< 6", ">= 5.1"])
+    s.add_dependency(%q<friendly_id>.freeze, ["< 6", ">= 5.2"])
+    s.add_dependency(%q<ice_cube>.freeze, ["< 1", ">= 0.16"])
+    s.add_dependency(%q<schedulable>.freeze, ["< 1", ">= 0.0.10"])
+    s.add_dependency(%q<fullcalendar-rails>.freeze, ["< 4", ">= 3.4"])
+    s.add_dependency(%q<momentjs-rails>.freeze, ["< 3", ">= 2.17"])
     s.add_dependency(%q<bundler>.freeze, ["~> 1.0"])
     s.add_dependency(%q<juwelier>.freeze, ["~> 2.4"])
     s.add_dependency(%q<rubocop>.freeze, [">= 0"])

@@ -18,12 +18,16 @@ gem 'cancancan', '>= 2.0', '< 3'
 # Rolify for Ownership
 gem 'rolify', '>= 5.1', '< 6'
 
+# Friendly Id for Clean URLs
+gem 'friendly_id', '>= 5.2', '< 6'
+
 # Ice Cube and Schedulable for recurrence and scheduling
 gem 'ice_cube', '>= 0.16', '< 1'
 gem 'schedulable', '>= 0.0.10', '< 1'
 
-# Friendly Id for Clean URLs
-gem 'friendly_id', '>= 5.2', '< 6'
+# Full Calendar to display what we've got
+gem 'fullcalendar-rails', '>= 3.4', '< 4'
+gem 'momentjs-rails', '>= 2.17', '< 3'
 
 group :development do
   gem 'bundler', '~> 1.0'
