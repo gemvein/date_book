@@ -2,7 +2,9 @@
 
 require 'date_book/engine'
 
-# Some documentation goes here
 module DateBook
-  # Your code goes here...
+  require 'date_book/configuration'
+  require 'date_book/engine'
+  require 'date_book/localization'
+  require 'date_book/version'
 end

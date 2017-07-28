@@ -2,7 +2,7 @@ require_dependency "date_book/application_controller"
 
 module DateBook
   class EventsController < ApplicationController
-    before_action :set_event, only: [:show, :edit, :update, :destroy]
+    load_and_authorize_resource
 
     # GET /events
     def index
@@ -49,11 +49,6 @@ module DateBook
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_event
-        @event = Event.find(params[:id])
-      end
-
       # Only allow a trusted parameter "white list" through.
       def event_params
         params.require(:event).permit(:name, :description)

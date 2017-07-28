@@ -32,5 +32,7 @@ module Dummy
 
     config.time_zone = 'America/Denver'
     config.active_record.default_timezone = :local
+
+    config.autoload_paths << Rails.root.join('lib')
   end
 end

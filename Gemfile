@@ -9,9 +9,21 @@ gem 'bootstrap_leather', '>= 0.9', '< 1'
 gem 'haml-rails', '>= 1.0', '< 2'
 gem 'jquery-rails', '~> 4'
 
+# Devise for Authentication
+gem 'devise', '>= 4.3', '< 5'
+
+# CanCanCan for Authorization
+gem 'cancancan', '>= 2.0', '< 3'
+
+# Rolify for Ownership
+gem 'rolify', '>= 5.1', '< 6'
+
 # Ice Cube and Schedulable for recurrence and scheduling
 gem 'ice_cube', '>= 0.16', '< 1'
 gem 'schedulable', '>= 0.0.10', '< 1'
+
+# Friendly Id for Clean URLs
+gem 'friendly_id', '>= 5.2', '< 6'
 
 group :development do
   gem 'bundler', '~> 1.0'

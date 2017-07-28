@@ -1,5 +1,5 @@
 # This migration comes from date_book (originally 20170728155826)
-class CreateSchedules < ActiveRecord::Migration
+class CreateSchedules < ActiveRecord::Migration[5.1]
   def self.up
     create_table :schedules do |t|
       t.references :schedulable, polymorphic: true

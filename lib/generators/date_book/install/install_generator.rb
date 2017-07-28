@@ -72,7 +72,7 @@ module DateBook
         %r{mount DateBook::Engine => '/.*', as: 'date_book'},
         ''
       )
-      route("mount DateBook::Engine => '/', as: 'date_book'")
+      route("mount DateBook::Engine => '/date_book', as: 'date_book'")
     end
   end
 end

@@ -13,6 +13,12 @@ And then execute:
 $ bundle
 ```
 
+Create a User model if you don't have one:
+```bash
+$ rails g model User name:string
+$ rake db:migrate
+```
+
 Then run the generator:
 ```bash
 $ rails g date_book:install
