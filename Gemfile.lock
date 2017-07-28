@@ -116,6 +116,7 @@ GEM
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
     i18n (0.8.6)
+    ice_cube (0.16.2)
     jquery-rails (4.3.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -251,6 +252,9 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    schedulable (0.0.10)
+      ice_cube
+      rails (>= 4.0.3)
     seedbank (0.4.0)
     semver2 (3.4.2)
     sexp_processor (4.10.0)
@@ -300,6 +304,7 @@ DEPENDENCIES
   faker (~> 1.4)
   haml-rails (>= 1.0, < 2)
   high_voltage (~> 3)
+  ice_cube (>= 0.16, < 1)
   jquery-rails (~> 4)
   juwelier (~> 2.4)
   launchy (~> 2)
@@ -312,6 +317,7 @@ DEPENDENCIES
   rspec-its (>= 1)
   rspec-rails (>= 3.5, < 4)
   rubocop
+  schedulable (>= 0.0.10, < 1)
   seedbank (~> 0.3)
   shoulda-matchers (>= 2.8, < 3.2)
   sqlite3 (~> 1.3)

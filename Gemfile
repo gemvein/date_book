@@ -9,6 +9,10 @@ gem 'bootstrap_leather', '>= 0.9', '< 1'
 gem 'haml-rails', '>= 1.0', '< 2'
 gem 'jquery-rails', '~> 4'
 
+# Ice Cube and Schedulable for recurrence and scheduling
+gem 'ice_cube', '>= 0.16', '< 1'
+gem 'schedulable', '>= 0.0.10', '< 1'
+
 group :development do
   gem 'bundler', '~> 1.0'
   gem 'juwelier', '~> 2.4'
