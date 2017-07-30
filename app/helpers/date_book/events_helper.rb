@@ -5,7 +5,8 @@ module DateBook
       render partial: 'date_book/events/dates', locals: {
         start_date: next_occurrence.start_date,
         end_date: next_occurrence.end_date,
-        all_day: event.schedule.all_day
+        all_day: event.schedule.all_day,
+        duration: event.schedule.duration
       }
     end
 
