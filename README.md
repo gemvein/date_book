@@ -26,10 +26,24 @@ Then run the generator:
 $ rails g date_book:install
 ```
 
+And migrate your database again:
+```bash
+$ rake db:migrate
+```
+
 Add to the end of application.html:
 ```html
 <%= render_footer_javascript %> 
 ```
+
+## Build Occurences
+
+```bash
+$ rake schedulable:build_occurrences
+```
+
+## Automating Build of Occurences
+See [Schedulable: Automate Build of Occurences](https://github.com/benignware/schedulable#automate-build-of-occurrences) for information on setting up a crontab to automate the build of occurences
 
 ## Contributing to Paid Up
  

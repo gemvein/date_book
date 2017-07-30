@@ -2,12 +2,23 @@
 
 source 'https://rubygems.org'
 
+# Our Ruby framework
 gem 'rails', '>= 4', '< 6'
+
+# Gotta have internationalization
 gem 'rails-i18n', '>= 4', '< 6'
 
+# Bootstrap Leather makes building websites in Bootstrap easier
 gem 'bootstrap_leather', '>= 0.9', '< 1'
-gem 'haml-rails', '>= 1.0', '< 2'
+
+# Jquery is our Javascript Framework
 gem 'jquery-rails', '~> 4'
+
+# Haml because I like it
+gem 'haml-rails', '>= 1.0', '< 2'
+
+# Jbuilder for easy building of json objects
+gem 'jbuilder'
 
 # Devise for Authentication
 gem 'devise', '>= 4.3', '< 5'
@@ -23,7 +34,7 @@ gem 'friendly_id', '>= 5.2', '< 6'
 
 # Ice Cube and Schedulable for recurrence and scheduling
 gem 'ice_cube', '>= 0.16', '< 1'
-gem 'schedulable', '>= 0.0.10', '< 1'
+gem 'schedulable', '>= 0.0.10', '< 1', path: '~/Code/schedulable'
 
 # Full Calendar to display what we've got
 gem 'fullcalendar-rails', '>= 3.4', '< 4'

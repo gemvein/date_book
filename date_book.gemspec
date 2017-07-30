@@ -33,28 +33,32 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "app/assets/images/date_book/.keep",
-    "app/assets/javascripts/date_book/index.js",
-    "app/assets/stylesheets/date_book/index.css.scss",
+    "app/assets/javascripts/date_book.js",
+    "app/assets/stylesheets/date_book.css.scss",
+    "app/controllers/date_book/calendars_controller.rb",
     "app/controllers/date_book/date_book_controller.rb",
     "app/controllers/date_book/events_controller.rb",
     "app/helpers/date_book/application_helper.rb",
+    "app/helpers/date_book/calendar_helper.rb",
     "app/helpers/date_book/events_helper.rb",
     "app/jobs/date_book/application_job.rb",
     "app/mailers/date_book/application_mailer.rb",
     "app/models/date_book/ability.rb",
     "app/models/date_book/application_record.rb",
     "app/models/date_book/event.rb",
-    "app/models/schedule.rb",
     "app/views/date_book/calendars/show.html.haml",
+    "app/views/date_book/events/_event.json.jbuilder",
     "app/views/date_book/events/_form.html.haml",
     "app/views/date_book/events/edit.html.haml",
     "app/views/date_book/events/index.html.haml",
+    "app/views/date_book/events/index.json.jbuilder",
     "app/views/date_book/events/new.html.haml",
     "app/views/date_book/events/show.html.haml",
+    "app/views/date_book/events/show.json.jbuilder",
+    "app/views/layout/_date_book_scripts.html.haml",
     "bin/rails",
     "config/routes.rb",
     "date_book.gemspec",
-    "db/migrate/20170728155826_create_schedules.rb",
     "db/migrate/20170728155902_create_date_book_events.rb",
     "lib/date_book.rb",
     "lib/date_book/configuration.rb",
@@ -66,6 +70,7 @@ Gem::Specification.new do |s|
     "lib/generators/date_book/install/templates/initializer.rb",
     "lib/generators/date_book/utils.rb",
     "lib/tasks/date_book_tasks.rake",
+    "spec/controllers/date_book/calendar_controller_spec.rb",
     "spec/controllers/date_book/events_controller_spec.rb",
     "spec/dummy/Rakefile",
     "spec/dummy/app/assets/config/manifest.js",
@@ -100,6 +105,7 @@ Gem::Specification.new do |s|
     "spec/dummy/config/initializers/application_controller_renderer.rb",
     "spec/dummy/config/initializers/assets.rb",
     "spec/dummy/config/initializers/backtrace_silencers.rb",
+    "spec/dummy/config/initializers/bootstrap_leather.rb",
     "spec/dummy/config/initializers/cookies_serializer.rb",
     "spec/dummy/config/initializers/date_book.rb",
     "spec/dummy/config/initializers/devise.rb",
@@ -118,10 +124,6 @@ Gem::Specification.new do |s|
     "spec/dummy/config/secrets.yml",
     "spec/dummy/config/spring.rb",
     "spec/dummy/db/migrate/20170728171103_create_users_table.rb",
-    "spec/dummy/db/migrate/20170728171649_add_devise_to_users.rb",
-    "spec/dummy/db/migrate/20170728171653_rolify_create_roles.rb",
-    "spec/dummy/db/migrate/20170728171655_create_schedules.date_book.rb",
-    "spec/dummy/db/migrate/20170728171656_create_date_book_events.date_book.rb",
     "spec/dummy/db/schema.rb",
     "spec/dummy/db/seeds.rb",
     "spec/dummy/db/seeds/events.seeds.rb",
@@ -131,6 +133,7 @@ Gem::Specification.new do |s|
     "spec/factories/events.rb",
     "spec/factories/roles.rb",
     "spec/factories/users.rb",
+    "spec/helpers/date_book/calendar_helper_spec.rb",
     "spec/helpers/date_book/events_helper_spec.rb",
     "spec/models/date_book/event_spec.rb",
     "spec/models/role_spec.rb",
@@ -155,14 +158,13 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rails>.freeze, ["< 6", ">= 4"])
       s.add_runtime_dependency(%q<rails-i18n>.freeze, ["< 6", ">= 4"])
       s.add_runtime_dependency(%q<bootstrap_leather>.freeze, ["< 1", ">= 0.9"])
-      s.add_runtime_dependency(%q<haml-rails>.freeze, ["< 2", ">= 1.0"])
       s.add_runtime_dependency(%q<jquery-rails>.freeze, ["~> 4"])
+      s.add_runtime_dependency(%q<haml-rails>.freeze, ["< 2", ">= 1.0"])
+      s.add_runtime_dependency(%q<jbuilder>.freeze, [">= 0"])
       s.add_runtime_dependency(%q<devise>.freeze, ["< 5", ">= 4.3"])
       s.add_runtime_dependency(%q<cancancan>.freeze, ["< 3", ">= 2.0"])
       s.add_runtime_dependency(%q<rolify>.freeze, ["< 6", ">= 5.1"])
       s.add_runtime_dependency(%q<friendly_id>.freeze, ["< 6", ">= 5.2"])
-      s.add_runtime_dependency(%q<ice_cube>.freeze, ["< 1", ">= 0.16"])
-      s.add_runtime_dependency(%q<schedulable>.freeze, ["< 1", ">= 0.0.10"])
       s.add_runtime_dependency(%q<fullcalendar-rails>.freeze, ["< 4", ">= 3.4"])
       s.add_runtime_dependency(%q<momentjs-rails>.freeze, ["< 3", ">= 2.17"])
       s.add_development_dependency(%q<bundler>.freeze, ["~> 1.0"])
@@ -181,14 +183,13 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rails>.freeze, ["< 6", ">= 4"])
       s.add_dependency(%q<rails-i18n>.freeze, ["< 6", ">= 4"])
       s.add_dependency(%q<bootstrap_leather>.freeze, ["< 1", ">= 0.9"])
-      s.add_dependency(%q<haml-rails>.freeze, ["< 2", ">= 1.0"])
       s.add_dependency(%q<jquery-rails>.freeze, ["~> 4"])
+      s.add_dependency(%q<haml-rails>.freeze, ["< 2", ">= 1.0"])
+      s.add_dependency(%q<jbuilder>.freeze, [">= 0"])
       s.add_dependency(%q<devise>.freeze, ["< 5", ">= 4.3"])
       s.add_dependency(%q<cancancan>.freeze, ["< 3", ">= 2.0"])
       s.add_dependency(%q<rolify>.freeze, ["< 6", ">= 5.1"])
       s.add_dependency(%q<friendly_id>.freeze, ["< 6", ">= 5.2"])
-      s.add_dependency(%q<ice_cube>.freeze, ["< 1", ">= 0.16"])
-      s.add_dependency(%q<schedulable>.freeze, ["< 1", ">= 0.0.10"])
       s.add_dependency(%q<fullcalendar-rails>.freeze, ["< 4", ">= 3.4"])
       s.add_dependency(%q<momentjs-rails>.freeze, ["< 3", ">= 2.17"])
       s.add_dependency(%q<bundler>.freeze, ["~> 1.0"])
@@ -208,14 +209,13 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rails>.freeze, ["< 6", ">= 4"])
     s.add_dependency(%q<rails-i18n>.freeze, ["< 6", ">= 4"])
     s.add_dependency(%q<bootstrap_leather>.freeze, ["< 1", ">= 0.9"])
-    s.add_dependency(%q<haml-rails>.freeze, ["< 2", ">= 1.0"])
     s.add_dependency(%q<jquery-rails>.freeze, ["~> 4"])
+    s.add_dependency(%q<haml-rails>.freeze, ["< 2", ">= 1.0"])
+    s.add_dependency(%q<jbuilder>.freeze, [">= 0"])
     s.add_dependency(%q<devise>.freeze, ["< 5", ">= 4.3"])
     s.add_dependency(%q<cancancan>.freeze, ["< 3", ">= 2.0"])
     s.add_dependency(%q<rolify>.freeze, ["< 6", ">= 5.1"])
     s.add_dependency(%q<friendly_id>.freeze, ["< 6", ">= 5.2"])
-    s.add_dependency(%q<ice_cube>.freeze, ["< 1", ">= 0.16"])
-    s.add_dependency(%q<schedulable>.freeze, ["< 1", ">= 0.0.10"])
     s.add_dependency(%q<fullcalendar-rails>.freeze, ["< 4", ">= 3.4"])
     s.add_dependency(%q<momentjs-rails>.freeze, ["< 3", ">= 2.17"])
     s.add_dependency(%q<bundler>.freeze, ["~> 1.0"])

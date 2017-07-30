@@ -1,2 +1,9 @@
 = date_book_scripts
 .calendar
+- add_footer_javascript do
+  :javascript
+    $(function() {
+      $('.calendar').fullCalendar({
+          events: '#{date_book.events_path format: :json}'
+      });
+    });

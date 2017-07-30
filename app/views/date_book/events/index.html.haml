@@ -1,24 +1,11 @@
 = date_book_scripts
-%h1 Listing events
-
-%table
-  %thead
-    %tr
-      %th Name
-      %th Description
-      %th
-      %th
-      %th
-
-  %tbody
-    - @events.each do |event|
-      %tr
-        %td= event.name
-        %td= event.description
-        %td= link_to 'Show', event
-        %td= link_to 'Edit', edit_event_path(event)
-        %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Event', new_event_path
+- @events.each do |event|
+  .article.clearfix
+    %h2
+      = link_to event.name, date_book.event_path(event.slug)
+    %p
+      = truncate strip_tags(event.description), length: 500, separator: ' ', omission: '...' do
+        = link_to(:read_more.l, date_book.event_path(event.slug))
+    = event_next_occurrence_dates event
+- if can? :create, DateBook::Event
+  = link_to :create.l, new_event_path

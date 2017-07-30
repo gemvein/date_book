@@ -1,13 +1,7 @@
+- add_title @event.name
 = date_book_scripts
-%p#notice= notice
+= event_next_occurrence_dates @event
+= @event.description.html_safe
 
-%p
-  %b Name:
-  = @event.name
-%p
-  %b Description:
-  = @event.description
-
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Back', events_path
+- if can? :edit, @event
+  = link_to 'Edit', edit_event_path(@event)

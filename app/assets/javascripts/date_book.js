@@ -12,4 +12,3 @@
 //
 //= require moment
 //= require fullcalendar
-//= require initializer

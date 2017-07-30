@@ -1,29 +1,33 @@
 module DateBook
   class EventsController < DateBookController
-    load_and_authorize_resource
+    load_resource find_by: :slug
 
     # GET /events
+    # GET /events.json
     def index
-      @events = Event.all
+      start_date = params[:start]&.to_datetime || Time.now.beginning_of_month
+      end_date = params[:end]&.to_datetime || Time.now.beginning_of_month.next_month
+      @events = @events.ending_after(start_date).starting_before(end_date)
     end
 
     # GET /events/1
+    # GET /events/1.json
     def show
     end
 
     # GET /events/new
+    # GET /events/new.json
     def new
-      @event = Event.new
     end
 
     # GET /events/1/edit
+    # GET /events/1/edit.json
     def edit
     end
 
     # POST /events
+    # POST /events.json
     def create
-      @event = Event.new(event_params)
-
       if @event.save
         redirect_to @event, notice: 'Event was successfully created.'
       else
@@ -32,6 +36,7 @@ module DateBook
     end
 
     # PATCH/PUT /events/1
+    # PATCH/PUT /events/1.json
     def update
       if @event.update(event_params)
         redirect_to @event, notice: 'Event was successfully updated.'
@@ -41,6 +46,7 @@ module DateBook
     end
 
     # DELETE /events/1
+    # DELETE /events.json
     def destroy
       @event.destroy
       redirect_to events_url, notice: 'Event was successfully destroyed.'

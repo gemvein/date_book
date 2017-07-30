@@ -1,0 +1,9 @@
+en:
+  time:
+    formats:
+      moment_date: '%F'
+      moment_datetime: '%FT%T'
+      human_date: '%F'
+      human_datetime: '%F %T'
+  create: 'Create'
+  next_occurrence: 'Next Occurrence'
