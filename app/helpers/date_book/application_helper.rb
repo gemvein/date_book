@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module DateBook
-  # Some documentation goes here
   module ApplicationHelper
     def date_book_scripts
       render partial: 'layout/date_book_scripts'
@@ -14,6 +13,10 @@ module DateBook
                  :human_datetime
                end
       I18n.localize date, format: format
+    end
+
+    def render_time(date)
+      I18n.localize date, format: :human_time
     end
   end
 end

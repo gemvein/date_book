@@ -4,7 +4,9 @@ en:
       moment_date: '%F'
       moment_datetime: '%FT%T'
       human_date: '%F'
-      human_datetime: '%F %T'
+      human_datetime: '%F %I:%M %P'
+      human_time: '%I:%M %P'
+
   create: 'Create'
   next_occurrence: 'Next Occurrence'
   read_more: 'Read More'

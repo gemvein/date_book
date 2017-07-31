@@ -11,6 +11,20 @@ BasicBenchmark.new "Seeding #{Rails.env} Events" do
       all_day: true
     }
   )
+
+  FactoryGirl.create(
+    :event,
+    name: 'The work week',
+    css_class: 'week',
+    schedule_attributes: {
+      rule: 'weekly',
+      day: %w(monday),
+      time: '00:00',
+      duration: 5.days,
+      all_day: true
+    }
+  )
+
   FactoryGirl.create(
     :event,
     name: 'Breakfast',
@@ -20,4 +34,15 @@ BasicBenchmark.new "Seeding #{Rails.env} Events" do
       duration: 1.hour
     }
   )
+
+  FactoryGirl.create(
+    :event,
+    name: 'Midnight Pilates',
+    schedule_attributes: {
+      rule: 'daily',
+      time: '11:30 PM',
+      duration: 1.hour
+    }
+  )
+
 end
