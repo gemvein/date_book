@@ -9,4 +9,5 @@ en:
 
   create: 'Create'
   next_occurrence: 'Next Occurrence'
+  previous_occurrence: 'Previous Occurrence'
   read_more: 'Read More'

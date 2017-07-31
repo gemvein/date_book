@@ -21,6 +21,10 @@ module DateBook
       Rails.application.routes.url_helpers.url_for [date_book, self]
     end
 
+    def previous_occurrence
+      event_occurrences.starting_before(Time.now).descending.first
+    end
+
     def next_occurrence
       event_occurrences.ending_after(Time.now).ascending.first
     end

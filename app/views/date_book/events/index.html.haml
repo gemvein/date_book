@@ -7,6 +7,6 @@
       = truncate strip_tags(event.description), length: 500, separator: ' ', omission: '...'
     .float-right
       = link_to(:read_more.l, date_book.event_path(event.slug), class: 'btn btn-primary')
-    = event_next_occurrence_dates event
+    = event_occurrence_dates event
 - if can? :create, DateBook::Event
   = link_to :create.l, new_event_path
