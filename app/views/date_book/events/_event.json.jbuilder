@@ -1,6 +1,6 @@
-json.id event.id
+json.occurrence_id event.occurrence_id
 json.slug event.slug
-json.url date_book.event_path(event.slug)
+json.url date_book.event_path(event.slug, occurrence_id: event.occurrence_id)
 json.title event.title
 json.description event.description
 json.editable can?(:edit, event).to_s

@@ -9,5 +9,6 @@ en:
 
   create: 'Create'
   next_occurrence: 'Next Occurrence'
+  occurs_on: 'Occurs On'
   previous_occurrence: 'Previous Occurrence'
   read_more: 'Read More'

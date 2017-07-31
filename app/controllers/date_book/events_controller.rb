@@ -13,6 +13,9 @@ module DateBook
     # GET /events/1
     # GET /events/1.json
     def show
+      if params[:occurrence_id].present?
+        @occurrence = @event.event_occurrences.find(params[:occurrence_id])
+      end
     end
 
     # GET /events/new

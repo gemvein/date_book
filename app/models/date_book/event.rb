@@ -21,12 +21,14 @@ module DateBook
       Rails.application.routes.url_helpers.url_for [date_book, self]
     end
 
-    def previous_occurrence
-      event_occurrences.starting_before(Time.now).descending.first
+    def previous_occurrence(occurrence = nil)
+      before = occurrence.present? ? occurrence.start_date : Time.now
+      event_occurrences.starting_before(before).descending.first
     end
 
-    def next_occurrence
-      event_occurrences.ending_after(Time.now).ascending.first
+    def next_occurrence(occurrence = nil)
+      after = occurrence.present? ? occurrence.end_date + 1.second : Time.now
+      event_occurrences.ending_after(after).ascending.first
     end
 
     def self.to_list
@@ -36,7 +38,7 @@ module DateBook
         .map do |x|
           event = x.schedulable
           hashie = {
-            id: event.id,
+            occurrence_id: x.id,
             title: event.name,
             slug: event.slug,
             description: event.description,
