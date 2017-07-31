@@ -12,3 +12,5 @@
 //
 //= require moment
 //= require fullcalendar
+//= require date_book/popovers
+//= require date_book/calendar_events
