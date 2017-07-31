@@ -1,1 +1,15 @@
 @import 'fullcalendar.css';
+
+.all-day {
+
+}
+
+.part-day, .part-day:hover {
+  color: #000;
+  border: solid 1px #3A87AD;
+  background-color: lighten(#3A87AD, 50%);
+}
+
+.float-right {
+  float: right;
+}

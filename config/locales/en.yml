@@ -7,3 +7,4 @@ en:
       human_datetime: '%F %T'
   create: 'Create'
   next_occurrence: 'Next Occurrence'
+  read_more: 'Read More'

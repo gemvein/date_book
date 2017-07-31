@@ -4,6 +4,8 @@
   :javascript
     $(function() {
       $('.calendar').fullCalendar({
-          events: '#{date_book.events_path format: :json}'
+          events: '#{date_book.events_path format: :json}',
+          eventRender: calendarEventRender,
+          header: calendarEventHeader,
       });
     });

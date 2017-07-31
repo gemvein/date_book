@@ -1,0 +1,5 @@
+.clearfix
+  %p
+    = truncate strip_tags(event.description), length: 250, separator: ' ', omission: '...'
+  .float-right
+    = link_to(:read_more.l, date_book.event_path(event.slug), class: 'btn btn-info')
