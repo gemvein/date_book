@@ -1,8 +1,5 @@
+- add_title :editing_event.l name: @event.name
 = date_book_scripts
-%h1 Editing event
-
+= link_to :show_event.l(name: @event.name), @event
 = render 'form'
 
-= link_to 'Show', @event
-\|
-= link_to 'Back', events_path

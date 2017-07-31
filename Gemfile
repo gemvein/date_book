@@ -11,6 +11,12 @@ gem 'rails-i18n', '>= 4', '< 6'
 # Bootstrap Leather makes building websites in Bootstrap easier
 gem 'bootstrap_leather', '>= 0.9', '< 1'
 
+# Bootstrap Forms generates forms elegantly
+gem 'bootstrap_form', '>= 2.7', '< 3'
+
+# WYSIWYG fields, yay!
+gem 'bootstrap-wysihtml5-rails'
+
 # Jquery is our Javascript Framework
 gem 'jquery-rails', '~> 4'
 

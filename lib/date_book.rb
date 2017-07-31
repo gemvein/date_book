@@ -12,6 +12,8 @@ module DateBook
   require 'sass'
   require 'haml-rails'
   require 'bootstrap_leather'
+  require 'bootstrap_form'
+  require 'bootstrap-wysihtml5-rails'
 
   require 'fullcalendar-rails'
 

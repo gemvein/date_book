@@ -8,7 +8,10 @@ en:
       human_time: '%I:%M %P'
 
   create: 'Create'
+  editing_event: "Editing %{name} Event"
   next_occurrence: 'Next Occurrence'
   occurs_on: 'Occurs On'
   previous_occurrence: 'Previous Occurrence'
   read_more: 'Read More'
+  save_event: 'Save Event'
+  show_event: "Show %{name} Event"

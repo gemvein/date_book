@@ -19,7 +19,7 @@ module DateBook
     end
 
     initializer 'date_book.assets.precompile' do |app|
-      app.config.assets.precompile += %w( date_book.js date_book.css )
+      app.config.assets.precompile += %w( date_book.js date_book.css bootstrap-wysiwyg/bootstrap-wysiwyg.css bootstrap-wysiwyg.js )
     end
 
     def self.table_name_prefix

@@ -12,5 +12,7 @@
 //
 //= require moment
 //= require fullcalendar
+//= require bootstrap-wysihtml5
 //= require date_book/popovers
 //= require date_book/calendar_events
+//= require date_book/wysiwyg
