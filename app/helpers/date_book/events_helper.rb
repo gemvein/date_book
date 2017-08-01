@@ -10,5 +10,9 @@ module DateBook
       }, formats: :html
     end
 
+    def render_rule_form_section(rule, schedule)
+      render partial: "date_book/events/#{rule}", locals: { schedule: schedule }
+    end
+
   end
 end

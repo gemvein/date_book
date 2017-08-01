@@ -9,6 +9,7 @@ en:
 
   create: 'Create'
   editing_event: "Editing %{name} Event"
+  indicates_required_field: '(Indicates Required Field)'
   next_occurrence: 'Next Occurrence'
   occurs_on: 'Occurs On'
   previous_occurrence: 'Previous Occurrence'

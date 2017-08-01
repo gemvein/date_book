@@ -14,11 +14,17 @@ gem 'bootstrap_leather', '>= 0.9', '< 1'
 # Bootstrap Forms generates forms elegantly
 gem 'bootstrap_form', '>= 2.7', '< 3'
 
+# Nested Forms for association editing
+gem 'nested_form', '>= 0.3', '< 1'
+
 # WYSIWYG fields, yay!
 gem 'bootstrap-wysihtml5-rails'
 
 # Jquery is our Javascript Framework
 gem 'jquery-rails', '~> 4'
+
+# We want the UI too
+gem 'jquery-ui-rails'
 
 # Haml because I like it
 gem 'haml-rails', '>= 1.0', '< 2'

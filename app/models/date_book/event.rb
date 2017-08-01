@@ -1,11 +1,15 @@
 module DateBook
   class Event < ApplicationRecord
+
     # FriendlyId Gem
     extend FriendlyId
     friendly_id :name, use: :slugged
 
     # Schedulable Gem
     acts_as_schedulable :schedule, occurrences: :event_occurrences, class_name: '::EventOccurrence'
+
+    # Nested Forms gem
+    accepts_nested_attributes_for :schedule
 
     # Rolify Gem
     resourcify

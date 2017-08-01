@@ -182,6 +182,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
+    nested_form (0.3.2)
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
@@ -349,9 +350,11 @@ DEPENDENCIES
   ice_cube (>= 0.16, < 1)
   jbuilder
   jquery-rails (~> 4)
+  jquery-ui-rails
   juwelier (~> 2.4)
   launchy (~> 2)
   momentjs-rails (>= 2.17, < 3)
+  nested_form (>= 0.3, < 1)
   poltergeist (~> 1.14)
   rails (>= 4, < 6)
   rails-controller-testing (~> 1.0)

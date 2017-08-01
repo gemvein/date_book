@@ -19,7 +19,11 @@ module DateBook
     end
 
     initializer 'date_book.assets.precompile' do |app|
-      app.config.assets.precompile += %w( date_book.js date_book.css bootstrap-wysiwyg/bootstrap-wysiwyg.css bootstrap-wysiwyg.js )
+      app.config.assets.precompile += %w(
+        date_book.js date_book.css bootstrap-wysiwyg/bootstrap-wysiwyg.css
+        bootstrap-wysiwyg.js jquery_nested_form.js jquery-ui/datepicker.css
+        jquery_nested_form.js
+      )
     end
 
     def self.table_name_prefix

@@ -1,5 +1,6 @@
 @import 'fullcalendar.css';
-@import "bootstrap-wysihtml5/bootstrap3-wysihtml5.css";
+@import 'bootstrap-wysihtml5/bootstrap3-wysihtml5.css';
+@import 'jquery-ui/datepicker.css';
 
 .all-day {
 
@@ -13,4 +14,17 @@
 
 .float-right {
   float: right;
+}
+
+.required {
+  color: #c00;
+
+  &:before {
+    content: '* ';
+    color: #c00;
+  }
+}
+
+.date-picker {
+  width: 8em;
 }
