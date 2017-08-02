@@ -2,5 +2,7 @@
 
 DateBook::Engine.routes.draw do
   resource :calendar
-  resources :events
+  resources :events do
+    get 'popover', on: :member
+  end
 end

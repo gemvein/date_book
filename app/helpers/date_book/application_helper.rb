@@ -3,7 +3,7 @@
 module DateBook
   module ApplicationHelper
     def date_book_scripts
-      render partial: 'layout/date_book_scripts'
+      render partial: 'layouts/date_book_scripts'
     end
 
     def render_date_range(start_date, end_date, all_day, duration)

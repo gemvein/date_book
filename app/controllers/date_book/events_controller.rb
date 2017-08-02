@@ -1,6 +1,7 @@
 module DateBook
   class EventsController < DateBookController
     load_resource find_by: :slug
+    before_action :set_occurrence, only: [:show, :popover]
 
     # GET /events
     # GET /events.json
@@ -10,12 +11,15 @@ module DateBook
       @events = @events.ending_after(start_date).starting_before(end_date)
     end
 
-    # GET /events/1
-    # GET /events/1.json
+    # GET /events/slug
+    # GET /events/slug.json
     def show
-      if params[:occurrence_id].present?
-        @occurrence = @event.event_occurrences.find(params[:occurrence_id])
-      end
+    end
+
+    # GET /events/slug/popover
+    # GET /events/slug/popover.json
+    def popover
+      render layout: 'blank'
     end
 
     # GET /events/new
@@ -23,8 +27,8 @@ module DateBook
     def new
     end
 
-    # GET /events/1/edit
-    # GET /events/1/edit.json
+    # GET /events/slug/edit
+    # GET /events/slug/edit.json
     def edit
     end
 
@@ -38,8 +42,8 @@ module DateBook
       end
     end
 
-    # PATCH/PUT /events/1
-    # PATCH/PUT /events/1.json
+    # PATCH/PUT /events/slug
+    # PATCH/PUT /events/slug.json
     def update
       if @event.update(event_params)
         redirect_to @event, notice: :item_acted_on.l(item: DateBook::Event.model_name.human, action: :updated.l)
@@ -48,7 +52,7 @@ module DateBook
       end
     end
 
-    # DELETE /events/1
+    # DELETE /events/slug
     # DELETE /events.json
     def destroy
       @event.destroy
@@ -56,6 +60,12 @@ module DateBook
     end
 
     private
+      def set_occurrence
+        if params[:occurrence_id].present?
+          @occurrence = @event.event_occurrences.find(params[:occurrence_id])
+        end
+      end
+
       # Only allow a trusted parameter "white list" through.
       def event_params
         schedule_attributes = [

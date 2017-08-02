@@ -1,0 +1,7 @@
+.clearfix
+  %p
+    = truncate strip_tags(@event.description), length: 250, separator: ' ', omission: '...'
+  .float-right
+    - if can? :edit, @event
+      = icon_link_to 'pencil', :edit.l, date_book.edit_event_path(@event.slug), class: 'btn btn-success'
+    = icon_link_to 'zoom-in', :read_more.l, date_book.event_path(@event.slug, occurrence_id: @occurrence&.id), class: 'btn btn-info'
