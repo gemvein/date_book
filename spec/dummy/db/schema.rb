@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802174829) do
+ActiveRecord::Schema.define(version: 20170802223836) do
+
+  create_table "date_book_event_occurrences", force: :cascade do |t|
+    t.string "schedulable_type"
+    t.integer "schedulable_id"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "end_date"
+    t.index ["schedulable_type", "schedulable_id"], name: "schedulable"
+  end
 
   create_table "date_book_events", force: :cascade do |t|
     t.string "name"
@@ -23,16 +33,6 @@ ActiveRecord::Schema.define(version: 20170802174829) do
     t.boolean "all_day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "event_occurrences", force: :cascade do |t|
-    t.string "schedulable_type"
-    t.integer "schedulable_id"
-    t.datetime "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "end_date"
-    t.index ["schedulable_type", "schedulable_id"], name: "index_event_occurrences_on_schedulable_type_and_schedulable_id"
   end
 
   create_table "roles", force: :cascade do |t|

@@ -1,5 +1,7 @@
 module DateBook
   class Event < ApplicationRecord
+    alias_attribute :event_occurrences, :date_book_event_occurrences
+
     validates_presence_of :name, :slug
 
     # FriendlyId Gem
@@ -7,7 +9,7 @@ module DateBook
     friendly_id :name, use: :slugged
 
     # Schedulable Gem
-    acts_as_schedulable :schedule, occurrences: :event_occurrences, class_name: '::EventOccurrence'
+    acts_as_schedulable :schedule, occurrences: :date_book_event_occurrences, class_name: 'DateBook::EventOccurrence'
 
     # Nested Forms gem
     accepts_nested_attributes_for :schedule
@@ -16,18 +18,14 @@ module DateBook
     resourcify
 
     scope :ending_after, -> (start_date) {
-      where id: ::EventOccurrence.ending_after(start_date).event_ids
+      where id: DateBook::EventOccurrence.ending_after(start_date).event_ids
     }
     scope :starting_before, -> (end_date) {
-      where id: ::EventOccurrence.starting_before(end_date).event_ids
+      where id: DateBook::EventOccurrence.starting_before(end_date).event_ids
     }
 
     def schedule
       super || build_schedule(date: Time.now.to_date, time: Time.now.to_s(:time))
-    end
-
-    def to_path
-      Rails.application.routes.url_helpers.url_for [date_book, self]
     end
 
     def previous_occurrence(occurrence = nil)
@@ -41,7 +39,7 @@ module DateBook
     end
 
     def self.to_list
-      ::EventOccurrence
+      DateBook::EventOccurrence
         .for_schedulables('DateBook::Event', ids)
         .ascending
         .map do |x|

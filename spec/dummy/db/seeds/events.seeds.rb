@@ -49,6 +49,28 @@ after :users do
 
     FactoryGirl.create(
       :event,
+      name: "Yesterday's Event",
+      schedule_attributes: {
+        rule: 'singular',
+        date: 1.day.ago,
+        time: '5:30 PM',
+        duration: 1.hour
+      }
+    )
+
+    FactoryGirl.create(
+      :event,
+      name: "Tomorrow's Event",
+      schedule_attributes: {
+        rule: 'singular',
+        date: 1.day.from_now,
+        time: '6:30 PM',
+        duration: 1.hour
+      }
+    )
+
+    FactoryGirl.create(
+      :event,
       name: 'Science Fiction Club',
       owner: User.find_by_name('Regular User'),
       schedule_attributes: {
