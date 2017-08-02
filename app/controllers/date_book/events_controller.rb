@@ -32,7 +32,7 @@ module DateBook
     # POST /events.json
     def create
       if @event.save
-        redirect_to @event, notice: 'Event was successfully created.' #TODO: Localize this string
+        redirect_to @event, notice: :item_acted_on.l(item: DateBook::Event.model_name.human, action: :created.l)
       else
         render :new
       end
@@ -42,7 +42,7 @@ module DateBook
     # PATCH/PUT /events/1.json
     def update
       if @event.update(event_params)
-        redirect_to @event, notice: 'Event was successfully updated.' #TODO: Localize this string
+        redirect_to @event, notice: :item_acted_on.l(item: DateBook::Event.model_name.human, action: :updated.l)
       else
         render :edit
       end
@@ -52,7 +52,7 @@ module DateBook
     # DELETE /events.json
     def destroy
       @event.destroy
-      redirect_to events_url, notice: 'Event was successfully destroyed.' #TODO: Localize this string
+      redirect_to events_url, notice: :item_acted_on.l(item: DateBook::Event.model_name.human, action: :destroyed.l)
     end
 
     private

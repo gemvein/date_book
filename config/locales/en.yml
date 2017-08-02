@@ -22,10 +22,13 @@ en:
   are_you_sure: 'Are you sure?'
   calendar: 'Calendar of Events'
   create: 'Create'
+  created: 'created'
   day_and_week: 'Day and Week'
   delete: 'Delete'
+  destroyed: 'destroyed'
   editing_event: "Editing %{name} Event"
   indicates_required_field: '(Indicates Required Field)'
+  item_acted_on: '%{item} was successfully %{action}.'
   last: 'Last'
   next_occurrence: 'Next Occurrence'
   occurs_on: 'Occurs On'
@@ -35,4 +38,5 @@ en:
   repeats_every: 'Repeats every'
   save_event: 'Save Event'
   show_event: "Show %{name} Event"
+  updated: 'updated'
   week_number: 'Week Number'
