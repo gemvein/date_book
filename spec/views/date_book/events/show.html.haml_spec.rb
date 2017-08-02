@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "events/show", type: :view do
+RSpec.describe "events/show", folder: :views do
   before(:each) do
     @event = assign(:event, Event.create!(
       :name => "Name",

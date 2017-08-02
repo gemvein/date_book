@@ -67,7 +67,7 @@ RSpec.configure do |config|
     end
   end
 
-  config.include RSpecHtmlMatchers, type: :helper
+  config.include RSpecHtmlMatchers, folder: :helper
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
@@ -88,4 +88,20 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.register_ordering(:global) do |items|
+    items.sort_by do |item|
+      case item.metadata[:folder]
+      when :models then 10
+      when :abilities then 20
+      when :routing then 30
+      when :controllers then 40
+      when :helpers then 50
+      when :features then 60
+      when :requests then 70
+      when :mailers then 80
+      else 5
+      end
+    end
+  end
 end

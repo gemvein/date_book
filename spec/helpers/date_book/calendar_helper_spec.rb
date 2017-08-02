@@ -11,7 +11,7 @@ require 'rails_helper'
 #   end
 # end
 module DateBook
-  RSpec.describe CalendarHelper, type: :helper do
+  RSpec.describe CalendarHelper, folder: :helpers do
     pending "add some examples to (or delete) #{__FILE__}"
   end
 end

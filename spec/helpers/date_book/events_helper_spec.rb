@@ -11,7 +11,7 @@ require 'rails_helper'
 #   end
 # end
 module DateBook
-  RSpec.describe EventsHelper, type: :helper do
+  RSpec.describe EventsHelper, folder: :helpers do
     pending "add some examples to (or delete) #{__FILE__}"
   end
 end

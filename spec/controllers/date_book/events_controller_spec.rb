@@ -24,7 +24,7 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 module DateBook
-  RSpec.describe EventsController, type: :controller do
+  RSpec.describe EventsController, folder: :controllers do
 
     # This should return the minimal set of attributes required to create a valid
     # Event. As you add validations to Event, be sure to

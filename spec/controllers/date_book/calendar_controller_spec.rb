@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module DateBook
-  RSpec.describe CalendarController, type: :controller do
+  RSpec.describe CalendarController, folder: :controllers do
 
   end
 end

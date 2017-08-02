@@ -1,7 +1,7 @@
 require "rails_helper"
 
 module DateBook
-  RSpec.describe EventsController, type: :routing do
+  RSpec.describe EventsController, folder: :routings do
     describe "routing" do
 
       it "routes to #index" do
