@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728231908) do
+ActiveRecord::Schema.define(version: 20170802174829) do
 
   create_table "date_book_events", force: :cascade do |t|
     t.string "name"
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20170728231908) do
     t.integer "count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "duration"
-    t.boolean "all_day"
+    t.integer "duration", default: 3600
+    t.boolean "all_day", default: false
     t.index ["schedulable_type", "schedulable_id"], name: "index_schedules_on_schedulable_type_and_schedulable_id"
   end
 

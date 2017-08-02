@@ -45,4 +45,16 @@ BasicBenchmark.new "Seeding #{Rails.env} Events" do
     }
   )
 
+  FactoryGirl.create(
+    :event,
+    name: 'Science Fiction Club',
+    schedule_attributes: {
+      rule: 'monthly',
+      day_of_week: { tuesday: [ '1' ] },
+      time: '5:00 PM',
+      interval: 1,
+      duration: 1.hour
+    }
+  )
+
 end

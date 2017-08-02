@@ -2,4 +2,6 @@
   %p
     = truncate strip_tags(event.description), length: 250, separator: ' ', omission: '...'
   .float-right
-    = link_to(:read_more.l, date_book.event_path(event.slug, occurrence_id: event.occurrence_id), class: 'btn btn-info')
+    - if can? :edit, event
+      = icon_link_to 'pencil', :edit.l, date_book.edit_event_path(event.slug), class: 'btn btn-success'
+    = icon_link_to 'zoom-in', :read_more.l, date_book.event_path(event.slug, occurrence_id: event.occurrence_id), class: 'btn btn-info'

@@ -1,6 +1,6 @@
 @import 'fullcalendar.css';
-@import 'bootstrap-wysihtml5/bootstrap3-wysihtml5.css';
-@import 'jquery-ui/datepicker.css';
+@import 'bootstrap-wysihtml5/bootstrap3-wysihtml5.css'; //TODO: Change to something else
+@import 'bootstrap-datetimepicker.css';
 
 .all-day {
 
@@ -25,6 +25,18 @@
   }
 }
 
-.date-picker {
+.date-picker, .time-picker {
   width: 8em;
+}
+
+.input-group-addon .checkbox-inline {
+  padding-top: 0;
+}
+
+.event-schedule-rule-section .input-group {
+  max-width: 20em;
+}
+
+.margin-left {
+  margin-left: 1em;
 }

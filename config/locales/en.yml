@@ -1,4 +1,8 @@
 en:
+  activerecord:
+    help:
+      schedule:
+        rule: 'How often does this event recur?'
   time:
     formats:
       moment_date: '%F'
@@ -6,13 +10,29 @@ en:
       human_date: '%F'
       human_datetime: '%F %I:%M %P'
       human_time: '%I:%M %P'
-
+  units:
+    years: 'Years'
+    months: 'Months'
+    weeks: 'Weeks'
+    days: 'Days'
+    hours: 'Hours'
+    minutes: 'Minutes'
+    seconds: 'Seconds'
+  add_event: 'Add Event'
+  are_you_sure: 'Are you sure?'
+  calendar: 'Calendar of Events'
   create: 'Create'
+  day_and_week: 'Day and Week'
+  delete: 'Delete'
   editing_event: "Editing %{name} Event"
   indicates_required_field: '(Indicates Required Field)'
+  last: 'Last'
   next_occurrence: 'Next Occurrence'
   occurs_on: 'Occurs On'
   previous_occurrence: 'Previous Occurrence'
   read_more: 'Read More'
+  recurrence: 'Recurrence'
+  repeats_every: 'Repeats every'
   save_event: 'Save Event'
   show_event: "Show %{name} Event"
+  week_number: 'Week Number'

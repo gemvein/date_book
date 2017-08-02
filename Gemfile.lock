@@ -1,7 +1,5 @@
-GIT
-  remote: git@github.com:nerakdon/schedulable.git
-  revision: 9da6591769c9e488afc537dc3747304125be64ab
-  branch: working
+PATH
+  remote: ../schedulable
   specs:
     schedulable (0.0.10)
       ice_cube
@@ -58,6 +56,8 @@ GEM
       sass (>= 3.3.4)
     bootstrap-wysihtml5-rails (0.3.3.8)
       railties (>= 3.0)
+    bootstrap3-datetimepicker-rails (4.17.47)
+      momentjs-rails (>= 2.8.1)
     bootstrap_form (2.7.0)
     bootstrap_leather (0.10.9)
       bootstrap_form (~> 2)
@@ -123,7 +123,7 @@ GEM
       oauth2 (~> 1.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
-    haml (5.0.1)
+    haml (5.0.2)
       temple (>= 0.8.0)
       tilt
     haml-rails (1.0.0)
@@ -332,6 +332,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 3.3)
   bootstrap-wysihtml5-rails
+  bootstrap3-datetimepicker-rails (~> 4.17.47)
   bootstrap_form (>= 2.7, < 3)
   bootstrap_leather (>= 0.9, < 1)
   bundler (~> 1.0)
@@ -350,10 +351,9 @@ DEPENDENCIES
   ice_cube (>= 0.16, < 1)
   jbuilder
   jquery-rails (~> 4)
-  jquery-ui-rails
   juwelier (~> 2.4)
   launchy (~> 2)
-  momentjs-rails (>= 2.17, < 3)
+  momentjs-rails (>= 2.9, < 3)
   nested_form (>= 0.3, < 1)
   poltergeist (~> 1.14)
   rails (>= 4, < 6)

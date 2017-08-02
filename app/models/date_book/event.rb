@@ -1,5 +1,6 @@
 module DateBook
   class Event < ApplicationRecord
+    validates_presence_of :name, :slug
 
     # FriendlyId Gem
     extend FriendlyId
@@ -20,6 +21,10 @@ module DateBook
     scope :starting_before, -> (end_date) {
       where id: ::EventOccurrence.starting_before(end_date).event_ids
     }
+
+    def schedule
+      super || build_schedule(date: Time.now.to_date, time: Time.now.to_s(:time))
+    end
 
     def to_path
       Rails.application.routes.url_helpers.url_for [date_book, self]

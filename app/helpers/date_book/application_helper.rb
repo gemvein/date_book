@@ -27,5 +27,9 @@ module DateBook
     def render_time(date)
       I18n.localize date, format: :human_time
     end
+
+    def render_all_day_checkbox(schedule)
+      render partial: 'date_book/application/all_day_checkbox', locals: { schedule: schedule }
+    end
   end
 end

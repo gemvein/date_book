@@ -23,8 +23,8 @@ gem 'bootstrap-wysihtml5-rails'
 # Jquery is our Javascript Framework
 gem 'jquery-rails', '~> 4'
 
-# We want the UI too
-gem 'jquery-ui-rails'
+# Gotta have nice date and time inputs
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 
 # Haml because I like it
 gem 'haml-rails', '>= 1.0', '< 2'
@@ -46,11 +46,12 @@ gem 'friendly_id', '>= 5.2', '< 6'
 
 # Ice Cube and Schedulable for recurrence and scheduling
 gem 'ice_cube', '>= 0.16', '< 1'
-gem 'schedulable', '>= 0.0.10', '< 1', git: 'git@github.com:nerakdon/schedulable.git', branch: 'working'
+# gem 'schedulable', '>= 0.0.10', '< 1', git: 'git@github.com:nerakdon/schedulable.git', branch: 'working'
+gem 'schedulable', '>= 0.0.10', '< 1', path: '~/Code/schedulable'
 
 # Full Calendar to display what we've got
 gem 'fullcalendar-rails', '>= 3.4', '< 4'
-gem 'momentjs-rails', '>= 2.17', '< 3'
+gem 'momentjs-rails', '>= 2.9', '< 3'
 
 group :development do
   gem 'bundler', '~> 1.0'

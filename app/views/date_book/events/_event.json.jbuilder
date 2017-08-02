@@ -9,4 +9,4 @@ json.start event.start_moment
 json.end event.end_moment
 json.duration event.duration
 json.allDay event.all_day
-json.popover event_popover(event)
+json.popover event_popover(event) #TODO: make this not work this way

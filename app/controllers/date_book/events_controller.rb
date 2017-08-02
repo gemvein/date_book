@@ -32,7 +32,7 @@ module DateBook
     # POST /events.json
     def create
       if @event.save
-        redirect_to @event, notice: 'Event was successfully created.'
+        redirect_to @event, notice: 'Event was successfully created.' #TODO: Localize this string
       else
         render :new
       end
@@ -42,7 +42,7 @@ module DateBook
     # PATCH/PUT /events/1.json
     def update
       if @event.update(event_params)
-        redirect_to @event, notice: 'Event was successfully updated.'
+        redirect_to @event, notice: 'Event was successfully updated.' #TODO: Localize this string
       else
         render :edit
       end
@@ -52,13 +52,47 @@ module DateBook
     # DELETE /events.json
     def destroy
       @event.destroy
-      redirect_to events_url, notice: 'Event was successfully destroyed.'
+      redirect_to events_url, notice: 'Event was successfully destroyed.' #TODO: Localize this string
     end
 
     private
       # Only allow a trusted parameter "white list" through.
       def event_params
-        params.require(:event).permit(:name, :description)
+        schedule_attributes = [
+          :id,
+          :date,
+          :time,
+          :rule,
+          :until,
+          :count,
+          :interval,
+          :all_day,
+          {
+            day: [],
+            day_of_week: [
+              {
+                monday: [],
+                tuesday: [],
+                wednesday: [],
+                thursday: [],
+                friday: [],
+                saturday: [],
+                sunday: []
+              }
+            ],
+            duration_attributes: [
+              :count,
+              :unit
+            ]
+          }
+        ]
+
+        params.require(:event).permit(
+          :id,
+          :name,
+          :description,
+          schedule_attributes: schedule_attributes
+        )
       end
   end
 end

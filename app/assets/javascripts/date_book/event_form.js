@@ -1,16 +1,31 @@
+function showRelevantSection (){
+    active_rule = $('input.event-schedule-rule:checked').first();
+    value = active_rule.val();
+    $('.event-schedule-rule-section').html(sections[value]);
+}
+
+
 $(function (){
     var rules = $('.event-schedule-rule');
-    var sections = $('.event-schedule-rule-section');
     rules.on('change', function (e){
-        console.log(this.value);
-        form_section = $('#' + this.value + '-section');
-        // Hide all rules
-        sections.addClass('hide');
-        // Show only the relevant rule
-        form_section.removeClass('hide');
+        showRelevantSection();
+    }).trigger('change');
+
+    $('.input-group .all-day').on('change', function(){
+        associated_time = $(this).parents('.input-group').find('.time-picker');
+        if ($(this).is(':checked') == true) {
+            associated_time.prop('disabled', true);
+            associated_time.val('');
+        } else {
+            associated_time.prop('disabled', false);
+        }
     });
 
-    $('.date-picker').datepicker({
-        dateFormat: 'yy-mm-dd'
+    $('.date-picker').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
+
+    $('.time-picker').datetimepicker({
+        format: 'LT'
     });
 });

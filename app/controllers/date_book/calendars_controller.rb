@@ -1,5 +1,7 @@
 module DateBook
   class CalendarsController < DateBookController
+    #TODO: Make this a real resource
+
     # GET /calendar
     def show
       ending_after = params.fetch(:ending_after, Date.today.at_beginning_of_month)

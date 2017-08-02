@@ -21,8 +21,8 @@ module DateBook
     initializer 'date_book.assets.precompile' do |app|
       app.config.assets.precompile += %w(
         date_book.js date_book.css bootstrap-wysiwyg/bootstrap-wysiwyg.css
-        bootstrap-wysiwyg.js jquery_nested_form.js jquery-ui/datepicker.css
-        jquery_nested_form.js
+        bootstrap-wysiwyg.js jquery_nested_form.js jquery_nested_form.js
+        bootstrap-datetimepicker.js bootstrap-datetimepicker.css
       )
     end
 

@@ -23,17 +23,17 @@ class EventOccurrence < ActiveRecord::Base
 
   def start_moment
     if schedule.all_day
-      date&.strftime('%F')
+      I18n.localize date, format: :moment_date
     else
-      date&.strftime('%FT%T')
+      I18n.localize date, format: :moment_datetime
     end
   end
 
   def end_moment
     if schedule.all_day
-      end_date&.strftime('%F')
+      I18n.localize end_date, format: :moment_date
     else
-      end_date&.strftime('%FT%T')
+      I18n.localize end_date, format: :moment_datetime
     end
   end
 

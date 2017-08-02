@@ -1,4 +1,7 @@
+- add_title :calendar.l
 = date_book_scripts
+- if can? :create, DateBook::Event
+  %p.float-right.margin-left= icon_link_to 'plus', :add_event.l, date_book.new_event_path, class: 'btn btn-success'
 .calendar
 - add_footer_javascript do
   :javascript

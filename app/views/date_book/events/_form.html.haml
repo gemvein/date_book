@@ -1,13 +1,15 @@
+:javascript
+  var sections = {};
 = bootstrap_form_for @event, layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-10', class: 'event-form' do |f|
   .col-sm-10.col-sm-offset-2.required= :indicates_required_field.l
   = f.text_field :name
   = f.text_area :description, class: 'date-book--wysiwyg'
-  = f.schedule_select :schedule, style: :bootstrap
   = f.fields_for :schedule do |schedule|
-    = schedule.form_group :rule, label: { text: 'Recurrence' }, help: 'How often does this event recur?' do
-      - Schedule.rules.each do |rule|
+    = schedule.form_group :rule, label: { text: :recurrence.l } do
+      - DateBook.configuration.rules.each do |rule|
         = schedule.radio_button :rule, rule, label: rule.titleize, inline: true, class: 'event-schedule-rule'
-      - Schedule.rules.each do |rule|
-        .hide.event-schedule-rule-section{ id: "#{rule}-section" }
-          = render_rule_form_section rule, schedule
+        :javascript
+          sections['#{rule}'] = '#{escape_javascript render_rule_form_section rule, schedule}';
+    .event-schedule-rule-section
+
   = f.submit :save_event.l

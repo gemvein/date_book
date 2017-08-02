@@ -1,0 +1,6 @@
+= schedule.fields_for :duration_attributes, @event.schedule.duration_attributes do |duration|
+  = schedule.form_group :duration, label: { text: Schedule.human_attribute_name('duration') } do
+    .input-group
+      = duration.text_field_without_bootstrap :count, class: 'duration-count form-control'
+      .input-group-addon
+        = duration.select_without_bootstrap :unit, DateBook.configuration.duration_units, selected: @event.schedule.duration_unit

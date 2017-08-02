@@ -14,7 +14,7 @@
 //= require fullcalendar
 //= require bootstrap-wysihtml5
 //= require jquery_nested_form
-//= require jquery-ui/widgets/datepicker
+//= require bootstrap-datetimepicker
 //= require date_book/calendar_events
 //= require date_book/event_form
 //= require date_book/popovers
