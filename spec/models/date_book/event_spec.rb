@@ -37,7 +37,7 @@ RSpec.describe DateBook::Event, folder: :models do
     end
     describe '#to_list' do
       subject { DateBook::Event.all.to_list }
-      its(:first) { should be_a ::OpenStruct }
+      its(:first) { should be_a ::Hash }
       it { should have_at_least(3).items }
     end
     describe '.schedule' do

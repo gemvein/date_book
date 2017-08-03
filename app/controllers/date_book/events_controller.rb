@@ -9,11 +9,19 @@ module DateBook
       start_date = params[:start]&.to_datetime || Time.now.beginning_of_month
       end_date = params[:end]&.to_datetime || Time.now.beginning_of_month.next_month
       @events = @events.ending_after(start_date).starting_before(end_date)
+      respond_to do |format|
+        format.html
+        format.json { render json: @events.to_list }
+      end
     end
 
     # GET /events/slug
     # GET /events/slug.json
     def show
+      respond_to do |format|
+        format.html
+        format.json { render json: @event.to_list }
+      end
     end
 
     # GET /events/slug/popover

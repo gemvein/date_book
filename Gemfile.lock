@@ -75,6 +75,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-webkit (1.1.0)
+      capybara (~> 2.0, >= 2.0.2)
+      json
     cliver (0.3.2)
     concurrent-ruby (1.0.5)
     coveralls (0.8.21)
@@ -339,6 +342,7 @@ DEPENDENCIES
   byebug (~> 9)
   cancancan (>= 2.0, < 3)
   capybara (~> 2.4)
+  capybara-webkit (>= 1.1, < 2)
   coveralls (~> 0.8)
   database_cleaner (~> 1.4)
   devise (>= 4.3, < 5)

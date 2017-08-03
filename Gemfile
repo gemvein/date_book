@@ -75,6 +75,7 @@ end
 
 group :test do
   gem 'capybara', '~> 2.4'
+  gem 'capybara-webkit', '>= 1.1', '< 2'
   gem 'coveralls', '~> 0.8', require: false
   gem 'database_cleaner', '~> 1.4'
   gem 'launchy', '~> 2', require: false

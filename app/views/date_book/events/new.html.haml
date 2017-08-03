@@ -1,6 +1,5 @@
+- add_title :new_event.l
 = date_book_scripts
-%h1 New event
-
+= link_to DateBook::Event.model_name.human.pluralize, date_book.events_path
 = render 'form'
 
-= link_to 'Back', events_path

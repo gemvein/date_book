@@ -38,25 +38,27 @@ module DateBook
       event_occurrences.ending_after(after).ascending.first
     end
 
+    def to_list(occurrence = nil)
+      occurrence ||= next_occurrence
+      hashie = {
+        occurrence_id: occurrence.id,
+        title: name,
+        slug: slug,
+        description: description,
+        css_class: css_class,
+        start_moment: occurrence.start_moment,
+        end_moment: occurrence.end_moment,
+        duration: schedule.duration,
+        all_day: schedule.all_day
+      }
+      OpenStruct.new(hashie).marshal_dump
+    end
+
     def self.to_list
       DateBook::EventOccurrence
         .for_schedulables('DateBook::Event', ids)
         .ascending
-        .map do |x|
-          event = x.schedulable
-          hashie = {
-            occurrence_id: x.id,
-            title: event.name,
-            slug: event.slug,
-            description: event.description,
-            css_class: event.css_class,
-            start_moment: x.start_moment,
-            end_moment: x.end_moment,
-            duration: event.schedule.duration,
-            all_day: event.schedule.all_day
-          }
-          OpenStruct.new hashie
-        end
+        .map { |x| x.schedulable.to_list(x) }
     end
   end
 end

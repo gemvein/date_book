@@ -31,29 +31,16 @@ def click_on_body
   page.execute_script("$('body').click();")
 end
 
-# Used to fill ckeditor fields
+# Used to fill wysiwig fields
 # @param [String] locator label text for the textarea or textarea id
-def fill_in_ckeditor(locator, options)
+def fill_in_wysiwyg(locator, text)
+  include ActionView::Helpers::JavaScriptHelper
   locator = find_field_by_label(locator)
+  text = text.gsub("'", "\'").gsub("\n", '\\\n')
   # Fill the editor content
   page.execute_script <<-SCRIPT
-    var ckeditor = CKEDITOR.instances.#{locator}
-    ckeditor.setData('#{ActionController::Base.helpers.j options[:with]}')
-    ckeditor.focus()
-    ckeditor.updateElement()
+    $('##{locator}').data('wysihtml5').editor.setValue('#{text}');
   SCRIPT
-end
-
-def fill_in_autocomplete(field, options = {})
-  field = find_field_by_label(field)
-  fill_in field, with: options[:with]
-
-  page.execute_script "$('##{field}').trigger('focus')"
-  page.execute_script "$('##{field}').trigger('keydown')"
-  selector = %{.tt-menu .tt-suggestion:contains("#{options[:with]}")}
-
-  page.should have_selector('.tt-menu .tt-suggestion')
-  page.execute_script "$('#{selector}').trigger('mouseenter').click()"
 end
 
 def find_field_by_label(locator)

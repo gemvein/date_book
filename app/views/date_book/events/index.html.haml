@@ -1,12 +1,16 @@
+- add_title DateBook::Event.model_name.human.pluralize
 = date_book_scripts
-- @events.each do |event|
-  .article.clearfix
-    %h2
-      = link_to event.name, date_book.event_path(event.slug)
-    %p
-      = truncate strip_tags(event.description), length: 500, separator: ' ', omission: '...'
-    .float-right
-      = link_to(:read_more.l, date_book.event_path(event.slug), class: 'btn btn-primary')
-    = event_occurrence_dates event
 - if can? :create, DateBook::Event
-  = link_to :create.l, new_event_path
+  = icon_link_to 'plus', :create.l, new_event_path, class: 'btn btn-success'
+.date_book_events
+  - @events.each do |event|
+    .date_book_event.article.clearfix{ id: "date-book-event-#{event.id}"}
+      %h2
+        = link_to event.name, date_book.event_path(event.slug)
+      %p
+        = truncate strip_tags(event.description), length: 500, separator: ' ', omission: '...'
+      .float-right
+        - if can? :edit, event
+          = icon_link_to 'pencil', :edit.l, date_book.edit_event_path(event), class: 'btn btn-info'
+        = icon_link_to('zoom-in', :read_more.l, date_book.event_path(event.slug), class: 'btn btn-primary')
+      = event_occurrence_dates event

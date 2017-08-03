@@ -40,7 +40,7 @@ Dir[DateBook::Engine.root.join('spec/support/**/*.rb')]
 ActiveRecord::Migrator.migrations_paths = 'spec/dummy/db/migrate'
 ActiveRecord::Migration.maintain_test_schema!
 
-Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :webkit
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -50,15 +50,9 @@ Shoulda::Matchers.configure do |config|
 end
 
 RSpec.configure do |config|
+  config.use_transactional_fixtures = false
   config.before(:suite) do
-    # FactoryGirl.definition_file_paths << File.join(
-    #   File.dirname(__FILE__), 'factories'
-    # )
-    # FactoryGirl.find_definitions
     DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
-    Dummy::Application.load_tasks
-    Rake::Task['db:seed'].invoke # loading seeds
   end
 
   config.around(:each) do |example|

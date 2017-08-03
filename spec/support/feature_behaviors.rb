@@ -1,5 +1,5 @@
 shared_examples_for 'a restricted page' do
-  describe 'redirects to the user sign in page' do
+  describe 'redirects to the home page' do
     subject { current_path }
     it { should eq '/users/sign_in' }
   end
@@ -11,14 +11,14 @@ shared_examples_for 'a restricted page' do
 end
 
 shared_examples_for 'an authentication error' do
-  describe 'redirects to the user sign in page' do
+  describe 'redirects to the home page' do
     subject { current_path }
-    it { should eq '/users/sign_in' }
+    it { should eq '/' }
   end
   it_behaves_like(
     'a bootstrap page with an alert',
-    'warning',
-    'You need to sign in or sign up before continuing.'
+    'danger',
+    'You must sign in or sign up to access this content.'
   )
 end
 

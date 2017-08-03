@@ -27,7 +27,10 @@
           = nav_list class: 'navbar-nav navbar-right' do
             = nav_item 'Calendar', date_book.calendar_path
             = nav_item 'Events', date_book.events_path
-            = nav_item 'Sign In', main_app.new_user_session_path
+            - if user_signed_in?
+              = nav_item 'Sign Out', main_app.destroy_user_session_path, method: :delete
+            - else
+              = nav_item 'Sign In', main_app.new_user_session_path
     .container
       = render_hero_unit
       .row
