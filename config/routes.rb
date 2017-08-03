@@ -5,4 +5,5 @@ DateBook::Engine.routes.draw do
   resources :events do
     get 'popover', on: :member
   end
+  root to: 'calendar#index'
 end
