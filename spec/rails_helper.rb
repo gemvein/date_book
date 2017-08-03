@@ -67,7 +67,19 @@ RSpec.configure do |config|
     end
   end
 
+  config.include Rails.application.routes.url_helpers
+
   config.include RSpecHtmlMatchers, folder: :helper
+
+  # In order to tell Rspec how to use Devise, as per
+  # https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-3-and-4-%28and-RSpec%29
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.extend ControllerMacros, type: :controller
+  config.include Warden::Test::Helpers
+
+  config.before :suite do
+    Warden.test_mode!
+  end
 
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and

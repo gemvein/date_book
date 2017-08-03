@@ -25,7 +25,7 @@ en:
   created: 'created'
   day_and_week: 'Day and Week'
   delete: 'Delete'
-  destroyed: 'destroyed'
+  destroyed: 'removed'
   editing_event: "Editing %{name} Event"
   indicates_required_field: '(Indicates Required Field)'
   item_acted_on: '%{item} was successfully %{action}.'

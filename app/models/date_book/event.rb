@@ -1,5 +1,5 @@
 module DateBook
-  class Event < ApplicationRecord
+  class Event < DateBookRecord
     alias_attribute :event_occurrences, :date_book_event_occurrences
 
     validates_presence_of :name, :slug

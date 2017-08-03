@@ -1,6 +1,6 @@
 module DateBook
   class EventsController < DateBookController
-    load_resource find_by: :slug
+    load_and_authorize_resource find_by: :slug
     before_action :set_occurrence, only: [:show, :popover]
 
     # GET /events
@@ -17,43 +17,40 @@ module DateBook
     end
 
     # GET /events/slug/popover
-    # GET /events/slug/popover.json
     def popover
       render layout: 'blank'
     end
 
     # GET /events/new
-    # GET /events/new.json
     def new
     end
 
     # GET /events/slug/edit
-    # GET /events/slug/edit.json
     def edit
     end
 
     # POST /events
-    # POST /events.json
     def create
+      @event.owners = [current_user]
       if @event.save
         redirect_to @event, notice: :item_acted_on.l(item: DateBook::Event.model_name.human, action: :created.l)
       else
+        flash[:error] = @event.errors.full_messages.to_sentence
         render :new
       end
     end
 
     # PATCH/PUT /events/slug
-    # PATCH/PUT /events/slug.json
     def update
       if @event.update(event_params)
         redirect_to @event, notice: :item_acted_on.l(item: DateBook::Event.model_name.human, action: :updated.l)
       else
+        flash[:error] = @event.errors.full_messages.to_sentence
         render :edit
       end
     end
 
     # DELETE /events/slug
-    # DELETE /events.json
     def destroy
       @event.destroy
       redirect_to events_url, notice: :item_acted_on.l(item: DateBook::Event.model_name.human, action: :destroyed.l)

@@ -40,8 +40,8 @@ shared_examples_for 'a redirect matching' do |path_expression|
     it { should match path_expression }
   end
 end
-shared_examples_for 'a redirect to sign in' do
-  it_behaves_like 'a redirect to', '/users/sign_in'
+shared_examples_for 'a redirect to the home page' do
+  it_behaves_like 'a redirect to', '/'
 end
 shared_examples_for 'an error response with message' do |status, message|
   it_behaves_like 'an error response', status
