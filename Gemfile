@@ -70,7 +70,6 @@ group :development, :test do
   gem 'rspec-rails', '>= 3.5', '< 4'
   gem 'seedbank', '~> 0.3'
   gem 'sqlite3', '~> 1.3'
-  gem 'high_voltage', '~> 3'
 end
 
 group :test do
