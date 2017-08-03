@@ -1,41 +1,54 @@
-require "rails_helper"
+require 'rails_helper'
 
 module DateBook
-  RSpec.describe EventsController, folder: :routings do
-    pending "routing" do
+  RSpec.describe EventsController, folder: :routing do
+    routes { DateBook::Engine.routes }
 
-      it "routes to #index" do
-        expect(:get => "/events").to route_to("events#index")
+    describe 'Routing' do
+      it 'routes to #index' do
+        expect(get: '/events').
+          to route_to(controller: 'date_book/events', action: 'index')
       end
 
-      it "routes to #new" do
-        expect(:get => "/events/new").to route_to("events#new")
+      it 'routes to #new' do
+        expect(get: '/events/new')
+          .to route_to('date_book/events#new')
       end
 
-      it "routes to #show" do
-        expect(:get => "/events/1").to route_to("events#show", :id => "1")
+      it 'routes to #show' do
+        expect(get: '/events/slug')
+          .to route_to('date_book/events#show', id: 'slug')
       end
 
-      it "routes to #edit" do
-        expect(:get => "/events/1/edit").to route_to("events#edit", :id => "1")
+      it 'routes to #show' do
+        expect(get: '/events/slug/popover')
+          .to route_to('date_book/events#popover', id: 'slug')
       end
 
-      it "routes to #create" do
-        expect(:post => "/events").to route_to("events#create")
+      it 'routes to #edit' do
+        expect(get: '/events/slug/edit')
+          .to route_to('date_book/events#edit', id: 'slug')
       end
 
-      it "routes to #update via PUT" do
-        expect(:put => "/events/1").to route_to("events#update", :id => "1")
+      it 'routes to #create' do
+        expect(post: '/events')
+          .to route_to('date_book/events#create')
       end
 
-      it "routes to #update via PATCH" do
-        expect(:patch => "/events/1").to route_to("events#update", :id => "1")
+      it 'routes to #update via PUT' do
+        expect(put: '/events/slug')
+          .to route_to('date_book/events#update', id: 'slug')
       end
 
-      it "routes to #destroy" do
-        expect(:delete => "/events/1").to route_to("events#destroy", :id => "1")
+      it 'routes to #update via PATCH' do
+        expect(patch: '/events/slug')
+          .to route_to('date_book/events#update', id: 'slug')
       end
 
+      it 'routes to #destroy' do
+        expect(delete: '/events/slug')
+          .to route_to('date_book/events#destroy', id: 'slug')
+      end
     end
   end
 end
