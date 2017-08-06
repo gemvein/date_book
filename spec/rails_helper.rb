@@ -53,6 +53,9 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+    Dummy::Application.load_tasks
+    Rake::Task['db:seed'].invoke # loading seeds
   end
 
   config.around(:each) do |example|
