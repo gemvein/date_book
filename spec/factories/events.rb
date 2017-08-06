@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :event, class: 'DateBook::Event' do
+  factory :event do
     description { "<p>#{Faker::Lorem.paragraphs(2).join('</p><p>')}</p>" }
     transient do
       owner { User.find_by_name('Admin User') }

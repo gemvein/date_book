@@ -78,7 +78,7 @@ module DateBook
 
         describe 'loads a new event into @event' do
           subject { assigns(:event) }
-          it { should be_a_new DateBook::Event }
+          it { should be_a_new Event }
           its(:schedule) { should be_a_new Schedule }
         end
       end
@@ -145,7 +145,7 @@ module DateBook
           end
           it 'results in a new event' do
             expect { post(:create, params: {  event: valid_attributes }) }
-              .to change { DateBook::Event.count(:id) }.by(1)
+              .to change { Event.count(:id) }.by(1)
           end
         end
         describe 'with invalid params' do
@@ -166,7 +166,7 @@ module DateBook
           end
           it 'does not result in a new event' do
             expect { post(:create, params: {  event: invalid_attributes }) }
-              .to_not change { DateBook::Event.count(:id) }
+              .to_not change { Event.count(:id) }
           end
         end
       end
@@ -273,7 +273,7 @@ module DateBook
           end
           it 'results one less event' do
             expect { delete(:destroy, params: { id: 'science-fiction-club' }) }
-              .to change { DateBook::Event.count(:id) }.by(-1)
+              .to change { Event.count(:id) }.by(-1)
           end
         end
       end

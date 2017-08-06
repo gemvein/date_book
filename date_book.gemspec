@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
     "bin/rails",
     "config/routes.rb",
     "date_book.gemspec",
-    "db/migrate/20170728155902_create_date_book_events.rb",
+    "db/migrate/20170728155902_create.events.rb",
     "lib/date_book.rb",
     "lib/date_book/configuration.rb",
     "lib/date_book/engine.rb",

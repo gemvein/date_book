@@ -19,7 +19,7 @@ RSpec.describe 'Events Requests', folder: :requests do
           end
           it_behaves_like(
             'a json object listing a collection of items',
-            DateBook::Event,
+            Event,
             minimum: 2
           )
         end
@@ -34,7 +34,7 @@ RSpec.describe 'Events Requests', folder: :requests do
           end
           it_behaves_like(
             'a json object listing a collection of items',
-            DateBook::Event,
+            Event,
             minimum: 1
           )
         end
@@ -48,7 +48,7 @@ RSpec.describe 'Events Requests', folder: :requests do
       end
       it_behaves_like(
         'a json object showing an item',
-        DateBook::Event,
+        Event,
         'Monday'
       )
     end

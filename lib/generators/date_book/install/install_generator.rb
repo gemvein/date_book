@@ -30,7 +30,7 @@ module DateBook
           'with a customizable ability.rb file.',
         :magenta
       )
-      template 'ability.rb', 'app/models/ability.rb'
+      template 'app/models/ability.rb', 'app/models/ability.rb'
     end
 
     def install_rolify
@@ -55,7 +55,17 @@ module DateBook
         "Next, you'll need an initializer for Date Book.",
         :magenta
       )
-      template 'initializer.rb', 'config/initializers/date_book.rb'
+      template 'config/initializers/date_book.rb', 'config/initializers/date_book.rb'
+    end
+
+    def add_models
+      output(
+        'Models for you to extend will be placed in your models directory',
+        :magenta
+      )
+      template 'app/models/event.rb', 'app/models/event.rb'
+      template 'app/models/event_occurrence.rb', 'app/models/event_occurrence.rb'
+      template 'app/models/schedule.rb', 'app/models/schedule.rb'
     end
 
     def add_migrations

@@ -1,10 +1,10 @@
-- add_title DateBook::Event.model_name.human.pluralize
+- add_title Event.model_name.human.pluralize
 = date_book_scripts
-- if can? :create, DateBook::Event
+- if can? :create, Event
   = icon_link_to 'plus', :create.l, new_event_path, class: 'btn btn-success'
-.date_book_events
+.events
   - @events.each do |event|
-    .date_book_event.article.clearfix{ id: "date-book-event-#{event.id}"}
+    .event.article.clearfix{ id: "event-#{event.id}"}
       %h2
         = link_to event.name, date_book.event_path(event.slug)
       %p

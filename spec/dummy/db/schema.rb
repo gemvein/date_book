@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170802223836) do
+ActiveRecord::Schema.define(version: 20170806175355) do
 
-  create_table "date_book_event_occurrences", force: :cascade do |t|
+  create_table "event_occurrences", force: :cascade do |t|
     t.string "schedulable_type"
     t.integer "schedulable_id"
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "end_date"
-    t.index ["schedulable_type", "schedulable_id"], name: "schedulable"
+    t.index ["schedulable_type", "schedulable_id"], name: "index_event_occurrences_on_schedulable_type_and_schedulable_id"
   end
 
-  create_table "date_book_events", force: :cascade do |t|
+  create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.text "description"

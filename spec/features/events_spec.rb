@@ -16,7 +16,7 @@ RSpec.feature 'Events', folder: :features do
         end
         it_behaves_like(
           'a bootstrap page listing a collection of items',
-          DateBook::Event,
+          Event,
           minimum: 5
         )
       end
@@ -26,7 +26,7 @@ RSpec.feature 'Events', folder: :features do
         end
         it_behaves_like(
           'a bootstrap page listing a collection of items',
-          DateBook::Event,
+          Event,
           minimum: 4
         )
       end
@@ -38,7 +38,7 @@ RSpec.feature 'Events', folder: :features do
       before do
         visit '/date_book/events/monday'
       end
-      it_behaves_like 'a bootstrap page showing an item', DateBook::Event, 'Monday'
+      it_behaves_like 'a bootstrap page showing an item', Event, 'Monday'
     end
   end
 
@@ -193,7 +193,7 @@ RSpec.feature 'Events', folder: :features do
         )
         describe 'does not show the removed event' do
           subject { page }
-          it { should_not have_selector "#date-book-event-#{club_id}" }
+          it { should_not have_selector "#event-#{club_id}" }
         end
       end
     end

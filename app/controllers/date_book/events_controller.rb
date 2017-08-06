@@ -41,7 +41,7 @@ module DateBook
     def create
       @event.owners = [current_user]
       if @event.save
-        redirect_to @event, notice: :item_acted_on.l(item: DateBook::Event.model_name.human, action: :created.l)
+        redirect_to @event, notice: :item_acted_on.l(item: Event.model_name.human, action: :created.l)
       else
         flash[:error] = @event.errors.full_messages.to_sentence
         render :new
@@ -51,7 +51,7 @@ module DateBook
     # PATCH/PUT /events/slug
     def update
       if @event.update(event_params)
-        redirect_to @event, notice: :item_acted_on.l(item: DateBook::Event.model_name.human, action: :updated.l)
+        redirect_to @event, notice: :item_acted_on.l(item: Event.model_name.human, action: :updated.l)
       else
         flash[:error] = @event.errors.full_messages.to_sentence
         render :edit
@@ -61,7 +61,7 @@ module DateBook
     # DELETE /events/slug
     def destroy
       @event.destroy
-      redirect_to events_url, notice: :item_acted_on.l(item: DateBook::Event.model_name.human, action: :destroyed.l)
+      redirect_to events_url, notice: :item_acted_on.l(item: Event.model_name.human, action: :destroyed.l)
     end
 
     private

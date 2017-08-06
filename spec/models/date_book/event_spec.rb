@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DateBook::Event, folder: :models do
+RSpec.describe Event, folder: :models do
   include_context 'loaded site'
 
   describe 'Model' do
@@ -19,30 +19,30 @@ RSpec.describe DateBook::Event, folder: :models do
   end
 
   describe 'Class' do
-    subject { DateBook::Event }
+    subject { Event }
     # FriendlyId Gem
     it { should respond_to(:friendly) }
   end
 
   describe 'Scopes and Methods' do
     describe '#ending_after' do
-      subject { DateBook::Event.ending_after(Time.zone.now) }
+      subject { Event.ending_after(Time.zone.now) }
       it { should include tomorrows_event }
       it { should_not include yesterdays_event }
     end
     describe '#starting_before' do
-      subject { DateBook::Event.starting_before(Time.zone.now) }
+      subject { Event.starting_before(Time.zone.now) }
       it { should include yesterdays_event }
       it { should_not include tomorrows_event }
     end
     describe '#to_list' do
-      subject { DateBook::Event.all.to_list }
+      subject { Event.all.to_list }
       its(:first) { should be_a ::Hash }
       it { should have_at_least(3).items }
     end
     describe '.schedule' do
       describe 'with a new record' do
-        subject { DateBook::Event.new }
+        subject { Event.new }
         its(:schedule) { should be_a_new Schedule }
       end
       describe 'with a saved record' do
