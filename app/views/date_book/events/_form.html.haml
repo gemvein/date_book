@@ -4,6 +4,7 @@
   .col-sm-10.col-sm-offset-2.required= :indicates_required_field.l
   = f.text_field :name
   = f.text_area :description, class: 'date-book--wysiwyg'
+  = f.text_field :css_class
   = f.fields_for :schedule do |schedule|
     = schedule.form_group :rule, label: { text: :recurrence.l } do
       - DateBook.configuration.rules.each do |rule|

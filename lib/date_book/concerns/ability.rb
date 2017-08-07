@@ -17,6 +17,7 @@ module DateBook
       else
         can :read, Calendar
         can :read, Event
+        can :create, Calendar
         cannot :create, Event
         can :manage, Calendar, id: Calendar.with_role(:owner, user).ids
         can :manage, Event, id: Event.with_role(:owner, user).ids

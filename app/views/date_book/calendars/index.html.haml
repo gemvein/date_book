@@ -1,0 +1,12 @@
+- add_title Calendar.model_name.human.pluralize
+= date_book_scripts
+.calendar
+- add_footer_javascript do
+  :javascript
+    $(function() {
+      $('.calendar').fullCalendar({
+          events: '#{date_book.events_path format: :json}',
+          eventRender: calendarEventRender,
+          header: calendarEventHeader,
+      });
+    });

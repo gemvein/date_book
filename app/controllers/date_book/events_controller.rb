@@ -106,6 +106,7 @@ module DateBook
           :id,
           :name,
           :description,
+          :css_class,
           schedule_attributes: schedule_attributes
         )
       end
