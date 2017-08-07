@@ -63,6 +63,7 @@ module DateBook
         'Models for you to extend will be placed in your models directory',
         :magenta
       )
+      template 'app/models/calendar.rb', 'app/models/calendar.rb'
       template 'app/models/event.rb', 'app/models/event.rb'
       template 'app/models/event_occurrence.rb', 'app/models/event_occurrence.rb'
       template 'app/models/schedule.rb', 'app/models/schedule.rb'

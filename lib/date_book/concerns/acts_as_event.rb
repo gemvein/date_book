@@ -3,7 +3,7 @@ module DateBook
     def acts_as_event(options = {})
       acts_as_ownable
 
-      validates_presence_of :name, :slug
+      validates_presence_of :name, :slug, :calendar
 
       # FriendlyId Gem
       extend FriendlyId
@@ -11,6 +11,9 @@ module DateBook
 
       # Schedulable Gem
       acts_as_schedulable :schedule, occurrences: :event_occurrences
+
+      # Relationships
+      belongs_to :calendar
 
       # Nested Forms gem
       accepts_nested_attributes_for :schedule

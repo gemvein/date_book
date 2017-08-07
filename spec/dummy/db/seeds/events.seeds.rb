@@ -1,4 +1,4 @@
-after :users do
+after :users, :calendars do
   BasicBenchmark.new "Seeding #{Rails.env} Events" do
     FactoryGirl.create(
       :event,

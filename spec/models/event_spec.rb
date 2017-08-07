@@ -13,6 +13,10 @@ RSpec.describe Event, folder: :models do
     # Validations
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:slug) }
+    it { should validate_presence_of(:calendar) }
+
+    # Relationships
+    it { should belong_to(:calendar) }
 
     # Nested Attributes
     it { should accept_nested_attributes_for :schedule }

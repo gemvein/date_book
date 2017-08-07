@@ -24,6 +24,7 @@ module DateBook
   require 'date_book/version'
 
   require 'date_book/concerns/ability'
+  require 'date_book/concerns/acts_as_calendar'
   require 'date_book/concerns/acts_as_event'
   require 'date_book/concerns/acts_as_event_occurrence'
   require 'date_book/concerns/acts_as_ownable'
@@ -31,6 +32,7 @@ module DateBook
 end
 
 ActiveRecord::Base.send(:extend, DateBook::ActsAsOwnable)
+ActiveRecord::Base.send(:extend, DateBook::ActsAsCalendar)
 ActiveRecord::Base.send(:extend, DateBook::ActsAsEvent)
 ActiveRecord::Base.send(:extend, DateBook::ActsAsEventOccurrence)
 ActiveRecord::Base.send(:extend, DateBook::ActsAsSchedule)

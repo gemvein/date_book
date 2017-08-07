@@ -1,4 +1,4 @@
-# This migration comes from date_book (originally 20170728231142)
+# This migration comes from date_book (originally 20170807133849)
 class CreateEventOccurrences < ActiveRecord::Migration[5.1]
   def self.up
     create_table :event_occurrences do |t|

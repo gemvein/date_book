@@ -1,7 +1,8 @@
-# This migration comes from date_book (originally 20170728155902)
 class CreateEvents < ActiveRecord::Migration[5.1]
   def change
     create_table :events do |t|
+      t.references :calendar
+
       t.string :name
       t.string :slug, unique: true
       t.text :description

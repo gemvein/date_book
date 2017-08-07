@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806175355) do
+ActiveRecord::Schema.define(version: 20170807134142) do
+
+  create_table "calendars", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.text "description"
+    t.string "css_class"
+    t.index ["slug"], name: "index_calendars_on_slug", unique: true
+  end
 
   create_table "event_occurrences", force: :cascade do |t|
     t.string "schedulable_type"
@@ -23,6 +31,7 @@ ActiveRecord::Schema.define(version: 20170806175355) do
   end
 
   create_table "events", force: :cascade do |t|
+    t.integer "calendar_id"
     t.string "name"
     t.string "slug"
     t.text "description"
@@ -33,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170806175355) do
     t.boolean "all_day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["calendar_id"], name: "index_events_on_calendar_id"
   end
 
   create_table "roles", force: :cascade do |t|

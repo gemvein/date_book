@@ -1,4 +1,4 @@
-# This migration comes from date_book (originally 20170728231049)
+# This migration comes from date_book (originally 20170807133847)
 class CreateSchedules < ActiveRecord::Migration[5.1]
   def self.up
     create_table :schedules do |t|
