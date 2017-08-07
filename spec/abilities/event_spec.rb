@@ -26,10 +26,11 @@ describe 'Abilities on Events', folder: :abilities do
     it { should be_able_to(:index, my_event) }
     it { should be_able_to(:show, my_event) }
     it { should be_able_to(:manage, my_event) }
-    it { should be_able_to(:create, Event) }
+    it { should be_able_to(:create, regular_calendar.events.new) }
     it { should be_able_to(:index, other_event) }
-    it { should be_able_to(:show, other_event) }
+    it { should be_able_to(:show, other_e9bvent) }
     it { should_not be_able_to(:manage, other_event) }
+    it { should_not be_able_to(:create, other_calendar.events.new) }
   end
   context 'when logged in as admin' do
     let(:event) { monday_event }

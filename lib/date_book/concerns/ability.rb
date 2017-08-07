@@ -10,12 +10,19 @@ module DateBook
       if user.has_role? :admin
         can :manage, :all
       elsif user.new_record?
-        can :read, Event
+        can :read, Calendar
+        can :read, Event do |event|
+          can?(:read, event.calendar)
+        end
       else
-        #TODO: Test this
+        can :read, Calendar
         can :read, Event
-        can :create, Event
+        cannot :create, Event
+        can :manage, Calendar, id: Calendar.with_role(:owner, user).ids
         can :manage, Event, id: Event.with_role(:owner, user).ids
+        can :manage, Event do |event|
+          can?(:update, event.calendar)
+        end
       end
     end
   end
