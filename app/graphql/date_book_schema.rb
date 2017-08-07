@@ -7,6 +7,10 @@ DateBookSchema = GraphQL::Schema.define do
       Types::ProfileType
     when Calendar
       Types::CalendarType
+    when Event
+      Types::EventType
+    when EventOccurrence
+      Types::EventOccurrenceType
     else
       raise("Unexpected object: #{obj}")
     end

@@ -17,6 +17,9 @@ module DateBook
     end
 
     module InstanceMethods
+      def event_occurrences
+        events.as_occurrences.ascending
+      end
     end
 
     module ClassMethods

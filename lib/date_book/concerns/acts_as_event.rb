@@ -3,6 +3,8 @@ module DateBook
     def acts_as_event(options = {})
       acts_as_ownable
 
+      delegate :all_day, :duration, to: :schedule
+
       validates_presence_of :name, :slug, :calendar
 
       # FriendlyId Gem
@@ -45,29 +47,14 @@ module DateBook
         event_occurrences.ending_after(after).ascending.first
       end
 
-      def to_list(occurrence = nil)
-        occurrence ||= next_occurrence
-        hashie = {
-          occurrence_id: occurrence.id,
-          title: name,
-          slug: slug,
-          description: description,
-          css_class: css_class,
-          start_moment: occurrence.start_moment,
-          end_moment: occurrence.end_moment,
-          duration: schedule.duration,
-          all_day: schedule.all_day
-        }
-        OpenStruct.new(hashie).marshal_dump
+      def url(occurrence = nil)
+        DateBook::Engine.routes.url_helpers.calendar_event_path(calendar, slug, occurrence_id: occurrence.id)
       end
     end
 
     module ClassMethods
-      def to_list
-        ::EventOccurrence
-          .for_schedulables('Event', ids)
-          .ascending
-          .map { |x| x.schedulable.to_list(x) }
+      def as_occurrences
+        ::EventOccurrence.for_schedulables('Event', ids)
       end
     end
 

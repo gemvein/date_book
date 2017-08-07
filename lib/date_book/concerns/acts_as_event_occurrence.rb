@@ -6,6 +6,7 @@ module DateBook
       alias_attribute :start_date, :date
 
       belongs_to :schedulable, polymorphic: true
+      alias_attribute :event, :schedulable
       delegate :schedule, to: :schedulable
 
       # Scopes
@@ -21,12 +22,12 @@ module DateBook
       include InstanceMethods
       extend ClassMethods
     end
-    #######################################
-    #######################################
-    #######################################
-    #######################################
 
     module InstanceMethods
+      def url
+        event.url(self)
+      end
+
       def start_moment
         if schedule.all_day
           I18n.localize date, format: :moment_date
@@ -34,6 +35,7 @@ module DateBook
           I18n.localize date, format: :moment_datetime
         end
       end
+      alias_method :start, :start_moment
 
       def end_moment
         if schedule.all_day
@@ -42,6 +44,7 @@ module DateBook
           I18n.localize end_date, format: :moment_datetime
         end
       end
+      alias_method :end, :end_moment
 
       private
 
@@ -52,7 +55,7 @@ module DateBook
 
     module ClassMethods
       def event_ids
-        for_events.pluck(:schedulable_id)
+        for_events.pluck(:schedulable_id).uniq
       end
     end
 

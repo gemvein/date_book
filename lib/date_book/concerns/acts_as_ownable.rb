@@ -4,6 +4,8 @@ module DateBook
       # Rolify Gem
       resourcify
 
+      scope :readable_by, ->(user) { accessible_by(::Ability.new(user)) }
+
       include InstanceMethods
     end
 
