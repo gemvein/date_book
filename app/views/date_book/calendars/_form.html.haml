@@ -3,4 +3,4 @@
   = f.text_field :name
   = f.text_area :description, class: 'date-book--wysiwyg'
   = f.text_field :css_class
-  = f.submit :save_calendar.l
+  = f.submit :save_model.l(model: Calendar.model_name.human)

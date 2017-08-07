@@ -1,72 +1,56 @@
 require 'rails_helper'
 
-RSpec.feature 'Events', folder: :features do
+RSpec.feature 'Calendars', folder: :features do
   include_context 'loaded site'
 
   include ActionView::Helpers::TextHelper
   let(:paragraphs) { %w(first second) }
-  let!(:club_id) { science_fiction_club_event.id }
+  let!(:id) { regular_calendar.id }
 
-  describe 'Browsing Events' do
-    describe 'at /date_book/calendars/admin-calendar/events' do
-      describe 'without a query' do
-        before do
-          # While we're not logged in:
-          visit '/date_book/calendars/admin-calendar/events'
-        end
-        it_behaves_like(
-          'a bootstrap page listing a collection of items',
-          Event,
-          minimum: 5
-        )
-      end
-      describe 'with a query' do
-        before do
-          visit "/date_book/calendars/admin-calendar/events?start=#{Date.today}"
-        end
-        it_behaves_like(
-          'a bootstrap page listing a collection of items',
-          Event,
-          minimum: 4
-        )
-      end
-    end
-  end
-
-  describe 'Showing Events' do
-    describe 'at /date_book/calendars/other-calendar/events/monday' do
+  describe 'Browsing Calendars' do
+    describe 'at /date_book/calendars' do
       before do
-        visit '/date_book/calendars/other-calendar/events/monday'
+        # While we're not logged in:
+        visit '/date_book/calendars'
       end
-      it_behaves_like 'a bootstrap page showing an item', Event, 'Monday'
+      it_behaves_like 'a bootstrap page showing an item', Calendar, 'Calendars'
     end
   end
 
-  describe 'Adding and Editing Events', js: true do
+  describe 'Showing Calendars' do
+    describe 'at /date_book/calendars/regular-calendar' do
+      before do
+        visit '/date_book/calendars/regular-calendar'
+      end
+      it_behaves_like 'a bootstrap page showing an item', Calendar, 'Regular Calendar'
+    end
+  end
+
+  describe 'Adding and Editing Calendars', js: true do
     describe 'Adding' do
       describe 'when not logged in' do
         before do
           # While we're not logged in:
-          visit '/date_book/calendars/regular-calendar/events/new'
+          visit '/date_book/calendars/new'
         end
         it_behaves_like 'an authentication error'
       end
       describe 'when logged in' do
         before do
           login_as regular_user
-          visit '/date_book/calendars/regular-calendar/events/new'
+          visit '/date_book/calendars/new'
         end
-        it_behaves_like 'a bootstrap page', title: 'New Event'
-        describe 'displays a form to add a new Event' do
+        it_behaves_like 'a bootstrap page', title: 'New Calendar'
+        describe 'displays a form to add a new Calendar' do
           subject { page }
-          it { should have_css('form#new_event') }
+          it { should have_css('form#new_calendar') }
           it { should have_field('Name') }
           it { should have_text('Description') }
         end
-        describe 'validates adding a Event' do
+        describe 'validates adding a Calendar' do
           before do
             fill_in 'Name', with: ''
-            click_button 'Save Event'
+            click_button 'Save Calendar'
           end
           subject { page }
           it_behaves_like(
@@ -78,21 +62,21 @@ RSpec.feature 'Events', folder: :features do
             expect(page.has_css?('[id$=name]')).to be true
           end
         end
-        describe 'permits adding a valid Event', js: true do
+        describe 'permits adding a valid Calendar', js: true do
           before do
-            fill_in 'Name', with: 'Event Name Here'
+            fill_in 'Name', with: 'Calendar Name Here'
             fill_in_wysiwyg(
               'Description',
               simple_format(paragraphs.join("\n\n"))
             )
-            click_button 'Save Event'
+            click_button 'Save Calendar'
           end
           it_behaves_like(
             'a bootstrap page with an alert',
             'info',
-            'Event was successfully created.'
+            'Calendar was successfully created.'
           )
-          it_behaves_like 'a bootstrap page', title: 'Event Name Here'
+          it_behaves_like 'a bootstrap page', title: 'Calendar Name Here'
         end
       end
     end
@@ -100,7 +84,7 @@ RSpec.feature 'Events', folder: :features do
       describe 'when not logged in' do
         before do
           # While we're not logged in:
-          visit '/date_book/calendars/regular-calendar/events/science-fiction-club/edit'
+          visit '/date_book/calendars/regular-calendar/edit'
         end
         it_behaves_like 'an authentication error'
       end
@@ -108,26 +92,26 @@ RSpec.feature 'Events', folder: :features do
         describe 'and not authorized' do
           before do
             login_as other_user
-            visit '/date_book/calendars/regular-calendar/events/science-fiction-club/edit'
+            visit '/date_book/calendars/regular-calendar/edit'
           end
           it_behaves_like 'an authorization error'
         end
         describe 'and authorized' do
           before do
             login_as regular_user
-            visit '/date_book/calendars/regular-calendar/events/science-fiction-club/edit'
+            visit '/date_book/calendars/regular-calendar/edit'
           end
-          it_behaves_like 'a bootstrap page', title: 'Editing Science Fiction Club'
-          describe 'displays a form to edit the Event' do
+          it_behaves_like 'a bootstrap page', title: 'Editing Regular Calendar'
+          describe 'displays a form to edit the Calendar' do
             subject { page }
-            it { should have_css("form#edit_event_#{club_id}") }
+            it { should have_css("form#edit_calendar_#{id}") }
             it { should have_field('Name') }
             it { should have_text('Description') }
           end
-          describe 'validates editing a Event' do
+          describe 'validates editing a Calendar' do
             before do
               fill_in 'Name', with: ''
-              click_button 'Save Event'
+              click_button 'Save Calendar'
             end
             it_behaves_like(
               'a bootstrap page with an alert',
@@ -138,21 +122,21 @@ RSpec.feature 'Events', folder: :features do
               expect(page.has_css?('[id$=name]')).to be true
             end
           end
-          describe 'permits editing a valid Event' do
+          describe 'permits editing a valid Calendar' do
             before do
-              fill_in 'Name', with: 'Event Name Here'
+              fill_in 'Name', with: 'Calendar Name Here'
               fill_in_wysiwyg(
                 'Description',
                 simple_format(paragraphs.join("\n\n"))
               )
-              click_button 'Save Event'
+              click_button 'Save Calendar'
             end
             it_behaves_like(
               'a bootstrap page with an alert',
               'info',
-              'Event was successfully updated.'
+              'Calendar was successfully updated.'
             )
-            it_behaves_like 'a bootstrap page', title: 'Event Name Here'
+            it_behaves_like 'a bootstrap page', title: 'Calendar Name Here'
             describe 'parses the description correctly' do
               subject { page }
               it { should have_selector 'p', text: paragraphs.first }
@@ -164,11 +148,11 @@ RSpec.feature 'Events', folder: :features do
     end
   end
 
-  describe 'Removing Events' do
+  describe 'Removing Calendars' do
     describe 'when not logged in' do
       before do
         # While we're not logged in:
-        page.driver.submit :delete, '/date_book/calendars/regular-calendar/events/science-fiction-club', {}
+        page.driver.submit :delete, '/date_book/calendars/regular-calendar', {}
       end
       it_behaves_like 'an authentication error'
     end
@@ -176,24 +160,24 @@ RSpec.feature 'Events', folder: :features do
       describe 'and not authorized' do
         before do
           login_as other_user
-          page.driver.submit :delete, '/date_book/calendars/regular-calendar/events/science-fiction-club', {}
+          page.driver.submit :delete, '/date_book/calendars/regular-calendar', {}
         end
         it_behaves_like 'an authorization error'
       end
       describe 'and authorized' do
         before do
           login_as regular_user
-          page.driver.submit :delete, '/date_book/calendars/regular-calendar/events/science-fiction-club', {}
+          page.driver.submit :delete, '/date_book/calendars/regular-calendar', {}
         end
-        it_behaves_like 'a bootstrap page', title: 'Events'
+        it_behaves_like 'a bootstrap page', title: 'Calendars'
         it_behaves_like(
           'a bootstrap page with an alert',
           'info',
-          'Event was successfully removed.'
+          'Calendar was successfully removed.'
         )
-        describe 'does not show the removed event' do
+        describe 'does not show the removed calendar' do
           subject { page }
-          it { should_not have_selector "#event-#{club_id}" }
+          it { should_not have_selector "#calendar-#{id}" }
         end
       end
     end

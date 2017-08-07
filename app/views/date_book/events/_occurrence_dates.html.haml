@@ -4,8 +4,8 @@
     %dd= render_date_range @occurrence.start_date, @occurrence.end_date, @event.schedule.all_day, @event.schedule.duration
   - if event.previous_occurrence(@occurrence).present?
     %dt= :previous_occurrence.l
-    %dd= link_to render_date_range(event.previous_occurrence(@occurrence).start_date, event.previous_occurrence(@occurrence).end_date, event.schedule.all_day, event.schedule.duration), date_book.event_path(event, occurrence_id: event.previous_occurrence(@occurrence).id)
+    %dd= link_to render_date_range(event.previous_occurrence(@occurrence).start_date, event.previous_occurrence(@occurrence).end_date, event.schedule.all_day, event.schedule.duration), date_book.calendar_event_path(event.calendar, event, occurrence_id: event.previous_occurrence(@occurrence).id)
   - if event.next_occurrence(@occurrence).present?
     %dt= :next_occurrence.l
-    %dd= link_to render_date_range(event.next_occurrence(@occurrence).start_date, event.next_occurrence(@occurrence).end_date, event.schedule.all_day, event.schedule.duration), date_book.event_path(event, occurrence_id: event.next_occurrence(@occurrence).id)
+    %dd= link_to render_date_range(event.next_occurrence(@occurrence).start_date, event.next_occurrence(@occurrence).end_date, event.schedule.all_day, event.schedule.duration), date_book.calendar_event_path(event.calendar, event, occurrence_id: event.next_occurrence(@occurrence).id)
 

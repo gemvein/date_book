@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :event do
     description { "<p>#{Faker::Lorem.paragraphs(2).join('</p><p>')}</p>" }
-    calendar { Calendar.with_role(:owner, owner).first }
+    calendar { Calendar.friendly.find('admin-calendar') }
     transient do
       owner { User.find_by_name('Admin User') }
     end

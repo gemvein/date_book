@@ -1,16 +1,16 @@
-- add_title Event.model_name.human.pluralize
+- add_title :calendar_events.l(calendar: @calendar.name)
 = date_book_scripts
 - if can? :create, Event
-  = icon_link_to 'plus', :create.l, new_event_path, class: 'btn btn-success'
+  = icon_link_to 'plus', :create.l, new_calendar_event_path(@calendar), class: 'btn btn-success'
 .events
   - @events.each do |event|
     .event.article.clearfix{ id: "event-#{event.id}"}
       %h2
-        = link_to event.name, date_book.event_path(event.slug)
+        = link_to event.name, [event.calendar, event]
       %p
         = truncate strip_tags(event.description), length: 500, separator: ' ', omission: '...'
       .float-right
         - if can? :edit, event
-          = icon_link_to 'pencil', :edit.l, date_book.edit_event_path(event), class: 'btn btn-info'
-        = icon_link_to('zoom-in', :read_more.l, date_book.event_path(event.slug), class: 'btn btn-primary')
+          = icon_link_to 'pencil', :edit.l, date_book.edit_calendar_event_path(event.calendar, event), class: 'btn btn-info'
+        = icon_link_to('zoom-in', :read_more.l, [event.calendar, event], class: 'btn btn-primary')
       = event_occurrence_dates event

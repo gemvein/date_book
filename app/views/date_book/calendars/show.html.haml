@@ -1,14 +1,16 @@
-- add_title :calendar.l
+- add_title @calendar.name
 = date_book_scripts
+= link_to :calendar_events.l(calendar: @calendar.name), date_book.calendar_events_path(@calendar)
 - if can? :create, @calendar.events.new
-  %p.float-right.margin-left= icon_link_to 'plus', :add_event.l, date_book.new_event_path, class: 'btn btn-success'
+  %p.float-right.margin-left= icon_link_to 'plus', :add_event.l, date_book.new_calendar_event_path(@calendar), class: 'btn btn-success'
+= @calendar.description.html_safe
 .calendar
-- add_footer_javascript do
-  :javascript
-    $(function() {
-      $('.calendar').fullCalendar({
-          events: '#{date_book.events_path calendar_id: @calendar.slug, format: :json}',
-          eventRender: calendarEventRender,
-          header: calendarEventHeader,
-      });
-    });
+-#- add_footer_javascript do
+-#  :javascript
+-#    $(function() {
+-#      $('.calendar').fullCalendar({
+-#          events: '#{date_book.events_path calendar_id: @calendar.slug, format: :json}',
+-#          eventRender: calendarEventRender,
+-#          header: calendarEventHeader,
+-#      });
+-#    });

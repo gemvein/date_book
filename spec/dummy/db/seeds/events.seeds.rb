@@ -5,6 +5,7 @@ after :users, :calendars do
       name: 'Monday',
       css_class: 'weekday',
       owner: User.find_by_name('Other User'),
+      calendar: Calendar.friendly.find('other-calendar'),
       schedule_attributes: {
         rule: 'weekly',
         day: %w(monday),
@@ -73,6 +74,7 @@ after :users, :calendars do
       :event,
       name: 'Science Fiction Club',
       owner: User.find_by_name('Regular User'),
+      calendar: Calendar.friendly.find('regular-calendar'),
       schedule_attributes: {
         rule: 'monthly',
         day_of_week: { tuesday: [ '1' ] },

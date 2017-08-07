@@ -1,5 +1,5 @@
-- add_title :editing_calendar.l name: @calendar.name
+- add_title :editing_item_model.l(item: @calendar.name, model: Calendar.model_name.human)
 = date_book_scripts
-= link_to :show_calendar.l(name: @calendar.name), @calendar
+= link_to :show_item_model.l(item: @calendar.name, model: Calendar.model_name.human), @calendar
 = render 'form'
 

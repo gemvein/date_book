@@ -37,6 +37,7 @@ def fill_in_wysiwyg(locator, text)
   include ActionView::Helpers::JavaScriptHelper
   locator = find_field_by_label(locator)
   text = text.gsub("'", "\'").gsub("\n", '\\\n')
+
   # Fill the editor content
   page.execute_script <<-SCRIPT
     $('##{locator}').data('wysihtml5').editor.setValue('#{text}');

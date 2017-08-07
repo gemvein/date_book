@@ -8,6 +8,6 @@
   = @event.description.html_safe
 
   - if can? :edit, @event
-    = icon_link_to 'pencil', :edit.l, date_book.edit_event_path(@event), class: 'btn btn-info'
+    = icon_link_to 'pencil', :edit.l, date_book.edit_calendar_event_path(@event.calendar, @event), class: 'btn btn-info'
   - if can? :delete, @event
-    = icon_link_to 'remove', :delete.l, date_book.event_path(@event), class: 'btn btn-danger', method: :delete, data: { confirm: :are_you_sure.l }
+    = icon_link_to 'remove', :delete.l, [@event.calendar, @event], class: 'btn btn-danger', method: :delete, data: { confirm: :are_you_sure.l }

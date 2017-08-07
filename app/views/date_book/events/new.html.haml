@@ -1,5 +1,5 @@
-- add_title :new_event.l
+- add_title :new_model.l(model: Event.model_name.human)
 = date_book_scripts
-= link_to Event.model_name.human.pluralize, date_book.events_path
+= link_to Event.model_name.human.pluralize, date_book.calendar_events_path(@calendar)
 = render 'form'
 

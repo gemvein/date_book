@@ -21,26 +21,24 @@ module DateBook
     describe 'GET #index' do
       describe 'without a query' do
         before do
-          get :index, params: {}
+          get :index, params: { calendar_id: 'admin-calendar' }
         end
         it_should_behave_like 'a successful page', which_renders: 'index'
 
         describe 'loads events into @events' do
           subject { assigns(:events) }
-          it { should include monday_event }
           it { should include yesterdays_event }
           it { should include tomorrows_event }
         end
       end
       describe 'with a query' do
         before do
-          get :index, params: { start: Time.zone.now }
+          get :index, params: { start: Time.zone.now, calendar_id: 'admin-calendar' }
         end
         it_should_behave_like 'a successful page', which_renders: 'index'
 
         describe 'loads events into @events' do
           subject { assigns(:events) }
-          it { should include monday_event }
           it { should_not include yesterdays_event }
           it { should include tomorrows_event }
         end
@@ -49,14 +47,14 @@ module DateBook
 
     describe 'GET #show' do
       before do
-        get :show, params: { id: 'monday' }
+        get :show, params: { id: 'the-work-week', calendar_id: 'admin-calendar' }
       end
       it_should_behave_like 'a successful page', which_renders: 'show'
     end
 
     describe 'GET #popover' do
       before do
-        get :popover, params: { id: 'monday' }
+        get :popover, params: { id: 'the-work-week', calendar_id: 'admin-calendar' }
       end
       it_should_behave_like 'a successful page', which_renders: 'popover'
     end
@@ -65,14 +63,14 @@ module DateBook
       describe 'when not logged in' do
         before do
           # Here's where we are *not* logging in
-          get :new
+          get :new, params: { calendar_id: 'regular-calendar'}
         end
         it_should_behave_like 'a redirect to the home page'
       end
       describe 'when logged in' do
         before do
           login_user regular_user
-          get :new
+          get :new, params: { calendar_id: 'regular-calendar'}
         end
         it_should_behave_like 'a successful page', which_renders: 'new'
 
@@ -88,7 +86,7 @@ module DateBook
       describe 'when not logged in' do
         before do
           # Here's where we are *not* logging in
-          get :edit, params: { id: 'monday' }
+          get :edit, params: { id: 'the-work-week', calendar_id: 'admin-calendar' }
         end
         it_should_behave_like 'a redirect to the home page'
       end
@@ -96,14 +94,14 @@ module DateBook
         describe 'as someone other than the owner' do
           before do
             login_user regular_user
-            get :edit, params: { id: 'monday' }
+            get :edit, params: { id: 'the-work-week', calendar_id: 'admin-calendar' }
           end
           it_should_behave_like 'a 403 Forbidden error'
         end
         describe 'as the owner' do
           before do
             login_user regular_user
-            get :edit, params: { id: 'science-fiction-club' }
+            get :edit, params: { id: 'science-fiction-club', calendar_id: 'regular-calendar' }
           end
           it_should_behave_like 'a successful page', which_renders: 'edit'
 
@@ -120,7 +118,7 @@ module DateBook
       describe 'when not logged in' do
         before do
           # Here's where we are *not* logging in
-          post :create, params: { event: valid_attributes }
+          post :create, params: { event: valid_attributes, calendar_id: 'regular-calendar' }
         end
         it_should_behave_like 'a redirect to the home page'
       end
@@ -128,11 +126,11 @@ module DateBook
         describe 'with valid params' do
           before do
             login_user regular_user
-            post :create, params: { event: valid_attributes }
+            post :create, params: { event: valid_attributes, calendar_id: 'regular-calendar' }
           end
           it_should_behave_like(
             'a redirect to',
-            '/date_book/events/test-event'
+            '/date_book/calendars/regular-calendar/events/test-event'
           )
           describe "sets the flash with a notice of the event's creation" do
             subject { flash[:notice] }
@@ -144,14 +142,14 @@ module DateBook
             login_user regular_user
           end
           it 'results in a new event' do
-            expect { post(:create, params: {  event: valid_attributes }) }
+            expect { post(:create, params: { event: valid_attributes, calendar_id: 'regular-calendar' }) }
               .to change { Event.count(:id) }.by(1)
           end
         end
         describe 'with invalid params' do
           before do
             login_user regular_user
-            post :create, params: { event: invalid_attributes }
+            post :create, params: { event: invalid_attributes, calendar_id: 'regular-calendar' }
           end
           it_should_behave_like 'a successful page', which_renders: 'new'
 
@@ -165,7 +163,7 @@ module DateBook
             login_user regular_user
           end
           it 'does not result in a new event' do
-            expect { post(:create, params: {  event: invalid_attributes }) }
+            expect { post(:create, params: {  event: invalid_attributes, calendar_id: 'regular-calendar' }) }
               .to_not change { Event.count(:id) }
           end
         end
@@ -176,7 +174,7 @@ module DateBook
       describe 'when not logged in' do
         before do
           # Here's where we are *not* logging in
-          put :update, params: { id: 'science-fiction-club', event: valid_attributes }
+          put :update, params: { id: 'science-fiction-club', event: valid_attributes, calendar_id: 'regular-calendar' }
         end
         it_should_behave_like 'a redirect to the home page'
       end
@@ -184,7 +182,7 @@ module DateBook
         describe 'as someone other than the owner' do
           before do
             login_user other_user
-            put :update, params: { id: 'science-fiction-club', event: valid_attributes }
+            put :update, params: { id: 'science-fiction-club', event: valid_attributes, calendar_id: 'regular-calendar' }
           end
           it_should_behave_like 'a 403 Forbidden error'
         end
@@ -192,10 +190,10 @@ module DateBook
           describe 'with valid params' do
             before do
               login_user regular_user
-              put :update, params: { id: 'science-fiction-club', event: valid_attributes }
+              put :update, params: { id: 'science-fiction-club', event: valid_attributes, calendar_id: 'regular-calendar' }
             end
             # Note that slug does not change
-            it_should_behave_like 'a redirect to', '/date_book/events/science-fiction-club'
+            it_should_behave_like 'a redirect to', '/date_book/calendars/regular-calendar/events/science-fiction-club'
 
             describe 'updates @event' do
               subject { science_fiction_club_event.reload }
@@ -211,11 +209,13 @@ module DateBook
             before do
               login_user regular_user
               put(
-                :update, params: {
-
-                id: 'science-fiction-club',
-                event: invalid_attributes
-              })
+                :update,
+                params: {
+                  id: 'science-fiction-club',
+                  event: invalid_attributes,
+                  calendar_id: 'regular-calendar'
+                }
+              )
             end
             it_should_behave_like 'a successful page', which_renders: 'edit'
 
@@ -242,7 +242,7 @@ module DateBook
       describe 'when not logged in' do
         before do
           # Here's where we are *not* logging in
-          delete :destroy, params: { id: 'science-fiction-club' }
+          delete :destroy, params: { id: 'science-fiction-club', calendar_id: 'regular-calendar' }
         end
         it_should_behave_like 'a redirect to the home page'
       end
@@ -250,17 +250,17 @@ module DateBook
         describe 'as someone other than the owner' do
           before do
             login_user other_user
-            delete :destroy, params: { id: 'science-fiction-club' }
+            delete :destroy, params: { id: 'science-fiction-club', calendar_id: 'regular-calendar' }
           end
           it_should_behave_like 'a 403 Forbidden error'
         end
         describe 'as the owner' do
           before do
             login_user regular_user
-            delete :destroy, params: { id: 'science-fiction-club' }
+            delete :destroy, params: { id: 'science-fiction-club', calendar_id: 'regular-calendar' }
           end
           # Note that slug does not change
-          it_should_behave_like 'a redirect to', '/date_book/events'
+          it_should_behave_like 'a redirect to', '/date_book/calendars/regular-calendar/events'
 
           describe "sets the flash with a notice of the event's removal" do
             subject { flash[:notice] }
@@ -272,7 +272,7 @@ module DateBook
             login_user regular_user
           end
           it 'results one less event' do
-            expect { delete(:destroy, params: { id: 'science-fiction-club' }) }
+            expect { delete(:destroy, params: { id: 'science-fiction-club', calendar_id: 'regular-calendar' }) }
               .to change { Event.count(:id) }.by(-1)
           end
         end
