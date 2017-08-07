@@ -11,7 +11,7 @@ RSpec.describe 'Events Requests', folder: :requests do
     { event: { name: nil } }
   end
 
-  describe 'Browsing Events' do
+  pending 'Browsing Events' do
     describe 'at /date_book/events' do
         describe 'without a query' do
           before do
@@ -41,7 +41,7 @@ RSpec.describe 'Events Requests', folder: :requests do
     end
   end
 
-  describe 'Showing Events' do
+  pending 'Showing Events' do
     describe 'at /date_book/events/monday' do
       before do
         get '/date_book/events/monday.json'

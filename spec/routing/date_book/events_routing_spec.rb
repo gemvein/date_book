@@ -20,7 +20,7 @@ module DateBook
           .to route_to('date_book/events#show', id: 'slug')
       end
 
-      it 'routes to #show' do
+      it 'routes to #popover' do
         expect(get: '/events/slug/popover')
           .to route_to('date_book/events#popover', id: 'slug')
       end
