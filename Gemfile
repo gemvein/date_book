@@ -54,11 +54,18 @@ gem 'schedulable', '>= 0.0.10', '< 1', path: '~/Code/schedulable'
 gem 'fullcalendar-rails', '>= 3.4', '< 4'
 gem 'momentjs-rails', '>= 2.9', '< 3'
 
+# GraphQL for the API
+gem 'graphql', '>= 1.6', '< 2'
+
+# Allow and Control CORS (cross-site) requests
+gem 'rack-cors', '>= 1', '< 2', require: 'rack/cors'
+
 group :development do
   gem 'bundler', '~> 1.0'
   gem 'juwelier', '~> 2.4'
   # gem 'rspec', '>= 3.5', '< 4'
   gem 'rubocop', require: false
+  gem 'graphiql-rails', '>= 1.4', '< 2'
 end
 
 group :development, :test do

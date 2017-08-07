@@ -69,6 +69,20 @@ module DateBook
       template 'app/models/schedule.rb', 'app/models/schedule.rb'
     end
 
+    def add_to_user
+      output 'Adding DateBook to your User model', :magenta
+      gsub_file(
+        'app/models/user.rb',
+        %r{acts_as_owner},
+        ''
+      )
+      inject_into_file 'app/models/user.rb', after: "rolify\n" do
+<<-'RUBY'
+  acts_as_owner
+RUBY
+      end
+    end
+
     def add_migrations
       output 'Next come migrations.', :magenta
       rake 'date_book:install:migrations'

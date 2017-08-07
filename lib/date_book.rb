@@ -28,10 +28,12 @@ module DateBook
   require 'date_book/concerns/acts_as_event'
   require 'date_book/concerns/acts_as_event_occurrence'
   require 'date_book/concerns/acts_as_ownable'
+  require 'date_book/concerns/acts_as_owner'
   require 'date_book/concerns/acts_as_schedule'
 end
 
 ActiveRecord::Base.send(:extend, DateBook::ActsAsOwnable)
+ActiveRecord::Base.send(:extend, DateBook::ActsAsOwner)
 ActiveRecord::Base.send(:extend, DateBook::ActsAsCalendar)
 ActiveRecord::Base.send(:extend, DateBook::ActsAsEvent)
 ActiveRecord::Base.send(:extend, DateBook::ActsAsEventOccurrence)

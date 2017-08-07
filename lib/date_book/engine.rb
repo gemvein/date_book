@@ -26,8 +26,15 @@ module DateBook
       )
     end
 
-    def self.table_name_prefix
-      'date_book_'
+    initializer "date_book.add_middleware" do |app|
+      app.config.middleware.insert_before 0, Rack::Cors do
+        allow do
+          origins %r{\Ahttp://localhost:3000\z}
+          resource '*', :headers => :any, :methods => [:get, :post, :options]
+        end
+      end
+
+      app.config.middleware.insert_before Warden::Manager, Rack::Cors
     end
   end
 end
