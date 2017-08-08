@@ -21,71 +21,18 @@ shared_examples_for 'a blank response' do
   end
 end
 
-shared_examples_for 'a json array' do |_options = {}|
-  describe 'displays an array in Json' do
-    subject { JSON.parse(response.body) }
-    it { should be_an Array }
-  end
-end
-
-shared_examples_for 'a json object' do |options = {}|
-  describe 'displays an object with information about itself' do
-    subject { JSON.parse(response.body) }
-    its(['title']) { should eq options[:title] }
-  end
-end
-
-shared_examples_for 'a json object with a message' do |key, text|
-  subject { JSON.parse(response.body) }
-  its([key.to_s]) { should match(/#{text}/) }
-end
-
-shared_examples_for 'a json object without a message' do |key|
-  subject { JSON.parse(response.body) }
-  its([key.to_s]) { should be nil }
-end
-
-shared_examples_for 'a json object with an error' do |text|
-  it_behaves_like 'a json object with a message', :error, text
-  it_behaves_like 'a json object without a message', :info
-  it_behaves_like 'a json object without a message', :notice
-end
-
-shared_examples_for 'a json object with a notice' do |text|
-  it_behaves_like 'a json object with a message', :notice, text
-  it_behaves_like 'a json object without a message', :error
-  it_behaves_like 'a json object without a message', :info
-end
-
-shared_examples_for 'a json object with info' do |text|
-  it_behaves_like 'a json object with a message', :info, text
-  it_behaves_like 'a json object without a message', :error
-  it_behaves_like 'a json object without a message', :notice
-end
-
-shared_examples_for 'a json object '\
-                    'listing a collection of items' do |object, options = {}|
-  options[:minimum] ||= 1
-  options[:plural_name] ||= object.table_name.to_s
-  objects_key = options[:plural_name].to_sym
-  it_behaves_like 'a json array'
-  describe "displays a list of #{objects_key}" do
-    subject { JSON.parse(response.body) }
-    its(:count) { should >= options[:minimum] }
-  end
-end
-
-shared_examples_for 'a json object '\
-                    'showing an item' do |_object, title, _options = {}|
+shared_examples_for 'a graphql object '\
+                    'showing an item' do |object|
   describe 'displays an item' do
-    subject { JSON.parse(response.body) }
-    its(['title']) { should eq title }
+    subject { JSON.parse(response.body)['data'][object.table_name.singularize] }
+    it { should be_a Hash }
   end
 end
 
-shared_examples_for 'a json object with errors' do |error_fields|
-  subject { JSON.parse(response.body)[:errors] }
-  error_fields.each do |field|
-    its([field.to_s]) { should eq "#{field.to_s.humanize} can't be blank" }
+shared_examples_for 'a graphql object '\
+                    'listing a collection of items' do |object|
+  describe 'displays a collection of items' do
+    subject { JSON.parse(response.body)['data'][object.table_name] }
+    it { should be_an Array }
   end
 end

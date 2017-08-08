@@ -1,11 +1,11 @@
 function calendarBySlugQuery(slug) {
     // GraphQL requires double-quoted strings in the query:
-    return(' { calendar(slug: "' + slug + '") { event_occurrences { url, popover_url, start, end, event {id, name, description, css_class, text_color, background_color, border_color, all_day} } } } ');
+    return(' { calendar(slug: "' + slug + '") { event_occurrences { url, popover_url, start, end, event {id, name, css_class, text_color, background_color, border_color, all_day} } } } ');
 }
 
 function calendarEventsQuery(slug) {
     // GraphQL requires double-quoted strings in the query:
-    return(' { event_occurrences { url, popover_url, start, end, event {id, name, description, css_class, text_color, background_color, border_color, all_day} } } ');
+    return(' { event_occurrences { url, popover_url, start, end, event {id, name, css_class, text_color, background_color, border_color, all_day} } } ');
 }
 
 function formatEventOccurrence(occurrence) {
