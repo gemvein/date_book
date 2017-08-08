@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Migration to create the `calendars` table
 class CreateCalendars < ActiveRecord::Migration[5.1]
   def change
     create_table :calendars do |t|

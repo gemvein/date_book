@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module DateBook
+  # Helpers used by the Events views
   module EventsHelper
     def date_book_event_occurrence_dates(event)
       render partial: 'date_book/events/occurrence_dates', locals: { event: event }

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Migration to add `event_occurrences` table, used by Schedulable
 class CreateEventOccurrences < ActiveRecord::Migration[5.1]
   def self.up
     create_table :event_occurrences do |t|

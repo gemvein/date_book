@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module DateBook
+  # Gives access to the GraphQL api
   class GraphqlController < DateBookController
     def execute
       variables = ensure_hash(params[:variables])

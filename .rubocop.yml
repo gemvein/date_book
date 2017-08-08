@@ -21,3 +21,7 @@ Metrics/ModuleLength:
     - spec/*
     - spec/*/*
     - spec/*/*/*
+
+Style/ClassVars:
+  Exclude:
+    - 'spec/support/shared_connection.rb'

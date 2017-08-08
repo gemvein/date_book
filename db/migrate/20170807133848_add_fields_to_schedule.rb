@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Migration to add our fields to schedule
 class AddFieldsToSchedule < ActiveRecord::Migration[5.1]
   def change
     add_column :schedules, :duration, :integer, default: 3600

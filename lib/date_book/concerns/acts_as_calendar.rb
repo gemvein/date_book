@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module DateBook
+  # Mixin to allow acts_as_calendar behavior in Calendar model
   module ActsAsCalendar
     def acts_as_calendar(_options = {})
       acts_as_ownable
@@ -15,16 +16,13 @@ module DateBook
       has_many :events, dependent: :destroy
 
       include InstanceMethods
-      extend ClassMethods
     end
 
+    # Instance Methods
     module InstanceMethods
       def event_occurrences
         events.as_occurrences.ascending
       end
-    end
-
-    module ClassMethods
     end
   end
 end

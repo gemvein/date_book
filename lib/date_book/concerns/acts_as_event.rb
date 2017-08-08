@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module DateBook
+  # Mixin to allow acts_as_event behavior in Event model
   module ActsAsEvent
     def acts_as_event(_options = {})
       acts_as_ownable
@@ -34,6 +35,7 @@ module DateBook
       extend ClassMethods
     end
 
+    # Instance Methods
     module InstanceMethods
       def schedule
         super || build_schedule(date: Time.now.to_date, time: Time.now.to_s(:time))
@@ -58,6 +60,7 @@ module DateBook
       end
     end
 
+    # Class Methods
     module ClassMethods
       def as_occurrences
         ::EventOccurrence.for_schedulables('Event', ids)
