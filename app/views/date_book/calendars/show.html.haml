@@ -6,7 +6,7 @@
     .pull-right
       - if can? :edit, @calendar
         = icon_link_to 'pencil', :edit_item.l(item: @calendar.name), date_book.edit_calendar_path(@calendar), class: 'btn btn-info'
-      - if can? :edit, @calendar
+      - if can? :delete, @calendar
         = icon_link_to 'remove', :delete_item.l(item: @calendar.name), date_book.calendar_path(@calendar), class: 'btn btn-danger', method: :delete, data: { confirm: :are_you_sure.l }
     .pull-left
       - if can? :create, @calendar.events.new
