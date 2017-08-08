@@ -6,25 +6,22 @@ rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
 
-APP_RAKEFILE = File.expand_path('../spec/dummy/Rakefile', __FILE__)
-load 'rails/tasks/engine.rake'
-
-load 'rails/tasks/statistics.rake'
-
-require 'bundler/gem_tasks'
-
 require 'juwelier'
 Juwelier::Tasks.new do |gem|
-  # gem is a Gem::Specification...
-  # see http://guides.rubygems.org/specification-reference/ for more options
   gem.name = 'date_book'
   gem.homepage = 'http://www.gemvein.com/museum/cases/date_book'
   gem.license = 'MIT'
-  gem.summary = 'Rails 4 & 5 Engine that does stuff.'
+  gem.summary = 'Rails 5 Engine to give users their own calendars of events.'
   gem.email = 'karen.e.lundgren@gmail.com'
   gem.authors = ['Karen Lundgren']
   # dependencies defined in Gemfile
 end
 Juwelier::RubygemsDotOrgTasks.new
+
+require 'rspec/core'
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = FileList['spec/**/*_spec.rb']
+end
 
 task default: :spec
