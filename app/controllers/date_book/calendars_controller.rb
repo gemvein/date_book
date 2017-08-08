@@ -20,34 +20,26 @@ module DateBook
     # POST /calendars
     def create
       @calendar.owners = [current_user]
-      if @calendar.save
-        redirect_to(
-          @calendar,
-          notice: :item_acted_on.l(
-            item: Calendar.model_name.human,
-            action: :created.l
-          )
-        )
-      else
+      unless @calendar.save
         flash[:error] = @calendar.errors.full_messages.to_sentence
         render :new
       end
+      redirect_to(@calendar, notice: :item_acted_on.l(
+        item: Calendar.model_name.human,
+        action: :created.l
+      ))
     end
 
     # PATCH/PUT /calendars/slug
     def update
-      if @calendar.update(calendar_params)
-        redirect_to(
-          @calendar,
-          notice: :item_acted_on.l(
-            item: Calendar.model_name.human,
-            action: :updated.l
-          )
-        )
-      else
+      unless @calendar.update(calendar_params)
         flash[:error] = @calendar.errors.full_messages.to_sentence
         render :edit
       end
+      redirect_to(@calendar, notice: :item_acted_on.l(
+        item: Calendar.model_name.human,
+        action: :updated.l
+      ))
     end
 
     # DELETE /calendars/slug

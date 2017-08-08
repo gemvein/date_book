@@ -20,6 +20,10 @@ module DateBook
           ).presence || default_value
         end
       end
+
+      def copy_from_template(file)
+        template file, file
+      end
     end
   end
 end

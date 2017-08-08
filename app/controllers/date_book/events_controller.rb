@@ -36,34 +36,26 @@ module DateBook
     # POST /events
     def create
       @event.owners = [current_user]
-      if @event.save
-        redirect_to(
-          [@calendar, @event],
-          notice: :item_acted_on.l(
-            item: Event.model_name.human,
-            action: :created.l
-          )
-        )
-      else
+      unless @event.save
         flash[:error] = @event.errors.full_messages.to_sentence
         render :new
       end
+      redirect_to([@calendar, @event], notice: :item_acted_on.l(
+        item: Event.model_name.human,
+        action: :created.l
+      ))
     end
 
     # PATCH/PUT /events/slug
     def update
-      if @event.update(event_params)
-        redirect_to(
-          [@calendar, @event],
-          notice: :item_acted_on.l(
-            item: Event.model_name.human,
-            action: :updated.l
-          )
-        )
-      else
+      unless @event.update(event_params)
         flash[:error] = @event.errors.full_messages.to_sentence
         render :edit
       end
+      redirect_to([@calendar, @event], notice: :item_acted_on.l(
+        item: Event.model_name.human,
+        action: :updated.l
+      ))
     end
 
     # DELETE /events/slug
@@ -86,6 +78,7 @@ module DateBook
     end
 
     # Only allow a trusted parameter "white list" through.
+    # rubocop:disable Metrics/MethodLength
     def event_params
       schedule_attributes = [
         :id, :date, :time, :rule, :until, :count, :interval, :all_day,
@@ -93,32 +86,19 @@ module DateBook
           day: [],
           day_of_week: [
             {
-              monday: [],
-              tuesday: [],
-              wednesday: [],
-              thursday: [],
-              friday: [],
-              saturday: [],
-              sunday: []
+              monday: [], tuesday: [], wednesday: [], thursday: [],
+              friday: [], saturday: [], sunday: []
             }
           ],
-          duration_attributes: %i[
-            count
-            unit
-          ]
+          duration_attributes: %i[count unit]
         }
       ]
 
       params.require(:event).permit(
-        :id,
-        :name,
-        :description,
-        :css_class,
-        :text_color,
-        :background_color,
-        :border_color,
-        schedule_attributes: schedule_attributes
+        :id, :name, :description, :css_class, :text_color, :background_color,
+        :border_color, schedule_attributes: schedule_attributes
       )
     end
   end
+  # rubocop:enable Metrics/MethodLength
 end

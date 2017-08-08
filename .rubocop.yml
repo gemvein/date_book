@@ -22,6 +22,10 @@ Metrics/ModuleLength:
     - spec/*/*
     - spec/*/*/*
 
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*
+
 Style/ClassVars:
   Exclude:
     - 'spec/support/shared_connection.rb'

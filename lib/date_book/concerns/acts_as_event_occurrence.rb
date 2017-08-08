@@ -4,6 +4,7 @@ module DateBook
   # Mixin to allow acts_as_event_occurrence behavior in EventOccurrence model
   module ActsAsEventOccurrence
     # rubocop:disable Metrics/AbcSize
+    # rubocop:disable Metrics/MethodLength
     def acts_as_event_occurrence(_options = {})
       before_save :set_end_date
 
@@ -31,6 +32,7 @@ module DateBook
       extend ClassMethods
     end
     # rubocop:enable Metrics/AbcSize
+    # rubocop:enable Metrics/MethodLength
 
     # Instance Methods
     module InstanceMethods

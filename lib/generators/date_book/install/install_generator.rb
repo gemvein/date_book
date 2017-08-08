@@ -4,7 +4,7 @@ module DateBook
   # DateBook Install Generator
   class InstallGenerator < Rails::Generators::Base
     argument :user_model_name, type: :string, default: 'User'
-    source_root File.expand_path('../templates', __FILE__)
+    source_root File.expand_path('../copy_from_templates', __FILE__)
     require File.expand_path('../../utils', __FILE__)
     include Generators::Utils
     include Rails::Generators::Migration
@@ -30,7 +30,7 @@ module DateBook
           'with a customizable ability.rb file.',
         :magenta
       )
-      template 'app/models/ability.rb', 'app/models/ability.rb'
+      copy_from_template 'app/models/ability.rb'
     end
 
     def install_rolify
@@ -55,10 +55,7 @@ module DateBook
         "Next, you'll need an initializer for Date Book.",
         :magenta
       )
-      template(
-        'config/initializers/date_book.rb',
-        'config/initializers/date_book.rb'
-      )
+      copy_from_template 'config/initializers/date_book.rb'
     end
 
     def add_models
@@ -66,22 +63,15 @@ module DateBook
         'Models for you to extend will be placed in your models directory',
         :magenta
       )
-      template 'app/models/calendar.rb', 'app/models/calendar.rb'
-      template 'app/models/event.rb', 'app/models/event.rb'
-      template(
-        'app/models/event_occurrence.rb',
-        'app/models/event_occurrence.rb'
-      )
-      template 'app/models/schedule.rb', 'app/models/schedule.rb'
+      copy_from_template 'app/models/calendar.rb'
+      copy_from_template 'app/models/event.rb'
+      copy_from_template 'app/models/event_occurrence.rb'
+      copy_from_template 'app/models/schedule.rb'
     end
 
     def add_to_user
       output 'Adding DateBook to your User model', :magenta
-      gsub_file(
-        'app/models/user.rb',
-        /acts_as_owner/,
-        ''
-      )
+      gsub_file 'app/models/user.rb', /acts_as_owner/, ''
       inject_into_file 'app/models/user.rb', after: "rolify\n" do
         <<-'RUBY'
   acts_as_owner
@@ -93,15 +83,6 @@ RUBY
       output 'Next come migrations.', :magenta
       rake 'date_book:install:migrations'
     end
-
-    # def add_to_model
-    #   output 'Adding DateBook to your User model', :magenta
-    #   gsub_file 'app/models/user.rb', /^\n  subscriber$/, ''
-    #   inject_into_file(
-    #     'app/models/user.rb', "\n  subscriber",
-    #     after: 'class User < ActiveRecord::Base'
-    #   )
-    # end
 
     def add_route
       output 'Adding DateBook to your routes.rb file', :magenta
