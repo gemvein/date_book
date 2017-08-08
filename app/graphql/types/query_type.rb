@@ -17,7 +17,7 @@ Types::QueryType = GraphQL::ObjectType.define do
     description 'Find all event occurrences in range'
     argument :ending_after, types.String # Start date
     argument :starting_before, types.String # End date
-    resolve lambda do |_obj, args, ctx|
+    resolve(lambda do |_obj, args, ctx|
       ending_after = (
       args[:ending_after]&.to_datetime ||
         Time.now.beginning_of_month
@@ -31,19 +31,19 @@ Types::QueryType = GraphQL::ObjectType.define do
         .as_occurrences
         .starting_before(starting_before)
         .ending_after(ending_after)
-    end
+    end)
   end
 
   field :calendar do
     type Types::CalendarType
     description 'Find a calendar by slug'
     argument :slug, types.String
-    resolve lambda do |_obj, args, ctx|
+    resolve(lambda do |_obj, args, ctx|
       Calendar
         .readable_by(ctx[:current_user])
         .friendly
         .find(args[:slug])
-    end
+    end)
   end
 
   field :user do

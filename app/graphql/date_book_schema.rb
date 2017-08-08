@@ -3,7 +3,7 @@
 DateBookSchema = GraphQL::Schema.define do
   # mutation(Types::MutationType)
   query(Types::QueryType)
-  resolve_type lambda do |_type, obj, _ctx|
+  resolve_type(lambda do |_type, obj, _ctx|
     case obj
     when Profile
       Types::ProfileType
@@ -16,5 +16,5 @@ DateBookSchema = GraphQL::Schema.define do
     else
       raise("Unexpected object: #{obj}")
     end
-  end
+  end)
 end
