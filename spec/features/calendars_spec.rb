@@ -66,8 +66,10 @@ RSpec.feature 'Calendars', folder: :features do
         end
         describe 'permits adding a valid Calendar', js: true do
           before do
+            wait_until do
+              page.has_field? 'Name'
+            end
             fill_in 'Name', with: 'Calendar Name Here'
-            puts page.html
             fill_in_wysiwyg(
               'Description',
               simple_format(paragraphs.join("\n\n"))
