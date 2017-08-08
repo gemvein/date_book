@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:gemvein/schedulable.git
+  remote: https://github.com/gemvein/schedulable.git
   revision: 9da6591769c9e488afc537dc3747304125be64ab
   branch: working
   specs:
