@@ -1,5 +1,5 @@
 # DateBook
-Date Book, not yet real, will become a Rails 5 Engine for managing and publishing a calendar of events.
+Date Book, still in alpha develpment, is a Rails 5 Engine for managing and publishing a calendar of events.
 
 ## Installation
 Add this line to your application's Gemfile:
