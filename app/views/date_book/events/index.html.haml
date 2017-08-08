@@ -13,4 +13,4 @@
         - if can? :edit, event
           = icon_link_to 'pencil', :edit.l, date_book.edit_calendar_event_path(event.calendar, event), class: 'btn btn-info'
         = icon_link_to('zoom-in', :read_more.l, [event.calendar, event], class: 'btn btn-primary')
-      = event_occurrence_dates event
+      = date_book_event_occurrence_dates event

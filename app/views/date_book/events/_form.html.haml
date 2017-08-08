@@ -13,7 +13,7 @@
       - DateBook.configuration.rules.each do |rule|
         = schedule.radio_button :rule, rule, label: rule.titleize, class: 'event-schedule-rule'
         :javascript
-          sections['#{rule}'] = '#{escape_javascript render_rule_form_section rule, schedule}';
+          sections['#{rule}'] = '#{escape_javascript date_book_rule_form_section rule, schedule}';
     .event-schedule-rule-section
 
   = f.submit :save_model.l(model: Event.model_name.human)

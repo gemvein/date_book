@@ -1,1 +1,1 @@
-= schedule.text_field :time, value: @event.schedule.human_time, class: 'time-picker', prepend: icon('time'), append: render_all_day_checkbox(schedule)
+= schedule.text_field :time, value: @event.schedule.human_time, class: 'time-picker', prepend: icon('time'), append: schedule.check_box(:all_day, inline: true, class: 'all-day')

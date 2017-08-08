@@ -1,7 +1,7 @@
 - add_title @event.name
 .event{ class: @event.css_class }
   = date_book_scripts
-  = event_occurrence_dates @event
+  = date_book_event_occurrence_dates @event
   %dl.dl-horizontal
     %dt= :owner.l
     %dd= @event.owners.first.name

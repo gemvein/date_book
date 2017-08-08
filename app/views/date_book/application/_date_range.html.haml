@@ -1,8 +1,8 @@
-= render_date start_date, all_day
+= date_book_date start_date, all_day
 - unless (all_day && duration == 1.day)
   &mdash;
   - if start_date.to_date === end_date.to_date
-    = render_time end_date
+    = date_book_time end_date
   - else
-    = render_date end_date, all_day
+    = date_book_date end_date, all_day
 
