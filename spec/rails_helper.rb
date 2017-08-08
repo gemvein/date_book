@@ -69,7 +69,6 @@ RSpec.configure do |config|
   # Capybara doesn't work on helpers
   config.include RSpecHtmlMatchers, type: :helper
 
-
   config.before :each, type: :helper do
     helper.class.include DateBook::Engine.routes.url_helpers
   end

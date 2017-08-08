@@ -9,7 +9,7 @@ describe DateBook::EventsHelper, folder: :helpers do
 
   include_context 'loaded site'
 
-  let(:form_section) {
+  let(:form_section) do
     form_section = nil
     object = [monday_event.calendar, monday_event]
 
@@ -20,7 +20,7 @@ describe DateBook::EventsHelper, folder: :helpers do
     end
 
     form_section
-  }
+  end
 
   describe '#date_book_event_occurrence_dates' do
     let(:rendered) { helper.date_book_event_occurrence_dates(monday_event) }
