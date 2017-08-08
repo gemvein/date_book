@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module DateBook
+  # Mixin to allow acts_as_event_occurrence behavior in EventOccurrence model
   module ActsAsEventOccurrence
     def acts_as_event_occurrence(_options = {})
       before_save :set_end_date
@@ -25,6 +26,7 @@ module DateBook
       extend ClassMethods
     end
 
+    # Instance Methods
     module InstanceMethods
       def url
         event.url(self)
@@ -59,6 +61,7 @@ module DateBook
       end
     end
 
+    # Class Methods
     module ClassMethods
       def event_ids
         for_events.pluck(:schedulable_id).uniq

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module DateBook
+  # Mixin to allow acts_as_ownable behavior in Calendar and Event models
   module ActsAsOwnable
     def acts_as_ownable(_options = {})
       # Rolify Gem
@@ -11,6 +12,7 @@ module DateBook
       include InstanceMethods
     end
 
+    # Instance Methods
     module InstanceMethods
       def owners
         User.with_role(:owner, self)

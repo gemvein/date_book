@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module DateBook
+  # Global helpers, used mostly to format dates smartly
   module ApplicationHelper
     def date_book_scripts
       render partial: 'layouts/date_book_scripts'

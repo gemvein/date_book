@@ -2,6 +2,7 @@
 
 require 'date_book/engine'
 
+# DateBook module
 module DateBook
   require 'rails-i18n'
 

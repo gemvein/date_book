@@ -1,6 +1,7 @@
+# This migration comes from date_book (originally 20170807133846)
 # frozen_string_literal: true
 
-# This migration comes from date_book (originally 20170807133846)
+# Migration to create the `events` table
 class CreateEvents < ActiveRecord::Migration[5.1]
   def change
     create_table :events do |t|

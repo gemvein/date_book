@@ -1,6 +1,7 @@
+# This migration comes from date_book (originally 20170807133847)
 # frozen_string_literal: true
 
-# This migration comes from date_book (originally 20170807133847)
+# Migration to create the `schedules` table used by Schedulable
 class CreateSchedules < ActiveRecord::Migration[5.1]
   def self.up
     create_table :schedules do |t|

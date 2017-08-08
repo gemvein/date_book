@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 module DateBook
+  # Mixin to allow acts_as_schedule behavior in Schedule model
   module ActsAsSchedule
     def acts_as_schedule(_options = {})
       include InstanceMethods
     end
 
+    # Instance Methods
     module InstanceMethods
       def duration_attributes
         OpenStruct.new count: duration_count, unit: duration_unit

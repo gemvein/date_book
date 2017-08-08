@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module DateBook
-  # Some documentation goes here
+  # Main DateBookController, all others inherit from this
   class DateBookController < ::ApplicationController
     helper :all
     before_action :set_locale

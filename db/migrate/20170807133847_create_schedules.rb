@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Migration to create the `schedules` table used by Schedulable
 class CreateSchedules < ActiveRecord::Migration[5.1]
   def self.up
     create_table :schedules do |t|

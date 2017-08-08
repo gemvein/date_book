@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module DateBook
+  # Allows viewing and maintaining Calendars
   class CalendarsController < DateBookController
     load_and_authorize_resource find_by: :slug
 
