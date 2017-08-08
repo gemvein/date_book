@@ -24,12 +24,12 @@ module DateBook
       accepts_nested_attributes_for :schedule
 
       # Scopes
-      scope :ending_after, ->(start_date) {
+      scope :ending_after, (lambda do |start_date|
         where id: ::EventOccurrence.ending_after(start_date).event_ids
-      }
-      scope :starting_before, ->(end_date) {
+      end)
+      scope :starting_before, (lambda do |end_date|
         where id: ::EventOccurrence.starting_before(end_date).event_ids
-      }
+      end)
 
       include InstanceMethods
       extend ClassMethods

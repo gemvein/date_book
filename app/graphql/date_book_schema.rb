@@ -3,7 +3,7 @@
 DateBookSchema = GraphQL::Schema.define do
   # mutation(Types::MutationType)
   query(Types::QueryType)
-  resolve_type ->(_type, obj, _ctx) do
+  resolve_type lambda do |_type, obj, _ctx|
     case obj
     when Profile
       Types::ProfileType

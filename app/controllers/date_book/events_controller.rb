@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module DateBook
+  # Allows viewing and maintaining Events within Calendars
   class EventsController < DateBookController
     load_and_authorize_resource :calendar, find_by: :slug
     load_and_authorize_resource :event, find_by: :slug, through: :calendar

@@ -26,16 +26,6 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 38
 
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, SupportedStyles.
-# SupportedStyles: line_count_dependent, lambda, literal
-Style/Lambda:
-  Exclude:
-    - 'app/graphql/date_book_schema.rb'
-    - 'app/graphql/types/query_type.rb'
-    - 'lib/date_book/concerns/acts_as_event.rb'
-
 # Offense count: 1
 Style/MultilineBlockChain:
   Exclude:
