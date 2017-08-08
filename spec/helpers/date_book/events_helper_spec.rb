@@ -24,7 +24,7 @@ describe DateBook::EventsHelper, folder: :helpers do
 
   describe '#date_book_event_occurrence_dates' do
     let(:rendered) { helper.date_book_event_occurrence_dates(monday_event) }
-    it do
+    it 'displays dates in a dl' do
       expect(rendered).to have_tag('dl') do
         with_tag 'dt' do
           with_text 'Next Occurrence'
@@ -38,7 +38,7 @@ describe DateBook::EventsHelper, folder: :helpers do
 
   describe '#date_book_rule_form_section' do
     let(:rendered) { helper.date_book_rule_form_section('singular', form_section) }
-    it do
+    it 'contains a date field' do
       expect(rendered).to have_tag 'div', with: { class: 'form-group date-book--date' } do
         with_tag 'label', with: { for: 'event_schedule_attributes_date' }
         with_tag 'div', with: { class: 'input-group' } do
@@ -47,7 +47,7 @@ describe DateBook::EventsHelper, folder: :helpers do
         end
       end
     end
-    it do
+    it 'contains a time field' do
       expect(rendered).to have_tag 'div', with: { class: 'form-group date-book--time' } do
         with_tag 'label', with: { for: 'event_schedule_attributes_time' }
         with_tag 'div', with: { class: 'input-group' } do
@@ -57,7 +57,7 @@ describe DateBook::EventsHelper, folder: :helpers do
         end
       end
     end
-    it do
+    it 'contains a duration field' do
       expect(rendered).to have_tag 'div', with: { class: 'form-group date-book--duration' } do
         with_tag 'label', with: { for: 'event_schedule_attributes_duration' }
         with_tag 'div', with: { class: 'input-group' } do
@@ -70,7 +70,7 @@ describe DateBook::EventsHelper, folder: :helpers do
 
   describe '#date_book_date_field' do
     let(:rendered) { helper.date_book_date_field(form_section) }
-    it do
+    it 'shows the date field' do
       expect(rendered).to have_tag 'div', with: { class: 'form-group date-book--date' } do
         with_tag 'label', with: { for: 'event_schedule_attributes_date' }
         with_tag 'div', with: { class: 'input-group' } do
@@ -83,7 +83,7 @@ describe DateBook::EventsHelper, folder: :helpers do
 
   describe '#date_book_time_field' do
     let(:rendered) { helper.date_book_time_field(form_section) }
-    it do
+    it 'shows the time field' do
       expect(rendered).to have_tag('div', with: { class: 'form-group date-book--time' }) do
         with_tag 'label', with: { for: 'event_schedule_attributes_time' }
         with_tag 'div', with: { class: 'input-group' } do
@@ -97,7 +97,7 @@ describe DateBook::EventsHelper, folder: :helpers do
 
   describe '#date_book_duration_field' do
     let(:rendered) { helper.date_book_duration_field(form_section) }
-    it do
+    it 'shows the duration field' do
       expect(rendered).to have_tag('div', with: { class: 'form-group date-book--duration' }) do
         with_tag 'label', with: { for: 'event_schedule_attributes_duration' }
         with_tag 'div', with: { class: 'input-group' } do
@@ -110,7 +110,7 @@ describe DateBook::EventsHelper, folder: :helpers do
 
   describe '#date_book_interval_field' do
     let(:rendered) { helper.date_book_interval_field('hours', form_section) }
-    it do
+    it 'shows the interval field' do
       expect(rendered).to have_tag('div', with: { class: 'form-group' }) do
         with_tag 'label', with: { for: 'event_schedule_attributes_interval' }
         with_tag 'input', with: { id: 'event_schedule_attributes_interval' }
@@ -120,10 +120,10 @@ describe DateBook::EventsHelper, folder: :helpers do
 
   describe '#date_book_day_field' do
     let(:rendered) { helper.date_book_day_field(form_section) }
-    it do
+    it 'shows a hidden field to catch destruction of all checks' do
       expect(rendered).to have_tag('input', with: { type: 'hidden', id: 'event_schedule_attributes_day' })
     end
-    it do
+    it 'shows the actual checkboxes' do
       expect(rendered).to have_tag('div', with: { class: 'form-group date-book--day' }) do
         with_tag 'label', minimum: 7 do
           with_tag 'input', with: { type: 'checkbox' }
@@ -134,7 +134,7 @@ describe DateBook::EventsHelper, folder: :helpers do
 
   describe '#date_book_day_of_week_field' do
     let(:rendered) { helper.date_book_day_of_week_field(form_section) }
-    it do
+    it 'shows the day of week field' do
       expect(rendered).to have_tag('div', with: { class: 'form-group date-book--day-of-week' }) do
         with_tag 'td', count: 35 do
           with_tag 'input', with: { type: 'checkbox' }
