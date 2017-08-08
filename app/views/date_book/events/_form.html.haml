@@ -5,9 +5,9 @@
   = f.text_field :name
   = f.text_area :description, class: 'date-book--wysiwyg'
   = f.text_field :css_class
-  = f.color_field :text_color
-  = f.color_field :background_color
-  = f.color_field :border_color
+  = f.color_field :text_color, control_class: 'col-sm-2'
+  = f.color_field :background_color, control_class: 'col-sm-2'
+  = f.color_field :border_color, control_class: 'col-sm-2'
   = f.fields_for :schedule do |schedule|
     = schedule.form_group :rule, label: { text: :recurrence.l } do
       - DateBook.configuration.rules.each do |rule|
