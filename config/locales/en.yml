@@ -25,8 +25,10 @@ en:
   created: 'created'
   day_and_week: 'Day and Week'
   delete: 'Delete'
+  delete_item: "Delete %{item}"
   destroyed: 'removed'
   editing_item_model: "Editing %{item} %{model}"
+  edit_item: "Edit %{item}"
   indicates_required_field: '(Indicates Required Field)'
   item_acted_on: '%{item} was successfully %{action}.'
   last: 'Last'

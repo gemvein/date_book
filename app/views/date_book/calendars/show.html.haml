@@ -2,8 +2,16 @@
 = date_book_scripts
 .calendar{ class: @calendar.css_class }
   = link_to :calendar_events.l(calendar: @calendar.name), date_book.calendar_events_path(@calendar)
-  - if can? :create, @calendar.events.new
-    %p.float-right.margin-left= icon_link_to 'plus', :add_event.l, date_book.new_calendar_event_path(@calendar), class: 'btn btn-success'
+  .clearfix
+    .pull-right
+      - if can? :edit, @calendar
+        = icon_link_to 'pencil', :edit_item.l(item: @calendar.name), date_book.edit_calendar_path(@calendar), class: 'btn btn-info'
+      - if can? :edit, @calendar
+        = icon_link_to 'remove', :delete_item.l(item: @calendar.name), date_book.calendar_path(@calendar), class: 'btn btn-danger', method: :delete, data: { confirm: :are_you_sure.l }
+    .pull-left
+      - if can? :create, @calendar.events.new
+        = icon_link_to 'plus', :add_event.l, date_book.new_calendar_event_path(@calendar), class: 'btn btn-success'
+
   = @calendar.description.html_safe
   %hr
   #calendar-display
