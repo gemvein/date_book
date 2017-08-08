@@ -72,8 +72,7 @@ RSpec.feature 'Calendars', folder: :features do
               simple_format(paragraphs.join("\n\n"))
             )
             click_button 'Save Calendar'
-          end
-          it do
+
             wait_until do
               page.has_css? 'h1', text: 'Calendar Name Here'
             end
