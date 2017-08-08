@@ -9,11 +9,17 @@ module DateBook
     include_context 'loaded site'
     include ControllerMacros
 
-    # This should return the minimal set of attributes required to create a valid
-    # Calendar. As you add validations to Calendar, be sure to
-    # adjust the attributes here as well.
+    # This should return the minimal set of attributes required to create a
+    # valid Calendar. As you add validations to Calendar, be sure to adjust the
+    # attributes here as well.
     let(:valid_attributes) do
-      { name: 'Test Calendar', schedule_attributes: { date: 1.hour.ago.to_date, time: 1.hour.ago } }
+      {
+        name: 'Test Calendar',
+        schedule_attributes: {
+          date: 1.hour.ago.to_date,
+          time: 1.hour.ago
+        }
+      }
     end
 
     let(:invalid_attributes) do
@@ -154,7 +160,13 @@ module DateBook
       describe 'when not logged in' do
         before do
           # Here's where we are *not* logging in
-          put :update, params: { id: 'regular-calendar', calendar: valid_attributes }
+          put(
+            :update,
+            params: {
+              id: 'regular-calendar',
+              calendar: valid_attributes
+            }
+          )
         end
         it_should_behave_like 'a redirect to the home page'
       end
@@ -162,7 +174,13 @@ module DateBook
         describe 'as someone other than the owner' do
           before do
             login_user other_user
-            put :update, params: { id: 'regular-calendar', calendar: valid_attributes }
+            put(
+              :update,
+              params: {
+                id: 'regular-calendar',
+                calendar: valid_attributes
+              }
+            )
           end
           it_should_behave_like 'a 403 Forbidden error'
         end
@@ -170,10 +188,19 @@ module DateBook
           describe 'with valid params' do
             before do
               login_user regular_user
-              put :update, params: { id: 'regular-calendar', calendar: valid_attributes }
+              put(
+                :update,
+                params: {
+                  id: 'regular-calendar',
+                  calendar: valid_attributes
+                }
+              )
             end
             # Note that slug does not change
-            it_should_behave_like 'a redirect to', '/date_book/calendars/regular-calendar'
+            it_should_behave_like(
+              'a redirect to',
+              '/date_book/calendars/regular-calendar'
+            )
 
             describe 'updates @calendar' do
               subject { regular_calendar.reload }

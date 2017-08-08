@@ -21,7 +21,13 @@ module DateBook
     def create
       @calendar.owners = [current_user]
       if @calendar.save
-        redirect_to @calendar, notice: :item_acted_on.l(item: Calendar.model_name.human, action: :created.l)
+        redirect_to(
+          @calendar,
+          notice: :item_acted_on.l(
+            item: Calendar.model_name.human,
+            action: :created.l
+          )
+        )
       else
         flash[:error] = @calendar.errors.full_messages.to_sentence
         render :new
@@ -31,7 +37,13 @@ module DateBook
     # PATCH/PUT /calendars/slug
     def update
       if @calendar.update(calendar_params)
-        redirect_to @calendar, notice: :item_acted_on.l(item: Calendar.model_name.human, action: :updated.l)
+        redirect_to(
+          @calendar,
+          notice: :item_acted_on.l(
+            item: Calendar.model_name.human,
+            action: :updated.l
+          )
+        )
       else
         flash[:error] = @calendar.errors.full_messages.to_sentence
         render :edit
@@ -41,7 +53,13 @@ module DateBook
     # DELETE /calendars/slug
     def destroy
       @calendar.destroy
-      redirect_to calendars_url, notice: :item_acted_on.l(item: Calendar.model_name.human, action: :destroyed.l)
+      redirect_to(
+        calendars_url,
+        notice: :item_acted_on.l(
+          item: Calendar.model_name.human,
+          action: :destroyed.l
+        )
+      )
     end
 
     private

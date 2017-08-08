@@ -38,7 +38,10 @@ module DateBook
     # Instance Methods
     module InstanceMethods
       def schedule
-        super || build_schedule(date: Time.now.to_date, time: Time.now.to_s(:time))
+        super || build_schedule(
+          date: Time.now.to_date,
+          time: Time.now.to_s(:time)
+        )
       end
 
       def previous_occurrence(occurrence = nil)
@@ -52,11 +55,21 @@ module DateBook
       end
 
       def url(occurrence = nil)
-        DateBook::Engine.routes.url_helpers.calendar_event_path(calendar, slug, occurrence_id: occurrence&.id)
+        DateBook::Engine
+          .routes
+          .url_helpers
+          .calendar_event_path(calendar, slug, occurrence_id: occurrence&.id)
       end
 
       def popover_url(occurrence = nil)
-        DateBook::Engine.routes.url_helpers.popover_calendar_event_path(calendar, slug, occurrence_id: occurrence&.id)
+        DateBook::Engine
+          .routes
+          .url_helpers
+          .popover_calendar_event_path(
+            calendar,
+            slug,
+            occurrence_id: occurrence&.id
+          )
       end
     end
 

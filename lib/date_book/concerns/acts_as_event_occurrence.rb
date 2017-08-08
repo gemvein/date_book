@@ -15,10 +15,14 @@ module DateBook
       # Scopes
       scope :remaining, -> { where('date >= ?', Time.now) }
       scope :previous, -> { where('date < ?', Time.now) }
-      scope :ending_after, ->(start_date) { (where 'end_date >= ?', start_date) }
+      scope :ending_after, (lambda do |start_date|
+        (where 'end_date >= ?', start_date)
+      end)
       scope :starting_before, ->(end_date) { where 'date < ?', end_date }
       scope :for_events, -> { where(schedulable_type: 'Event') }
-      scope :for_schedulables, ->(model_name, ids) { where(schedulable_type: model_name).where('schedulable_id IN (?)', ids) }
+      scope :for_schedulables, (lambda do |model_name, ids|
+        where(schedulable_type: model_name).where('schedulable_id IN (?)', ids)
+      end)
       scope :ascending, -> { order date: :asc }
       scope :descending, -> { order date: :desc }
 

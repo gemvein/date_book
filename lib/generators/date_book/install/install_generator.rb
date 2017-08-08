@@ -55,7 +55,10 @@ module DateBook
         "Next, you'll need an initializer for Date Book.",
         :magenta
       )
-      template 'config/initializers/date_book.rb', 'config/initializers/date_book.rb'
+      template(
+        'config/initializers/date_book.rb',
+        'config/initializers/date_book.rb'
+      )
     end
 
     def add_models
@@ -65,7 +68,10 @@ module DateBook
       )
       template 'app/models/calendar.rb', 'app/models/calendar.rb'
       template 'app/models/event.rb', 'app/models/event.rb'
-      template 'app/models/event_occurrence.rb', 'app/models/event_occurrence.rb'
+      template(
+        'app/models/event_occurrence.rb',
+        'app/models/event_occurrence.rb'
+      )
       template 'app/models/schedule.rb', 'app/models/schedule.rb'
     end
 

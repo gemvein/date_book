@@ -46,7 +46,13 @@ gem 'friendly_id', '>= 5.2', '< 6'
 
 # Ice Cube and Schedulable for recurrence and scheduling
 gem 'ice_cube', '>= 0.16', '< 1'
-gem 'schedulable', '>= 0.0.10', '< 1', git: 'https://github.com/gemvein/schedulable.git', branch: 'working'
+gem(
+  'schedulable',
+  '>= 0.0.10',
+  '< 1',
+  git: 'https://github.com/gemvein/schedulable.git',
+  branch: 'working'
+)
 # gem 'schedulable', '>= 0.0.10', '< 1', path: '~/Code/schedulable'
 # gem 'schedulable', '>= 0.0.10', '< 1'
 

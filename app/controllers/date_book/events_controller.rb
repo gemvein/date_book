@@ -9,8 +9,13 @@ module DateBook
 
     # GET /events
     def index
-      start_date = params[:start]&.to_datetime || Time.now.beginning_of_month
-      end_date = params[:end]&.to_datetime || Time.now.beginning_of_month.next_month
+      start_date = params[:start]&.to_datetime || Time
+                   .now
+                   .beginning_of_month
+      end_date   = params[:end]&.to_datetime || Time
+                   .now
+                   .beginning_of_month
+                   .next_month
       @events = @events&.ending_after(start_date)&.starting_before(end_date)
     end
 
@@ -32,7 +37,13 @@ module DateBook
     def create
       @event.owners = [current_user]
       if @event.save
-        redirect_to [@calendar, @event], notice: :item_acted_on.l(item: Event.model_name.human, action: :created.l)
+        redirect_to(
+          [@calendar, @event],
+          notice: :item_acted_on.l(
+            item: Event.model_name.human,
+            action: :created.l
+          )
+        )
       else
         flash[:error] = @event.errors.full_messages.to_sentence
         render :new
@@ -42,7 +53,13 @@ module DateBook
     # PATCH/PUT /events/slug
     def update
       if @event.update(event_params)
-        redirect_to [@calendar, @event], notice: :item_acted_on.l(item: Event.model_name.human, action: :updated.l)
+        redirect_to(
+          [@calendar, @event],
+          notice: :item_acted_on.l(
+            item: Event.model_name.human,
+            action: :updated.l
+          )
+        )
       else
         flash[:error] = @event.errors.full_messages.to_sentence
         render :edit
@@ -52,7 +69,13 @@ module DateBook
     # DELETE /events/slug
     def destroy
       @event.destroy
-      redirect_to calendar_events_url(@calendar), notice: :item_acted_on.l(item: Event.model_name.human, action: :destroyed.l)
+      redirect_to(
+        calendar_events_url(@calendar),
+        notice: :item_acted_on.l(
+          item: Event.model_name.human,
+          action: :destroyed.l
+        )
+      )
     end
 
     private

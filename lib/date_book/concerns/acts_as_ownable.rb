@@ -21,11 +21,13 @@ module DateBook
       def owners=(revised_owners)
         # Remove owners not listed in new value
         owners.each do |owner|
-          owner.remove_role(:owner, self) unless revised_owners.include? owner
+          next if revised_owners.include? owner
+          owner.remove_role(:owner, self)
         end
         # Add owners not previously held
         revised_owners.each do |revised_owner|
-          revised_owner.add_role(:owner, self) unless owners.include? revised_owner
+          next if owners.include? revised_owner
+          revised_owner.add_role :owner, self
         end
       end
     end

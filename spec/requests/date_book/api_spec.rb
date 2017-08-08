@@ -6,11 +6,49 @@ RSpec.describe 'DateBook API', folder: :requests do
   include_context 'loaded site'
 
   let(:calendar_query) do
-    { query: ' { calendar(slug: "regular-calendar") { event_occurrences { url, popover_url, start, end, event {id, name, css_class, text_color, background_color, border_color, all_day} } } } ' }
+    { query: '
+{
+  calendar(slug: "regular-calendar") {
+    event_occurrences {
+      url,
+      popover_url,
+      start,
+      end,
+      event {
+        id,
+        name,
+        css_class,
+        text_color,
+        background_color,
+        border_color,
+        all_day
+      }
+    }
+  }
+}
+' }
   end
 
   let(:event_occurrences_query) do
-    { query: ' { event_occurrences { url, popover_url, start, end, event {id, name, css_class, text_color, background_color, border_color, all_day} } } ' }
+    { query: '
+{
+  event_occurrences {
+    url,
+    popover_url,
+    start,
+    end,
+    event {
+      id,
+      name,
+      css_class,
+      text_color,
+      background_color,
+      border_color,
+      all_day
+    }
+  }
+}
+' }
   end
 
   describe 'Browsing Events' do

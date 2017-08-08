@@ -24,7 +24,9 @@ module DateBook
   end
 
   def self.week_start_index
-    @week_start_index ||= Date::DAYNAMES.find_index(configuration.week_starts_on)
+    @week_start_index ||= Date::DAYNAMES.find_index(
+      configuration.week_starts_on
+    )
   end
 
   # DateBook Configuration

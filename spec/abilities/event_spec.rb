@@ -19,7 +19,7 @@ describe 'Abilities on Events', folder: :abilities do
     it { should_not be_able_to(:create, Event) }
   end
   context 'when logged in as regular user' do
-    let(:my_event) { science_fiction_club_event }
+    let(:my_event) { science_fiction_club }
     let(:other_event) { monday_event }
     let(:user) { regular_user }
     subject(:ability) { Ability.new(user) }

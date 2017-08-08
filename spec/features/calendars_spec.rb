@@ -24,7 +24,11 @@ RSpec.feature 'Calendars', folder: :features do
       before do
         visit '/date_book/calendars/regular-calendar'
       end
-      it_behaves_like 'a bootstrap page showing an item', Calendar, 'Regular Calendar'
+      it_behaves_like(
+        'a bootstrap page showing an item',
+        Calendar,
+        'Regular Calendar'
+      )
     end
   end
 
@@ -178,7 +182,11 @@ RSpec.feature 'Calendars', folder: :features do
     describe 'when not logged in' do
       before do
         # While we're not logged in:
-        page.driver.submit :delete, '/date_book/calendars/regular-calendar', {}
+        page.driver.submit(
+          :delete,
+          '/date_book/calendars/regular-calendar',
+          {}
+        )
       end
       it_behaves_like 'an authentication error'
     end
@@ -186,14 +194,22 @@ RSpec.feature 'Calendars', folder: :features do
       describe 'and not authorized' do
         before do
           login_as other_user
-          page.driver.submit :delete, '/date_book/calendars/regular-calendar', {}
+          page.driver.submit(
+            :delete,
+            '/date_book/calendars/regular-calendar',
+            {}
+          )
         end
         it_behaves_like 'an authorization error'
       end
       describe 'and authorized' do
         before do
           login_as regular_user
-          page.driver.submit :delete, '/date_book/calendars/regular-calendar', {}
+          page.driver.submit(
+            :delete,
+            '/date_book/calendars/regular-calendar',
+            {}
+          )
         end
         it_behaves_like 'a bootstrap page', title: 'Calendars'
         it_behaves_like(

@@ -7,7 +7,7 @@ RSpec.feature 'Events', folder: :features do
 
   include ActionView::Helpers::TextHelper
   let(:paragraphs) { %w[first second] }
-  let!(:club_id) { science_fiction_club_event.id }
+  let!(:club_id) { science_fiction_club.id }
 
   describe 'Browsing Events' do
     describe 'at /date_book/calendars/admin-calendar/events' do
@@ -102,7 +102,10 @@ RSpec.feature 'Events', folder: :features do
       describe 'when not logged in' do
         before do
           # While we're not logged in:
-          visit '/date_book/calendars/regular-calendar/events/science-fiction-club/edit'
+          visit(
+            '/date_book/calendars/regular-calendar/events/'\
+            'science-fiction-club/edit'
+          )
         end
         it_behaves_like 'an authentication error'
       end
@@ -110,16 +113,25 @@ RSpec.feature 'Events', folder: :features do
         describe 'and not authorized' do
           before do
             login_as other_user
-            visit '/date_book/calendars/regular-calendar/events/science-fiction-club/edit'
+            visit(
+              '/date_book/calendars/regular-calendar/events/'\
+            'science-fiction-club/edit'
+            )
           end
           it_behaves_like 'an authorization error'
         end
         describe 'and authorized' do
           before do
             login_as regular_user
-            visit '/date_book/calendars/regular-calendar/events/science-fiction-club/edit'
+            visit(
+              '/date_book/calendars/regular-calendar/events/'\
+            'science-fiction-club/edit'
+            )
           end
-          it_behaves_like 'a bootstrap page', title: 'Editing Science Fiction Club'
+          it_behaves_like(
+            'a bootstrap page',
+            title: 'Editing Science Fiction Club'
+          )
           describe 'displays a form to edit the Event' do
             subject { page }
             it { should have_css("form#edit_event_#{club_id}") }
@@ -170,7 +182,11 @@ RSpec.feature 'Events', folder: :features do
     describe 'when not logged in' do
       before do
         # While we're not logged in:
-        page.driver.submit :delete, '/date_book/calendars/regular-calendar/events/science-fiction-club', {}
+        page.driver.submit(
+          :delete,
+          '/date_book/calendars/regular-calendar/events/science-fiction-club',
+          {}
+        )
       end
       it_behaves_like 'an authentication error'
     end
@@ -178,14 +194,22 @@ RSpec.feature 'Events', folder: :features do
       describe 'and not authorized' do
         before do
           login_as other_user
-          page.driver.submit :delete, '/date_book/calendars/regular-calendar/events/science-fiction-club', {}
+          page.driver.submit(
+            :delete,
+            '/date_book/calendars/regular-calendar/events/science-fiction-club',
+            {}
+          )
         end
         it_behaves_like 'an authorization error'
       end
       describe 'and authorized' do
         before do
           login_as regular_user
-          page.driver.submit :delete, '/date_book/calendars/regular-calendar/events/science-fiction-club', {}
+          page.driver.submit(
+            :delete,
+            '/date_book/calendars/regular-calendar/events/science-fiction-club',
+            {}
+          )
         end
         it_behaves_like 'a bootstrap page', title: 'Events'
         it_behaves_like(
