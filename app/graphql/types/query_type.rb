@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# This defines the top-level queries that are available.
+# rubocop:disable Metrics/BlockLength
 Types::QueryType = GraphQL::ObjectType.define do
   name 'Date Book API'
   # Add root-level fields here.
@@ -53,3 +55,4 @@ Types::QueryType = GraphQL::ObjectType.define do
     resolve ->(_obj, args, _ctx) { User.find_by_name(args[:name]) }
   end
 end
+# rubocop:enable Metrics/BlockLength
