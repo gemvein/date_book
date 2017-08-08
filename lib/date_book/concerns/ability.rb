@@ -7,21 +7,20 @@ module DateBook
 
     def initialize_date_book(user)
       alias_action :index, :show, :popover, to: :read
-      if user.has_role? :admin
-        can :manage, :all
-      elsif user.new_record?
-        can :read, Calendar
-        can :read, Event
-      else
-        can :read, Calendar
-        can :create, Calendar
-        can :manage, Calendar, id: Calendar.with_role(:owner, user).ids
 
-        can :read, Event
-        cannot :create, Event
-        can :manage, Event, calendar_id: Calendar.with_role(:owner, user).ids
-        can :manage, Event, id: Event.with_role(:owner, user).ids
+      can :read, Calendar
+      can :read, Event
+
+      unless user.new_record?
+        my_calendar_ids = Calendar.with_role(:owner, user).ids
+        my_event_ids = Event.with_role(:owner, user).ids
+        can :create, Calendar
+        can :manage, Calendar, id: my_calendar_ids
+        can :manage, Event, calendar_id: my_calendar_ids
+        can :manage, Event, id: my_event_ids
       end
+
+      can :manage, :all if user.has_role? :admin
     end
   end
 end

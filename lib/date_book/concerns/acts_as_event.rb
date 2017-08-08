@@ -3,6 +3,7 @@
 module DateBook
   # Mixin to allow acts_as_event behavior in Event model
   module ActsAsEvent
+    # rubocop:disable Metrics/AbcSize
     def acts_as_event(_options = {})
       acts_as_ownable
 
@@ -34,6 +35,7 @@ module DateBook
       include InstanceMethods
       extend ClassMethods
     end
+    # rubocop:enable Metrics/AbcSize
 
     # Instance Methods
     module InstanceMethods
