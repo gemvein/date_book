@@ -1,13 +1,13 @@
 - add_title Calendar.model_name.human.pluralize
 = date_book_scripts
 .row
-  .col-md-9
-    #calendar-display
   .col-md-3
     %ul.calendars
       - @calendars.each do |calendar|
         %li.calendar{ class: calendar.css_class }
           = link_to calendar.name, calendar
+  .col-md-9
+    #calendar-display
 - add_footer_javascript do
   :javascript
     $(function() {
