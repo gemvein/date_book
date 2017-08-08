@@ -98,6 +98,9 @@ module DateBook
           :name,
           :description,
           :css_class,
+          :text_color,
+          :background_color,
+          :border_color,
           schedule_attributes: schedule_attributes
         )
       end

@@ -6,7 +6,7 @@
   .col-md-3
     %ul.calendars
       - @calendars.each do |calendar|
-        %li.calendar
+        %li.calendar{ class: calendar.css_class }
           = link_to calendar.name, calendar
 - add_footer_javascript do
   :javascript

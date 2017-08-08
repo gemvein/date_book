@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170807134142) do
+ActiveRecord::Schema.define(version: 20170808150920) do
 
   create_table "calendars", force: :cascade do |t|
     t.string "name"
@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 20170807134142) do
     t.string "slug"
     t.text "description"
     t.string "css_class"
+    t.string "text_color", default: "#ffffff"
+    t.string "background_color", default: "#3a87ad"
+    t.string "border_color", default: "#235371"
     t.date "start_date"
     t.time "start_time"
     t.integer "duration"

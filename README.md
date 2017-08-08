@@ -1,4 +1,8 @@
 # DateBook
+[![GitHub version](https://badge.fury.io/gh/gemvein%2Fdate_book.svg)](http://badge.fury.io/gh/gemvein%2Fdate_book)
+[![Build Status](https://travis-ci.org/gemvein/date_book.svg)](https://travis-ci.org/gemvein/date_book)
+[![Coverage Status](https://coveralls.io/repos/gemvein/date_book/badge.png)](https://coveralls.io/r/gemvein/date_book)
+
 Date Book, still in alpha develpment, is a Rails 5 Engine to give Users the ability to publish and manage calendars of events.
 
 ## Installation

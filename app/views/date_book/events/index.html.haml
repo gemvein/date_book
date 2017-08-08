@@ -4,7 +4,7 @@
   = icon_link_to 'plus', :create.l, new_calendar_event_path(@calendar), class: 'btn btn-success'
 .events
   - @events.each do |event|
-    .event.article.clearfix{ id: "event-#{event.id}"}
+    .event.article.clearfix{ id: "event-#{event.id}", class: event.css_class }
       %h2
         = link_to event.name, [event.calendar, event]
       %p

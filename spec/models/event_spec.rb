@@ -39,11 +39,6 @@ RSpec.describe Event, folder: :models do
       it { should include yesterdays_event }
       it { should_not include tomorrows_event }
     end
-    describe '#to_list' do
-      subject { Event.all.to_list }
-      its(:first) { should be_a ::Hash }
-      it { should have_at_least(3).items }
-    end
     describe '.schedule' do
       describe 'with a new record' do
         subject { Event.new }

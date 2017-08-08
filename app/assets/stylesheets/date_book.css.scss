@@ -3,13 +3,11 @@
 @import 'bootstrap-datetimepicker.css';
 
 .all-day {
-
+  background-image: url('date_book/all-day-bg.png');
 }
 
-.part-day, .part-day:hover {
-  color: #000;
-  border: solid 1px #3A87AD;
-  background-color: lighten(#3A87AD, 50%);
+.part-day {
+   background-image: url('date_book/part-day-bg.png');
 }
 
 .float-right {

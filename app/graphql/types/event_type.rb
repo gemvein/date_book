@@ -9,6 +9,9 @@ Types::EventType = GraphQL::ObjectType.define do
   field :url, types.String
   field :description, types.String
   field :css_class, types.String
+  field :text_color, types.String
+  field :background_color, types.String
+  field :border_color, types.String
   field :start, types.String
   field :end, types.String
   field :duration, types.String
