@@ -12,9 +12,9 @@ Types::QueryType = GraphQL::ObjectType.define do
     }
   end
 
-  field :events do
-    type types[Types::EventType]
-    description "Find all events in range"
+  field :event_occurrences do
+    type types[Types::EventOccurrenceType]
+    description "Find all event occurrences in range"
     argument :ending_after, types.String # Start date
     argument :starting_before, types.String # End date
     resolve ->(obj, args, ctx) {
@@ -28,9 +28,9 @@ Types::QueryType = GraphQL::ObjectType.define do
       )
       Event
         .readable_by(ctx[:current_user])
+        .as_occurrences
         .starting_before(starting_before)
         .ending_after(ending_after)
-        .to_list
     }
   end
 

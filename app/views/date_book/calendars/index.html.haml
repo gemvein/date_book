@@ -8,13 +8,19 @@
       - @calendars.each do |calendar|
         %li.calendar
           = link_to calendar.name, calendar
-
--#- add_footer_javascript do
--#  :javascript
--#    $(function() {
--#      $('#calendar').fullCalendar({
--#          events: '#{date_book.events_path format: :json}',
--#          eventRender: calendarEventRender,
--#          header: calendarEventHeader,
--#      });
--#    });
+- add_footer_javascript do
+  :javascript
+    $(function() {
+      $('#calendar').fullCalendar({
+        events: {
+          url: '#{date_book.api_path format: :json}',
+          type: 'POST',
+          data: { query: calendarEventsQuery },
+          success: function(data, status, xhr) {
+            return $.map(data.data.event_occurrences, formatEventOccurrence);
+          }
+        },
+        eventRender: calendarEventRender,
+        header: calendarEventHeader,
+      });
+    });

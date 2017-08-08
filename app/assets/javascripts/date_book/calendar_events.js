@@ -3,6 +3,11 @@ function calendarBySlugQuery(slug) {
     return(' { calendar(slug: "' + slug + '") { event_occurrences { url, start, end, event {id, name, description, css_class, all_day} } } } ');
 }
 
+function calendarEventsQuery(slug) {
+    // GraphQL requires double-quoted strings in the query:
+    return(' { event_occurrences { url, start, end, event {id, name, description, css_class, all_day} } } ');
+}
+
 function formatEventOccurrence(occurrence) {
     event = occurrence.event;
     if(event.css_class == null) {

@@ -4,6 +4,7 @@
 - if can? :create, @calendar.events.new
   %p.float-right.margin-left= icon_link_to 'plus', :add_event.l, date_book.new_calendar_event_path(@calendar), class: 'btn btn-success'
 = @calendar.description.html_safe
+%hr
 .calendar
 - add_footer_javascript do
   :javascript
@@ -14,9 +15,7 @@
           type: 'POST',
           data: { query: calendarBySlugQuery('#{@calendar.slug}') },
           success: function(data, status, xhr) {
-            data = data.data.calendar.event_occurrences;
-            new_data = $.map(data, formatEventOccurrence);
-            return new_data;
+            return $.map(data.data.calendar.event_occurrences, formatEventOccurrence);
           }
         },
         eventRender: calendarEventRender,
