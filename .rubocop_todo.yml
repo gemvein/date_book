@@ -6,11 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 2
-Lint/AmbiguousBlockAssociation:
-  Exclude:
-    - 'spec/controllers/date_book/calendars_controller_spec.rb'
-    - 'spec/controllers/date_book/events_controller_spec.rb'
 
 # Offense count: 3
 Metrics/AbcSize:

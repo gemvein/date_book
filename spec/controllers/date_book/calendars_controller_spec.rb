@@ -144,7 +144,7 @@ module DateBook
           end
           it 'does not result in a new calendar' do
             expect { post(:create, params: { calendar: invalid_attributes }) }
-              .to_not change { Calendar.count(:id) }
+              .to_not(change { Calendar.count(:id) })
           end
         end
       end

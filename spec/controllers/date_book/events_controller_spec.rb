@@ -165,7 +165,7 @@ module DateBook
           end
           it 'does not result in a new event' do
             expect { post(:create, params: {  event: invalid_attributes, calendar_id: 'regular-calendar' }) }
-              .to_not change { Event.count(:id) }
+              .to_not(change { Event.count(:id) })
           end
         end
       end
