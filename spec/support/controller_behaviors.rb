@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'a successful page' do |options = {}|
   describe 'responds successfully' do
     subject { response }

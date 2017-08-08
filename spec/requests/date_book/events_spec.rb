@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Events Requests', folder: :requests do
@@ -13,31 +15,31 @@ RSpec.describe 'Events Requests', folder: :requests do
 
   pending 'Browsing Events' do
     describe 'at /date_book/events' do
-        describe 'without a query' do
-          before do
-            get '/date_book/events.json'
-          end
-          it_behaves_like(
-            'a json object listing a collection of items',
-            Event,
-            minimum: 2
+      describe 'without a query' do
+        before do
+          get '/date_book/events.json'
+        end
+        it_behaves_like(
+          'a json object listing a collection of items',
+          Event,
+          minimum: 2
+        )
+      end
+      describe 'with a query' do
+        before do
+          get(
+            '/date_book/events.json',
+            params: {
+              start: Date.today
+            }
           )
         end
-        describe 'with a query' do
-          before do
-            get(
-              '/date_book/events.json',
-              params: {
-                start: Date.today
-              }
-            )
-          end
-          it_behaves_like(
-            'a json object listing a collection of items',
-            Event,
-            minimum: 1
-          )
-        end
+        it_behaves_like(
+          'a json object listing a collection of items',
+          Event,
+          minimum: 1
+        )
+      end
     end
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'a restricted page' do
   describe 'redirects to the home page' do
     subject { current_path }
@@ -65,15 +67,13 @@ shared_examples_for 'a bootstrap page '\
         )
       end
     end
-    if options[:links]
-      options[:links].each do |link_text|
-        it "has a #{link_text} link" do
-          click_link_or_button 'Menu'
-          within find('.navbar', text: options[:text]) do
-            click_link_or_button options[:text]
-            within first('li.dropdown', text: options[:text]) do
-              expect(page).to have_link(link_text)
-            end
+    options[:links]&.each do |link_text|
+      it "has a #{link_text} link" do
+        click_link_or_button 'Menu'
+        within find('.navbar', text: options[:text]) do
+          click_link_or_button options[:text]
+          within first('li.dropdown', text: options[:text]) do
+            expect(page).to have_link(link_text)
           end
         end
       end

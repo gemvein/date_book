@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ### My little tool for benchmarking code blocks
 class BasicBenchmark
   def initialize(label)

@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module DateBook
   module ActsAsOwner
-    def acts_as_owner(options = {})
+    def acts_as_owner(_options = {})
       include InstanceMethods
       extend ClassMethods
     end
@@ -13,6 +15,5 @@ module DateBook
 
     module ClassMethods
     end
-
   end
 end

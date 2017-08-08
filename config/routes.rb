@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 DateBook::Engine.routes.draw do
-  post 'api', to: "graphql#execute"
+  post 'api', to: 'graphql#execute'
 
   resources :calendars do
     resources :events do

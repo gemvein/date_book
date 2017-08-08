@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module DateBook
   module ActsAsSchedule
-    def acts_as_schedule(options = {})
+    def acts_as_schedule(_options = {})
       include InstanceMethods
     end
 
@@ -39,6 +41,5 @@ module DateBook
         duration % 1.send(unit.singularize.to_sym).to_i == 0
       end
     end
-
   end
 end

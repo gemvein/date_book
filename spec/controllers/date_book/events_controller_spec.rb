@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 module DateBook
@@ -10,13 +12,13 @@ module DateBook
     # This should return the minimal set of attributes required to create a valid
     # Event. As you add validations to Event, be sure to
     # adjust the attributes here as well.
-    let(:valid_attributes) {
-      { name: 'Test Event', schedule_attributes: { date: 1.hour.ago.to_date, time: 1.hour.ago} }
-    }
+    let(:valid_attributes) do
+      { name: 'Test Event', schedule_attributes: { date: 1.hour.ago.to_date, time: 1.hour.ago } }
+    end
 
-    let(:invalid_attributes) {
+    let(:invalid_attributes) do
       { name: nil, schedule_attributes: nil }
-    }
+    end
 
     describe 'GET #index' do
       describe 'without a query' do
@@ -63,14 +65,14 @@ module DateBook
       describe 'when not logged in' do
         before do
           # Here's where we are *not* logging in
-          get :new, params: { calendar_id: 'regular-calendar'}
+          get :new, params: { calendar_id: 'regular-calendar' }
         end
         it_should_behave_like 'a redirect to the home page'
       end
       describe 'when logged in' do
         before do
           login_user regular_user
-          get :new, params: { calendar_id: 'regular-calendar'}
+          get :new, params: { calendar_id: 'regular-calendar' }
         end
         it_should_behave_like 'a successful page', which_renders: 'new'
 
@@ -112,7 +114,6 @@ module DateBook
         end
       end
     end
-
 
     describe 'POST #create' do
       describe 'when not logged in' do
@@ -278,6 +279,5 @@ module DateBook
         end
       end
     end
-
   end
 end

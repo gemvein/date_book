@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 module DateBook
@@ -6,8 +8,8 @@ module DateBook
 
     describe 'Routing' do
       it 'routes to #index' do
-        expect(get: '/calendars').
-          to route_to(controller: 'date_book/calendars', action: 'index')
+        expect(get: '/calendars')
+          .to route_to(controller: 'date_book/calendars', action: 'index')
       end
 
       it 'routes to #new' do

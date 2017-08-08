@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 DateBookSchema = GraphQL::Schema.define do
   # mutation(Types::MutationType)
   query(Types::QueryType)
-  resolve_type ->(type, obj, ctx) do
+  resolve_type ->(_type, obj, _ctx) do
     case obj
     when Profile
       Types::ProfileType

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Message Train module
 module DateBook
   VERSION = File.read(File.expand_path('../../../VERSION', __FILE__))

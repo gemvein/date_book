@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 module DateBook
@@ -10,13 +12,13 @@ module DateBook
     # This should return the minimal set of attributes required to create a valid
     # Calendar. As you add validations to Calendar, be sure to
     # adjust the attributes here as well.
-    let(:valid_attributes) {
-      { name: 'Test Calendar', schedule_attributes: { date: 1.hour.ago.to_date, time: 1.hour.ago} }
-    }
+    let(:valid_attributes) do
+      { name: 'Test Calendar', schedule_attributes: { date: 1.hour.ago.to_date, time: 1.hour.ago } }
+    end
 
-    let(:invalid_attributes) {
+    let(:invalid_attributes) do
       { name: nil, schedule_attributes: nil }
-    }
+    end
 
     describe 'GET #index' do
       before do
@@ -92,7 +94,6 @@ module DateBook
       end
     end
 
-
     describe 'POST #create' do
       describe 'when not logged in' do
         before do
@@ -121,7 +122,7 @@ module DateBook
             login_user regular_user
           end
           it 'results in a new calendar' do
-            expect { post(:create, params: {  calendar: valid_attributes }) }
+            expect { post(:create, params: { calendar: valid_attributes }) }
               .to change { Calendar.count(:id) }.by(1)
           end
         end
@@ -142,7 +143,7 @@ module DateBook
             login_user regular_user
           end
           it 'does not result in a new calendar' do
-            expect { post(:create, params: {  calendar: invalid_attributes }) }
+            expect { post(:create, params: { calendar: invalid_attributes }) }
               .to_not change { Calendar.count(:id) }
           end
         end
@@ -189,9 +190,10 @@ module DateBook
               login_user regular_user
               put(
                 :update, params: {
-                id: 'regular-calendar',
-                calendar: invalid_attributes
-              })
+                  id: 'regular-calendar',
+                  calendar: invalid_attributes
+                }
+              )
             end
             it_should_behave_like 'a successful page', which_renders: 'edit'
 
@@ -254,6 +256,5 @@ module DateBook
         end
       end
     end
-
   end
 end

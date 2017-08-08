@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.occurrence_id event.occurrence_id
 json.slug event.slug
 json.url date_book.event_path(event.slug, occurrence_id: event.occurrence_id)

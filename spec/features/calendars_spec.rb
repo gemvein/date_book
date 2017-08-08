@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.feature 'Calendars', folder: :features do
   include_context 'loaded site'
 
   include ActionView::Helpers::TextHelper
-  let(:paragraphs) { %w(first second) }
+  let(:paragraphs) { %w[first second] }
   let!(:id) { regular_calendar.id }
 
   describe 'Browsing Calendars' do

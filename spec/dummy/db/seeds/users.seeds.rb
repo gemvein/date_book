@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 BasicBenchmark.new "Seeding #{Rails.env} Users" do
   FactoryGirl.create(
     :user,

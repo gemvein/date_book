@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 Types::CalendarType = GraphQL::ObjectType.define do
-  name "Calendar"
-  description "DateBook Calendars"
+  name 'Calendar'
+  description 'DateBook Calendars'
 
   field :id, types.ID
   field :name, types.String

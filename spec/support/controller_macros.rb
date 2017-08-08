@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ControllerMacros
   def login_user(user)
     @request.env['devise.mapping'] = Devise.mappings[:user]
@@ -9,7 +11,7 @@ shared_context 'authentication for routes' do
   let(:warden) do
     instance_double('Warden::Proxy').tap do |warden|
       allow(warden).to receive(:authenticate?).with(scope: :user)
-        .and_return(authenticated?)
+                                              .and_return(authenticated?)
       allow(warden).to receive(:user).with(:user).and_return(user)
     end
   end

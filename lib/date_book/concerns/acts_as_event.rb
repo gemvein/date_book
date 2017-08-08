@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module DateBook
   module ActsAsEvent
-    def acts_as_event(options = {})
+    def acts_as_event(_options = {})
       acts_as_ownable
 
       delegate :all_day, :duration, to: :schedule
@@ -21,10 +23,10 @@ module DateBook
       accepts_nested_attributes_for :schedule
 
       # Scopes
-      scope :ending_after, -> (start_date) {
+      scope :ending_after, ->(start_date) {
         where id: ::EventOccurrence.ending_after(start_date).event_ids
       }
-      scope :starting_before, -> (end_date) {
+      scope :starting_before, ->(end_date) {
         where id: ::EventOccurrence.starting_before(end_date).event_ids
       }
 
@@ -61,6 +63,5 @@ module DateBook
         ::EventOccurrence.for_schedulables('Event', ids)
       end
     end
-
   end
 end

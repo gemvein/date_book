@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module DateBook
   class GraphqlController < DateBookController
     def execute
@@ -6,7 +8,7 @@ module DateBook
       operation_name = params[:operationName]
       context = {
         # Query context goes here, for example:
-        current_user: current_user,
+        current_user: current_user
       }
       result = DateBookSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
       render json: result

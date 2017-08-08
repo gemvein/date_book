@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples_for 'a Json authentication error' do
   it_behaves_like(
     'a json object with an error',
@@ -19,7 +21,7 @@ shared_examples_for 'a blank response' do
   end
 end
 
-shared_examples_for 'a json array' do |options = {}|
+shared_examples_for 'a json array' do |_options = {}|
   describe 'displays an array in Json' do
     subject { JSON.parse(response.body) }
     it { should be_an Array }
@@ -74,8 +76,8 @@ shared_examples_for 'a json object '\
 end
 
 shared_examples_for 'a json object '\
-                    'showing an item' do |object, title, options = {}|
-  describe "displays an item" do
+                    'showing an item' do |_object, title, _options = {}|
+  describe 'displays an item' do
     subject { JSON.parse(response.body) }
     its(['title']) { should eq title }
   end

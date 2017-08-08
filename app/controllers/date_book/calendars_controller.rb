@@ -1,22 +1,20 @@
+# frozen_string_literal: true
+
 module DateBook
   class CalendarsController < DateBookController
     load_and_authorize_resource find_by: :slug
 
     # GET /calendars
-    def index
-    end
+    def index; end
 
     # GET /calendars/slug
-    def show
-    end
+    def show; end
 
     # GET /calendars/new
-    def new
-    end
+    def new; end
 
     # GET /calendars/slug/edit
-    def edit
-    end
+    def edit; end
 
     # POST /calendars
     def create
@@ -50,10 +48,10 @@ module DateBook
     # Only allow a trusted parameter "white list" through.
     def calendar_params
       params.require(:calendar).permit(
-          :id,
-          :name,
-          :description,
-          :css_class
+        :id,
+        :name,
+        :description,
+        :css_class
       )
     end
   end

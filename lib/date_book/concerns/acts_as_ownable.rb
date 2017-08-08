@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module DateBook
   module ActsAsOwnable
-    def acts_as_ownable(options = {})
+    def acts_as_ownable(_options = {})
       # Rolify Gem
       resourcify
 

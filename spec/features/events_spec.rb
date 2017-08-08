@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.feature 'Events', folder: :features do
   include_context 'loaded site'
 
   include ActionView::Helpers::TextHelper
-  let(:paragraphs) { %w(first second) }
+  let(:paragraphs) { %w[first second] }
   let!(:club_id) { science_fiction_club_event.id }
 
   describe 'Browsing Events' do

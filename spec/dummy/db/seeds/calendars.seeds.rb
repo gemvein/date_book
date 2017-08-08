@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 after :users do
   BasicBenchmark.new "Seeding #{Rails.env} Calendars" do
     FactoryGirl.create(
@@ -19,4 +21,3 @@ after :users do
     )
   end
 end
-

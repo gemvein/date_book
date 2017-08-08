@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module DateBook
   module ActsAsCalendar
-    def acts_as_calendar(options = {})
+    def acts_as_calendar(_options = {})
       acts_as_ownable
 
       validates_presence_of :name, :slug
@@ -24,6 +26,5 @@ module DateBook
 
     module ClassMethods
     end
-
   end
 end

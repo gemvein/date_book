@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 after :users, :calendars do
   BasicBenchmark.new "Seeding #{Rails.env} Events" do
     FactoryGirl.create(
@@ -8,7 +10,7 @@ after :users, :calendars do
       calendar: Calendar.friendly.find('other-calendar'),
       schedule_attributes: {
         rule: 'weekly',
-        day: %w(monday),
+        day: %w[monday],
         time: '00:00',
         duration: 1.day,
         all_day: true
@@ -21,7 +23,7 @@ after :users, :calendars do
       css_class: 'week',
       schedule_attributes: {
         rule: 'weekly',
-        day: %w(monday),
+        day: %w[monday],
         time: '00:00',
         duration: 5.days,
         all_day: true
@@ -77,13 +79,11 @@ after :users, :calendars do
       calendar: Calendar.friendly.find('regular-calendar'),
       schedule_attributes: {
         rule: 'monthly',
-        day_of_week: { tuesday: [ '1' ] },
+        day_of_week: { tuesday: ['1'] },
         time: '5:00 PM',
         interval: 1,
         duration: 1.hour
       }
     )
-
   end
 end
-

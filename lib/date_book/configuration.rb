@@ -13,13 +13,13 @@ module DateBook
 
   def self.weekdays
     @weekdays ||= Date::DAYNAMES
-                     .map
-                     .with_index do |x, i|
-                       OpenStruct.new(id: i, name: x, slug: x.downcase)
-                     end
-                     .sort_by do |value|
-                       (value.id - week_start_index) % 7
-                     end
+                  .map
+                  .with_index do |x, i|
+                    OpenStruct.new(id: i, name: x, slug: x.downcase)
+                  end
+                  .sort_by do |value|
+      (value.id - week_start_index) % 7
+    end
   end
 
   def self.week_start_index
@@ -36,8 +36,8 @@ module DateBook
 
     def initialize
       self.week_starts_on = 'Sunday'
-      self.rules = %w(singular daily weekly monthly)
-      self.duration_units = %w(years months weeks days hours minutes seconds)
+      self.rules = %w[singular daily weekly monthly]
+      self.duration_units = %w[years months weeks days hours minutes seconds]
     end
   end
 end

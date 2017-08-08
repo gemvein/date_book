@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module DateBook
   class EventsController < DateBookController
     load_and_authorize_resource :calendar, find_by: :slug
     load_and_authorize_resource :event, find_by: :slug, through: :calendar
-    before_action :set_occurrence, only: [:show, :popover]
+    before_action :set_occurrence, only: %i[show popover]
 
     # GET /events
     def index
@@ -12,8 +14,7 @@ module DateBook
     end
 
     # GET /events/slug
-    def show
-    end
+    def show; end
 
     # GET /events/slug/popover
     def popover
@@ -21,12 +22,10 @@ module DateBook
     end
 
     # GET /events/new
-    def new
-    end
+    def new; end
 
     # GET /events/slug/edit
-    def edit
-    end
+    def edit; end
 
     # POST /events
     def create
@@ -56,53 +55,54 @@ module DateBook
     end
 
     private
-      def set_occurrence
-        if params[:occurrence_id].present?
-          @occurrence = @event.event_occurrences.find(params[:occurrence_id])
-        end
-      end
 
-      # Only allow a trusted parameter "white list" through.
-      def event_params
-        schedule_attributes = [
-          :id,
-          :date,
-          :time,
-          :rule,
-          :until,
-          :count,
-          :interval,
-          :all_day,
-          {
-            day: [],
-            day_of_week: [
-              {
-                monday: [],
-                tuesday: [],
-                wednesday: [],
-                thursday: [],
-                friday: [],
-                saturday: [],
-                sunday: []
-              }
-            ],
-            duration_attributes: [
-              :count,
-              :unit
-            ]
-          }
-        ]
-
-        params.require(:event).permit(
-          :id,
-          :name,
-          :description,
-          :css_class,
-          :text_color,
-          :background_color,
-          :border_color,
-          schedule_attributes: schedule_attributes
-        )
+    def set_occurrence
+      if params[:occurrence_id].present?
+        @occurrence = @event.event_occurrences.find(params[:occurrence_id])
       end
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def event_params
+      schedule_attributes = [
+        :id,
+        :date,
+        :time,
+        :rule,
+        :until,
+        :count,
+        :interval,
+        :all_day,
+        {
+          day: [],
+          day_of_week: [
+            {
+              monday: [],
+              tuesday: [],
+              wednesday: [],
+              thursday: [],
+              friday: [],
+              saturday: [],
+              sunday: []
+            }
+          ],
+          duration_attributes: %i[
+            count
+            unit
+          ]
+        }
+      ]
+
+      params.require(:event).permit(
+        :id,
+        :name,
+        :description,
+        :css_class,
+        :text_color,
+        :background_color,
+        :border_color,
+        schedule_attributes: schedule_attributes
+      )
+    end
   end
 end

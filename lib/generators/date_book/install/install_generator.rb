@@ -73,11 +73,11 @@ module DateBook
       output 'Adding DateBook to your User model', :magenta
       gsub_file(
         'app/models/user.rb',
-        %r{acts_as_owner},
+        /acts_as_owner/,
         ''
       )
       inject_into_file 'app/models/user.rb', after: "rolify\n" do
-<<-'RUBY'
+        <<-'RUBY'
   acts_as_owner
 RUBY
       end

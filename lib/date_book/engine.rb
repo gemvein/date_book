@@ -19,19 +19,19 @@ module DateBook
     end
 
     initializer 'date_book.assets.precompile' do |app|
-      app.config.assets.precompile += %w(
+      app.config.assets.precompile += %w[
         date_book.js date_book.css bootstrap-wysiwyg/bootstrap-wysiwyg.css
         bootstrap-wysiwyg.js jquery_nested_form.js jquery_nested_form.js
         bootstrap-datetimepicker.js bootstrap-datetimepicker.css all-day-bg.png
         part-day-bg.png
-      )
+      ]
     end
 
-    initializer "date_book.add_middleware" do |app|
+    initializer 'date_book.add_middleware' do |app|
       app.config.middleware.insert_before 0, Rack::Cors do
         allow do
           origins %r{\Ahttp://localhost:3000\z}
-          resource '*', :headers => :any, :methods => [:get, :post, :options]
+          resource '*', headers: :any, methods: %i[get post options]
         end
       end
 

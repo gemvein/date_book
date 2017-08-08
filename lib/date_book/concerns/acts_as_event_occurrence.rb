@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module DateBook
   module ActsAsEventOccurrence
-    def acts_as_event_occurrence(options = {})
+    def acts_as_event_occurrence(_options = {})
       before_save :set_end_date
 
       alias_attribute :start_date, :date
@@ -10,12 +12,12 @@ module DateBook
       delegate :schedule, to: :schedulable
 
       # Scopes
-      scope :remaining, -> { where('date >= ?',Time.now) }
-      scope :previous, -> { where('date < ?',Time.now) }
-      scope :ending_after, -> (start_date) { (where 'end_date >= ?', start_date) }
-      scope :starting_before, -> (end_date) { where 'date < ?', end_date }
+      scope :remaining, -> { where('date >= ?', Time.now) }
+      scope :previous, -> { where('date < ?', Time.now) }
+      scope :ending_after, ->(start_date) { (where 'end_date >= ?', start_date) }
+      scope :starting_before, ->(end_date) { where 'date < ?', end_date }
       scope :for_events, -> { where(schedulable_type: 'Event') }
-      scope :for_schedulables, -> (model_name, ids) { where(schedulable_type: model_name).where('schedulable_id IN (?)',  ids) }
+      scope :for_schedulables, ->(model_name, ids) { where(schedulable_type: model_name).where('schedulable_id IN (?)', ids) }
       scope :ascending, -> { order date: :asc }
       scope :descending, -> { order date: :desc }
 
@@ -39,7 +41,7 @@ module DateBook
           I18n.localize date, format: :moment_datetime
         end
       end
-      alias_method :start, :start_moment
+      alias start start_moment
 
       def end_moment
         if schedule.all_day
@@ -48,7 +50,7 @@ module DateBook
           I18n.localize end_date, format: :moment_datetime
         end
       end
-      alias_method :end, :end_moment
+      alias end end_moment
 
       private
 
@@ -62,6 +64,5 @@ module DateBook
         for_events.pluck(:schedulable_id).uniq
       end
     end
-
   end
 end

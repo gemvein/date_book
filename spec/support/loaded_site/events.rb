@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_context 'events' do
   let(:monday_event) { Event.friendly.find('monday') }
   let(:science_fiction_club_event) { Event.friendly.find('science-fiction-club') }

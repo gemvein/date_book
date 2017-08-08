@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def path_to_url(path)
   protocol = request.protocol
   host = request.host_with_port.sub(/:80$/, '')
@@ -36,7 +38,7 @@ end
 def fill_in_wysiwyg(locator, text)
   include ActionView::Helpers::JavaScriptHelper
   locator = find_field_by_label(locator)
-  text = text.gsub("'", "\'").gsub("\n", '\\\n')
+  text = text.tr("'", "\'").gsub("\n", '\\\n')
 
   # Fill the editor content
   page.execute_script <<-SCRIPT
