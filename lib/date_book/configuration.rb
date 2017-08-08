@@ -12,12 +12,13 @@ module DateBook
   end
 
   def self.weekdays
-    @weekdays ||= Date::DAYNAMES
-                  .map
-                  .with_index do |x, i|
-                    OpenStruct.new(id: i, name: x, slug: x.downcase)
-                  end
-                  .sort_by do |value|
+    return @weekdays if @weekdays
+
+    initial_days = Date::DAYNAMES.map.with_index do |x, i|
+      OpenStruct.new(id: i, name: x, slug: x.downcase)
+    end
+
+    @weekdays = initial_days.sort_by do |value|
       (value.id - week_start_index) % 7
     end
   end
