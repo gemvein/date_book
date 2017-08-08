@@ -26,13 +26,6 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 38
 
-# Offense count: 2
-# Configuration parameters: MinBodyLength.
-Style/GuardClause:
-  Exclude:
-    - 'app/controllers/date_book/events_controller.rb'
-    - 'spec/support/utilities.rb'
-
 # Offense count: 7
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, SupportedStyles.

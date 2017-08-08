@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 module DateBook
-  # Allows viewing and maintaining Events within Calendars
   class EventsController < DateBookController
     load_and_authorize_resource :calendar, find_by: :slug
     load_and_authorize_resource :event, find_by: :slug, through: :calendar
@@ -58,9 +57,8 @@ module DateBook
     private
 
     def set_occurrence
-      if params[:occurrence_id].present?
-        @occurrence = @event.event_occurrences.find(params[:occurrence_id])
-      end
+      return unless params[:occurrence_id].present?
+      @occurrence = @event.event_occurrences.find(params[:occurrence_id])
     end
 
     # Only allow a trusted parameter "white list" through.

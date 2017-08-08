@@ -73,8 +73,10 @@ RSpec.feature 'Calendars', folder: :features do
             )
             click_button 'Save Calendar'
           end
-          wait_until do
-            page.has_css? 'h1', text: 'Calendar Name Here'
+          it do
+            wait_until do
+              page.has_css? 'h1', text: 'Calendar Name Here'
+            end
           end
           it_behaves_like(
             'a bootstrap page with an alert',

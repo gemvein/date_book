@@ -19,10 +19,9 @@ def wait_until(delay = 1)
     sleep delay
     seconds_waited += 1
   end
-  unless yield
-    puts "Waited for #{Capybara.default_max_wait_time} seconds."
-    puts "{#{yield}} did not become true, continuing."
-  end
+  return if yield
+  puts "Waited for #{Capybara.default_max_wait_time} seconds."
+  puts "{#{yield}} did not become true, continuing."
 end
 
 def submit_via_execute(form_selector)
