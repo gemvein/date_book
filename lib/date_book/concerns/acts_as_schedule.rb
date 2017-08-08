@@ -26,7 +26,7 @@ module DateBook
 
       def duration_unit
         return 'seconds' if duration.zero?
-        DateBook.configuration.duration_units.select { |x| is_unit? x }.first || 'seconds'
+        DateBook.configuration.duration_units.select { |x| unit_matches? x }.first || 'seconds'
       end
 
       def human_date
@@ -39,7 +39,7 @@ module DateBook
 
       private
 
-      def is_unit?(unit)
+      def unit_matches?(unit)
         (duration % 1.send(unit.singularize.to_sym).to_i).zero?
       end
     end
