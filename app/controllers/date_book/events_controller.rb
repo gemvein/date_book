@@ -88,14 +88,7 @@ module DateBook
     # Only allow a trusted parameter "white list" through.
     def event_params
       schedule_attributes = [
-        :id,
-        :date,
-        :time,
-        :rule,
-        :until,
-        :count,
-        :interval,
-        :all_day,
+        :id, :date, :time, :rule, :until, :count, :interval, :all_day,
         {
           day: [],
           day_of_week: [
