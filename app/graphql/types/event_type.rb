@@ -13,7 +13,6 @@ Types::EventType = GraphQL::ObjectType.define do
   field :end, types.String
   field :duration, types.String
   field :all_day, types.Boolean
-  field :popover_url, types.String
 
   field :created_at, Types::DateTimeType
   field :updated_at, Types::DateTimeType

@@ -28,6 +28,10 @@ module DateBook
         event.url(self)
       end
 
+      def popover_url
+        event.popover_url(self)
+      end
+
       def start_moment
         if schedule.all_day
           I18n.localize date, format: :moment_date

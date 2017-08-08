@@ -2,7 +2,7 @@
 = date_book_scripts
 .row
   .col-md-9
-    #calendar
+    #calendar-display
   .col-md-3
     %ul.calendars
       - @calendars.each do |calendar|
@@ -11,13 +11,15 @@
 - add_footer_javascript do
   :javascript
     $(function() {
-      $('#calendar').fullCalendar({
+      $('#calendar-display').fullCalendar({
         events: {
           url: '#{date_book.api_path format: :json}',
           type: 'POST',
           data: { query: calendarEventsQuery },
           success: function(data, status, xhr) {
-            return $.map(data.data.event_occurrences, formatEventOccurrence);
+            data = data.data.event_occurrences;
+            new_data = $.map(data, formatEventOccurrence);
+            return new_data;
           }
         },
         eventRender: calendarEventRender,
