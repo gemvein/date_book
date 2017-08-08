@@ -66,7 +66,13 @@ RSpec.configure do |config|
 
   config.include Rails.application.routes.url_helpers
 
-  config.include RSpecHtmlMatchers, folder: :helper
+  # Capybara doesn't work on helpers
+  config.include RSpecHtmlMatchers, type: :helper
+
+
+  config.before :each, type: :helper do
+    helper.class.include DateBook::Engine.routes.url_helpers
+  end
 
   # In order to tell Rspec how to use Devise, as per
   # https://github.com/plataformatec/devise/wiki/How-To:-Test-controllers-with-Rails-3-and-4-%28and-RSpec%29

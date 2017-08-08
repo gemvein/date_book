@@ -1,1 +1,1 @@
-= schedule.collection_check_boxes :day, DateBook.weekdays, :slug, :name
+= f.collection_check_boxes :day, DateBook.weekdays, :slug, :name, wrapper: { class: 'date-book--day' }

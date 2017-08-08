@@ -1,4 +1,4 @@
-= schedule.form_group :day_of_week, label: { text: :day_and_week.l } do
+= f.form_group :day_of_week, label: { text: :day_and_week.l }, class: 'date-book--day-of-week' do
   %table.table.table-striped.table-bordered
     %tr
       %th= :week_number.l
@@ -15,5 +15,5 @@
             = week_num.ordinalize
         - DateBook.weekdays.each do |day|
           %td
-            = schedule.fields_for :day_of_week do |day_fields|
-              = day_fields.check_box_without_bootstrap day.name.downcase, { multiple: true, checked: @event.schedule.day_of_week[day.name.downcase]&.include?(week_num.to_s) }, week_num.to_s, nil
+            = f.fields_for :day_of_week do |day_fields|
+              = day_fields.check_box_without_bootstrap day.name.downcase, { multiple: true, checked: f.object.day_of_week[day.name.downcase]&.include?(week_num.to_s) }, week_num.to_s, nil

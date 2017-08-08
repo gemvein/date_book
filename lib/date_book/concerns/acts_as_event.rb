@@ -50,11 +50,11 @@ module DateBook
       end
 
       def url(occurrence = nil)
-        DateBook::Engine.routes.url_helpers.calendar_event_path(calendar, slug, occurrence_id: occurrence.id)
+        DateBook::Engine.routes.url_helpers.calendar_event_path(calendar, slug, occurrence_id: occurrence&.id)
       end
 
       def popover_url(occurrence = nil)
-        DateBook::Engine.routes.url_helpers.popover_calendar_event_path(calendar, slug, occurrence_id: occurrence.id)
+        DateBook::Engine.routes.url_helpers.popover_calendar_event_path(calendar, slug, occurrence_id: occurrence&.id)
       end
     end
 
