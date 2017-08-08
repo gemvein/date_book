@@ -66,6 +66,7 @@ RSpec.feature 'Calendars', folder: :features do
         end
         describe 'permits adding a valid Calendar', js: true do
           before do
+            # Make travis wait
             wait_until do
               page.has_field? 'Name'
             end
@@ -75,7 +76,7 @@ RSpec.feature 'Calendars', folder: :features do
               simple_format(paragraphs.join("\n\n"))
             )
             click_button 'Save Calendar'
-
+            # Make travis wait
             wait_until do
               page.has_css? 'h1', text: 'Calendar Name Here'
             end
@@ -119,8 +120,16 @@ RSpec.feature 'Calendars', folder: :features do
           end
           describe 'validates editing a Calendar' do
             before do
+              # Make travis wait
+              wait_until do
+                page.has_field? 'Name'
+              end
               fill_in 'Name', with: ''
               click_button 'Save Calendar'
+              # Make travis wait
+              wait_until do
+                page.has_css? 'h1', text: 'Editing Regular Calendar'
+              end
             end
             it_behaves_like(
               'a bootstrap page with an alert',
@@ -133,12 +142,20 @@ RSpec.feature 'Calendars', folder: :features do
           end
           describe 'permits editing a valid Calendar' do
             before do
+              # Make travis wait
+              wait_until do
+                page.has_field? 'Name'
+              end
               fill_in 'Name', with: 'Calendar Name Here'
               fill_in_wysiwyg(
                 'Description',
                 simple_format(paragraphs.join("\n\n"))
               )
               click_button 'Save Calendar'
+              # Make travis wait
+              wait_until do
+                page.has_css? 'h1', text: 'Calendar Name Here'
+              end
             end
             it_behaves_like(
               'a bootstrap page with an alert',
