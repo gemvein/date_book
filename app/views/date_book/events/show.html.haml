@@ -5,6 +5,9 @@
   %dl.dl-horizontal
     %dt= :owner.l
     %dd= @event.owners.first.name
+  %dl.dl-horizontal
+    %dt= Calendar.model_name.human
+    %dd= link_to @event.calendar.name, @event.calendar
   = @event.description.html_safe
 
   - if can? :edit, @event
