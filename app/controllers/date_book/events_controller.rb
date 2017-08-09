@@ -39,6 +39,7 @@ module DateBook
       unless @event.save
         flash[:error] = @event.errors.full_messages.to_sentence
         render :new
+        return
       end
       redirect_to([@calendar, @event], notice: :item_acted_on.l(
         item: Event.model_name.human,
@@ -51,6 +52,7 @@ module DateBook
       unless @event.update(event_params)
         flash[:error] = @event.errors.full_messages.to_sentence
         render :edit
+        return
       end
       redirect_to([@calendar, @event], notice: :item_acted_on.l(
         item: Event.model_name.human,

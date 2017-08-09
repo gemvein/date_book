@@ -23,6 +23,7 @@ module DateBook
       unless @calendar.save
         flash[:error] = @calendar.errors.full_messages.to_sentence
         render :new
+        return
       end
       redirect_to(@calendar, notice: :item_acted_on.l(
         item: Calendar.model_name.human,
@@ -35,6 +36,7 @@ module DateBook
       unless @calendar.update(calendar_params)
         flash[:error] = @calendar.errors.full_messages.to_sentence
         render :edit
+        return
       end
       redirect_to(@calendar, notice: :item_acted_on.l(
         item: Calendar.model_name.human,
