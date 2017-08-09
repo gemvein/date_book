@@ -12,11 +12,13 @@ module DateBook
   require 'rolify'
 
   require 'sass'
+  require 'sass-rails'
   require 'haml-rails'
   require 'bootstrap-sass'
   require 'bootstrap_leather'
   require 'bootstrap_form'
   require 'bootstrap-wysihtml5-rails'
+  require 'font-awesome-rails'
 
   require 'schedulable'
   require 'fullcalendar-rails'

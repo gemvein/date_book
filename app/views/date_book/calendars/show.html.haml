@@ -14,11 +14,16 @@
 
   = @calendar.description.html_safe
   %hr
-  #calendar-display
+  .date-book--wrapper
+    .date-book--spinner
+      = icon 'spinning fa fa-spinner'
+    .date-book--calendar
 - add_footer_javascript do
   :javascript
     $(function() {
-      $('#calendar-display').fullCalendar({
+      var calendar = $('.date-book--calendar');
+      var spinner = $('.date-book--spinner');
+      calendar.fullCalendar({
         events: {
           url: '#{date_book.api_path format: :json}',
           type: 'POST',
@@ -32,6 +37,17 @@
         },
         eventRender: calendarEventRender,
         header: calendarEventHeader,
-        firstDay: #{DateBook.week_start_index}
+        firstDay: #{DateBook.week_start_index},
+        loading: function( isLoading, view ) {
+            if(isLoading) {// isLoading gives boolean value
+                spinner.show();
+            } else {
+                //hide your loader here
+                spinner.hide();
+            }
+        },
+        eventAfterAllRender: function (view) {
+          spinner.hide();
+        }
       });
     });

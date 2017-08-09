@@ -43,7 +43,7 @@ function calendarEventRender(event, element) {
             element.popover({
                 html: true,
                 placement: 'auto',
-                viewport: '#calendar-display',
+                viewport: '.date-book--calendar',
                 container: 'body',
                 title: '<a href="' + event.url + '">' + event.title + '</a><span onclick="hideParentPopover(this);" class="float-right glyphicon glyphicon-remove"></span>',
                 content: ajax_data

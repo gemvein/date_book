@@ -29,6 +29,9 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'
 # Haml because I like it
 gem 'haml-rails', '>= 1.0', '< 2'
 
+# Sass for smart CSS
+gem 'sass-rails', '>= 5.0', '< 6'
+
 # Jbuilder for easy building of json objects
 gem 'jbuilder'
 
@@ -59,6 +62,9 @@ gem(
 # Full Calendar to display what we've got
 gem 'fullcalendar-rails', '>= 3.4', '< 4'
 gem 'momentjs-rails', '>= 2.9', '< 3'
+
+# More icons, like the spinner
+gem 'font-awesome-rails', '>= 4.7', '< 5'
 
 # GraphQL for the API
 gem 'graphql', '>= 1.6', '< 2'
