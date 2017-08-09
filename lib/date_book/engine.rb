@@ -23,7 +23,9 @@ module DateBook
         date_book.js date_book.css bootstrap-wysiwyg/bootstrap-wysiwyg.css
         bootstrap-wysiwyg.js jquery_nested_form.js jquery_nested_form.js
         bootstrap-datetimepicker.js bootstrap-datetimepicker.css all-day-bg.png
-        part-day-bg.png moment.js
+        part-day-bg.png moment.js glyphicons-halflings-regular.eot
+        glyphicons-halflings-regular.svg glyphicons-halflings-regular.ttf
+        glyphicons-halflings-regular.woff glyphicons-halflings-regular.woff2
       ]
     end
 
