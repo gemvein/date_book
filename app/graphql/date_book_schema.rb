@@ -5,8 +5,6 @@ DateBookSchema = GraphQL::Schema.define do
   query(Types::QueryType)
   resolve_type(lambda do |_type, obj, _ctx|
     case obj
-    when Profile
-      Types::ProfileType
     when Calendar
       Types::CalendarType
     when Event
