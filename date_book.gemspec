@@ -11,9 +11,8 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
   s.authors = ["Karen Lundgren".freeze]
-  s.date = "2017-08-08"
+  s.date = "2017-08-09"
   s.email = "karen.e.lundgren@gmail.com".freeze
-  s.executables = ["rails".freeze]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
@@ -53,11 +52,9 @@ Gem::Specification.new do |s|
     "app/graphql/types/profile_type.rb",
     "app/graphql/types/query_type.rb",
     "app/helpers/date_book/application_helper.rb",
-    "app/helpers/date_book/calendar_helper.rb",
     "app/helpers/date_book/events_helper.rb",
     "app/jobs/date_book/application_job.rb",
     "app/mailers/date_book/application_mailer.rb",
-    "app/views/date_book/application/_all_day_checkbox.html.haml",
     "app/views/date_book/application/_date_range.html.haml",
     "app/views/date_book/application/_wysiwyg.html.haml",
     "app/views/date_book/calendars/_form.html.haml",
@@ -85,7 +82,6 @@ Gem::Specification.new do |s|
     "app/views/date_book/events/show.html.haml",
     "app/views/layouts/_date_book_scripts.html.haml",
     "app/views/layouts/blank.html.haml",
-    "bin/rails",
     "config/locales/en.yml",
     "config/routes.rb",
     "date_book.gemspec",
@@ -177,20 +173,22 @@ Gem::Specification.new do |s|
     "spec/dummy/config/routes.rb",
     "spec/dummy/config/secrets.yml",
     "spec/dummy/config/spring.rb",
+    "spec/dummy/db/development.sqlite3",
     "spec/dummy/db/migrate/20170728171103_create_users_table.rb",
     "spec/dummy/db/migrate/20170807134122_add_devise_to_users.rb",
     "spec/dummy/db/migrate/20170807134128_rolify_create_roles.rb",
-    "spec/dummy/db/migrate/20170808150915_create_calendars.date_book.rb",
-    "spec/dummy/db/migrate/20170808150916_create_events.date_book.rb",
-    "spec/dummy/db/migrate/20170808150917_create_schedules.date_book.rb",
-    "spec/dummy/db/migrate/20170808150918_add_fields_to_schedule.date_book.rb",
-    "spec/dummy/db/migrate/20170808150919_create_event_occurrences.date_book.rb",
-    "spec/dummy/db/migrate/20170808150920_add_fields_to_event_occurrences.date_book.rb",
+    "spec/dummy/db/migrate/20170808200808_create_calendars.date_book.rb",
+    "spec/dummy/db/migrate/20170808200809_create_events.date_book.rb",
+    "spec/dummy/db/migrate/20170808200810_create_schedules.date_book.rb",
+    "spec/dummy/db/migrate/20170808200811_add_fields_to_schedule.date_book.rb",
+    "spec/dummy/db/migrate/20170808200812_create_event_occurrences.date_book.rb",
+    "spec/dummy/db/migrate/20170808200813_add_fields_to_event_occurrences.date_book.rb",
     "spec/dummy/db/schema.rb",
     "spec/dummy/db/seeds.rb",
     "spec/dummy/db/seeds/calendars.seeds.rb",
     "spec/dummy/db/seeds/events.seeds.rb",
     "spec/dummy/db/seeds/users.seeds.rb",
+    "spec/dummy/db/test.sqlite3",
     "spec/dummy/lib/assets/.keep",
     "spec/dummy/lib/basic_benchmark.rb",
     "spec/dummy/log/.keep",
@@ -200,13 +198,13 @@ Gem::Specification.new do |s|
     "spec/factories/users.rb",
     "spec/features/calendars_spec.rb",
     "spec/features/events_spec.rb",
-    "spec/helpers/date_book/calendar_helper_spec.rb",
+    "spec/helpers/date_book/application_helper_spec.rb",
     "spec/helpers/date_book/events_helper_spec.rb",
     "spec/models/calendar_spec.rb",
     "spec/models/event_spec.rb",
     "spec/models/role_spec.rb",
     "spec/rails_helper.rb",
-    "spec/requests/date_book/events_spec.rb",
+    "spec/requests/date_book/api_spec.rb",
     "spec/routing/date_book/calendars_routing_spec.rb",
     "spec/routing/date_book/events_routing_spec.rb",
     "spec/spec_helper.rb",
@@ -253,17 +251,17 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rack-cors>.freeze, ["< 2", ">= 1"])
       s.add_development_dependency(%q<bundler>.freeze, ["~> 1.0"])
       s.add_development_dependency(%q<juwelier>.freeze, ["~> 2.4"])
-      s.add_development_dependency(%q<rubocop>.freeze, [">= 0"])
       s.add_development_dependency(%q<graphiql-rails>.freeze, ["< 2", ">= 1.4"])
+      s.add_development_dependency(%q<rubocop>.freeze, [">= 0"])
       s.add_development_dependency(%q<bootstrap-sass>.freeze, ["~> 3.3"])
       s.add_development_dependency(%q<byebug>.freeze, ["~> 9"])
       s.add_development_dependency(%q<factory_girl_rails>.freeze, ["~> 4.5"])
       s.add_development_dependency(%q<faker>.freeze, ["~> 1.4"])
+      s.add_development_dependency(%q<high_voltage>.freeze, ["~> 3"])
       s.add_development_dependency(%q<rspec-its>.freeze, [">= 1"])
       s.add_development_dependency(%q<rspec-rails>.freeze, ["< 4", ">= 3.5"])
       s.add_development_dependency(%q<seedbank>.freeze, ["~> 0.3"])
       s.add_development_dependency(%q<sqlite3>.freeze, ["~> 1.3"])
-      s.add_development_dependency(%q<high_voltage>.freeze, ["~> 3"])
     else
       s.add_dependency(%q<rails>.freeze, ["< 6", ">= 4"])
       s.add_dependency(%q<rails-i18n>.freeze, ["< 6", ">= 4"])
@@ -287,17 +285,17 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rack-cors>.freeze, ["< 2", ">= 1"])
       s.add_dependency(%q<bundler>.freeze, ["~> 1.0"])
       s.add_dependency(%q<juwelier>.freeze, ["~> 2.4"])
-      s.add_dependency(%q<rubocop>.freeze, [">= 0"])
       s.add_dependency(%q<graphiql-rails>.freeze, ["< 2", ">= 1.4"])
+      s.add_dependency(%q<rubocop>.freeze, [">= 0"])
       s.add_dependency(%q<bootstrap-sass>.freeze, ["~> 3.3"])
       s.add_dependency(%q<byebug>.freeze, ["~> 9"])
       s.add_dependency(%q<factory_girl_rails>.freeze, ["~> 4.5"])
       s.add_dependency(%q<faker>.freeze, ["~> 1.4"])
+      s.add_dependency(%q<high_voltage>.freeze, ["~> 3"])
       s.add_dependency(%q<rspec-its>.freeze, [">= 1"])
       s.add_dependency(%q<rspec-rails>.freeze, ["< 4", ">= 3.5"])
       s.add_dependency(%q<seedbank>.freeze, ["~> 0.3"])
       s.add_dependency(%q<sqlite3>.freeze, ["~> 1.3"])
-      s.add_dependency(%q<high_voltage>.freeze, ["~> 3"])
     end
   else
     s.add_dependency(%q<rails>.freeze, ["< 6", ">= 4"])
@@ -322,17 +320,17 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rack-cors>.freeze, ["< 2", ">= 1"])
     s.add_dependency(%q<bundler>.freeze, ["~> 1.0"])
     s.add_dependency(%q<juwelier>.freeze, ["~> 2.4"])
-    s.add_dependency(%q<rubocop>.freeze, [">= 0"])
     s.add_dependency(%q<graphiql-rails>.freeze, ["< 2", ">= 1.4"])
+    s.add_dependency(%q<rubocop>.freeze, [">= 0"])
     s.add_dependency(%q<bootstrap-sass>.freeze, ["~> 3.3"])
     s.add_dependency(%q<byebug>.freeze, ["~> 9"])
     s.add_dependency(%q<factory_girl_rails>.freeze, ["~> 4.5"])
     s.add_dependency(%q<faker>.freeze, ["~> 1.4"])
+    s.add_dependency(%q<high_voltage>.freeze, ["~> 3"])
     s.add_dependency(%q<rspec-its>.freeze, [">= 1"])
     s.add_dependency(%q<rspec-rails>.freeze, ["< 4", ">= 3.5"])
     s.add_dependency(%q<seedbank>.freeze, ["~> 0.3"])
     s.add_dependency(%q<sqlite3>.freeze, ["~> 1.3"])
-    s.add_dependency(%q<high_voltage>.freeze, ["~> 3"])
   end
 end
 
