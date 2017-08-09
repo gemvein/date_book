@@ -6,7 +6,8 @@ require 'date_book/engine'
 module DateBook
   require 'rails-i18n'
 
-  require 'devise' # Needs to be required before paid_up/mixins
+  require 'devise'
+  require 'rack/cors'
   require 'cancan'
   require 'rolify'
 
@@ -18,6 +19,10 @@ module DateBook
 
   require 'schedulable'
   require 'fullcalendar-rails'
+  require 'momentjs-rails'
+  require 'bootstrap3-datetimepicker-rails'
+
+  require 'graphql'
 
   require 'date_book/configuration'
   require 'date_book/engine'

@@ -23,7 +23,7 @@ module DateBook
         date_book.js date_book.css bootstrap-wysiwyg/bootstrap-wysiwyg.css
         bootstrap-wysiwyg.js jquery_nested_form.js jquery_nested_form.js
         bootstrap-datetimepicker.js bootstrap-datetimepicker.css all-day-bg.png
-        part-day-bg.png
+        part-day-bg.png moment.js
       ]
     end
 
