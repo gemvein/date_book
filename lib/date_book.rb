@@ -17,6 +17,7 @@ module DateBook
   require 'bootstrap-sass'
   require 'bootstrap_leather'
   require 'bootstrap_form'
+  require 'nested_form'
   require 'bootstrap-wysihtml5-rails'
   require 'font-awesome-rails'
 
