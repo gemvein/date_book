@@ -8,5 +8,5 @@ DateBook::Engine.routes.draw do
       get 'popover', on: :member
     end
   end
-  root to: 'calendar#index'
+  root to: 'calendars#index'
 end
