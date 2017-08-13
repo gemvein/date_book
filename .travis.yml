@@ -1,13 +1,29 @@
 language: ruby
-rvm:
-  - 2.4.1
 sudo: required
 dist: trusty
+rvm:
+  - 2.4.1
+gemfile:
+  - Gemfile
+env:
+  global:
+    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+    - JAVA_OPTS=-Djava.security.egd=file:/dev/urandom
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 before_install:
- - sudo apt-get update
- - sudo apt-get install chromium-chromedriver
+  - mkdir -p ~/drivers; export PATH=~/drivers:$PATH;
+  - CHROMEDRIVER_VERSION=$(wget -q -O - http://chromedriver.storage.googleapis.com/LATEST_RELEASE);
+    CHROMEDRIVER_URL="http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip";
+    FILE=`mktemp`; wget "$CHROMEDRIVER_URL" -qO $FILE && unzip $FILE chromedriver -d ~/drivers; rm $FILE; chmod 777 ~/drivers/chromedriver;
+    ~/drivers/chromedriver --version;
 before_script:
-  - "export PATH=$PATH:/usr/lib/chromium-browser/"
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
-  - sleep 3 # give xvfb some time to start
+  - if [[ -z $HEADLESS ]]; then
+      export DISPLAY=:99.0;
+      sh -e /etc/init.d/xvfb start;
+      sleep 1;
+    fi
