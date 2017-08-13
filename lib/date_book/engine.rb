@@ -32,7 +32,7 @@ module DateBook
     initializer 'date_book.add_middleware' do |app|
       app.config.middleware.insert_before 0, Rack::Cors do
         allow do
-          origins %r{\Ahttp://localhost:3000\z}
+          origins %r{\Ahttps?://localhost:?[0-9]+\z}
           resource '*', headers: :any, methods: %i[get post options]
         end
       end
