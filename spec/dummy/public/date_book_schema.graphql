@@ -1,27 +1,14 @@
-schema {
-  query: Date Book API
-  mutation: Mutation
-}
-
 # DateBook Calendars
 type Calendar {
   created_at: DateTime
   css_class: String
   description: String
-  event_occurrences: [Event Occurrences]
+  event_occurrences: [EventOccurrences]
   events: [Event]
   id: ID
   name: String
   slug: String!
   updated_at: DateTime
-}
-
-type Date Book API {
-  # Find a calendar by slug
-  calendar(slug: String): Calendar
-
-  # Find all event occurrences in range
-  event_occurrences(ending_after: String, starting_before: String): [Event Occurrences]
 }
 
 # Date with Time
@@ -48,7 +35,7 @@ type Event {
 }
 
 # DateBook Event Occurrences
-type Event Occurrences {
+type EventOccurrences {
   end: String
   event: Event
   id: ID!
@@ -57,6 +44,10 @@ type Event Occurrences {
   url: String
 }
 
-type Mutation {
+type Query {
+  # Find a calendar by slug
+  calendar(slug: String): Calendar
 
+  # Find all event occurrences in range
+  event_occurrences(ending_after: String, starting_before: String): [EventOccurrences]
 }

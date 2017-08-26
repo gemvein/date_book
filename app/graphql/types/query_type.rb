@@ -3,7 +3,7 @@
 # This defines the top-level queries that are available.
 # rubocop:disable Metrics/BlockLength
 Types::QueryType = GraphQL::ObjectType.define do
-  name 'Date Book API'
+  name 'Query'
   # Add root-level fields here.
   # They will be entry points for queries on your schema.
   field :event_occurrences do

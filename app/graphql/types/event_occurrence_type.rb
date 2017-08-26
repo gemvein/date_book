@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Types::EventOccurrenceType = GraphQL::ObjectType.define do
-  name 'Event Occurrences'
+  name 'EventOccurrences'
   description 'DateBook Event Occurrences'
 
   field :id, !types.ID

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 DateBookSchema = GraphQL::Schema.define do
-  mutation(Types::MutationType)
+  # mutation(Types::MutationType)
   query(Types::QueryType)
 
   # TODO: What is this code for?
