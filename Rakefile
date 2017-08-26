@@ -24,4 +24,5 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
+load 'lib/tasks/date_book.rake'
 task default: :spec
