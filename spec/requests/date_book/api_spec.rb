@@ -9,6 +9,9 @@ RSpec.describe 'DateBook API', folder: :requests do
     { query: '
 {
   calendar(slug: "regular-calendar") {
+    text_color,
+    background_color,
+    border_color,
     event_occurrences {
       url,
       popover_url,
@@ -18,9 +21,6 @@ RSpec.describe 'DateBook API', folder: :requests do
         id,
         name,
         css_class,
-        text_color,
-        background_color,
-        border_color,
         all_day
       }
     }
@@ -40,11 +40,13 @@ RSpec.describe 'DateBook API', folder: :requests do
     event {
       id,
       name,
-      css_class,
-      text_color,
-      background_color,
-      border_color,
-      all_day
+      all_day,
+      calendar {
+        css_class,
+        text_color,
+        background_color,
+        border_color
+      }
     }
   }
 }

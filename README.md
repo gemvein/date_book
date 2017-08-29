@@ -48,6 +48,18 @@ $ rake schedulable:build_occurrences
 ## Automating Build of Occurences
 See [Schedulable: Automate Build of Occurences](https://github.com/benignware/schedulable#automate-build-of-occurrences) for information on setting up a crontab to automate the build of occurences
 
+
+## Upgrading:
+
+### Version 0.2.0
+
+Colors moved from events into calendars, to support usable color configuration per calendar instead of per event. 
+
+Be sure to run:
+```bash
+$ rake date_book:install:migrations
+```
+
 ## Contributing to Date Book
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.

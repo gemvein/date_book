@@ -9,6 +9,9 @@ Types::CalendarType = GraphQL::ObjectType.define do
   field :slug, !types.String
   field :description, types.String
   field :css_class, types.String
+  field :text_color, types.String
+  field :background_color, types.String
+  field :border_color, types.String
   field :created_at, Types::DateTimeType
   field :updated_at, Types::DateTimeType
   field :events, types[Types::EventType]

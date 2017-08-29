@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808200813) do
+ActiveRecord::Schema.define(version: 20170829025248) do
 
   create_table "calendars", force: :cascade do |t|
     t.string "name"
     t.string "slug"
     t.text "description"
     t.string "css_class"
+    t.string "text_color", default: "#ffffff"
+    t.string "background_color", default: "#3a87ad"
+    t.string "border_color", default: "#235371"
     t.index ["slug"], name: "index_calendars_on_slug", unique: true
   end
 
@@ -36,9 +39,6 @@ ActiveRecord::Schema.define(version: 20170808200813) do
     t.string "slug"
     t.text "description"
     t.string "css_class"
-    t.string "text_color", default: "#ffffff"
-    t.string "background_color", default: "#3a87ad"
-    t.string "border_color", default: "#235371"
     t.date "start_date"
     t.time "start_time"
     t.integer "duration"
