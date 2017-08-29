@@ -19,7 +19,7 @@ RSpec.feature 'Events', folder: :features do
         it_behaves_like(
           'a bootstrap page listing a collection of items',
           Event,
-          minimum: 5
+          minimum: 4
         )
       end
       describe 'with a query' do
