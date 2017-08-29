@@ -48,7 +48,7 @@ $ rake schedulable:build_occurrences
 ## Automating Build of Occurences
 See [Schedulable: Automate Build of Occurences](https://github.com/benignware/schedulable#automate-build-of-occurrences) for information on setting up a crontab to automate the build of occurences
 
-## Contributing to Paid Up
+## Contributing to Date Book
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
