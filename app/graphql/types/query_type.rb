@@ -37,5 +37,14 @@ Types::QueryType = GraphQL::ObjectType.define do
         .find(args[:slug])
     end)
   end
+
+  field :calendars do
+    type types[Types::CalendarType]
+    description 'Find all readable calendars'
+    resolve(lambda do |_obj, args, ctx|
+      Calendar
+        .readable_by(ctx[:current_user])
+    end)
+  end
 end
 # rubocop:enable Metrics/BlockLength

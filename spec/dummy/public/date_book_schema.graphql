@@ -54,6 +54,9 @@ type Query {
   # Find a calendar by slug
   calendar(slug: String): Calendar
 
+  # Find all readable calendars
+  calendars: [Calendar]
+
   # Find all event occurrences in range
   event_occurrences(ending_after: String, starting_before: String): [EventOccurrences]
 
