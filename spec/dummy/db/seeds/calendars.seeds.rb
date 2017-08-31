@@ -5,7 +5,10 @@ after :users do
     FactoryGirl.create(
       :calendar,
       name: 'Admin Calendar',
-      css_class: 'admin-calendar'
+      css_class: 'admin-calendar',
+      background_color: '#f00',
+      text_color: '#fff',
+      border_color: 'rgba(200,0,0,0.5)'
     )
     FactoryGirl.create(
       :calendar,

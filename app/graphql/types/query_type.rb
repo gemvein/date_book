@@ -4,6 +4,12 @@
 # rubocop:disable Metrics/BlockLength
 Types::QueryType = GraphQL::ObjectType.define do
   name 'Query'
+  # Used by Relay to lookup objects by UUID:
+  field :node, GraphQL::Relay::Node.field
+
+  # Fetches a list of objects given a list of IDs
+  field :nodes, GraphQL::Relay::Node.plural_field
+
   # Add root-level fields here.
   # They will be entry points for queries on your schema.
   field :event_occurrences do
@@ -12,19 +18,11 @@ Types::QueryType = GraphQL::ObjectType.define do
     argument :ending_after, types.String # Start date
     argument :starting_before, types.String # End date
     resolve(lambda do |_obj, args, ctx|
-      ending_after = (
-      args[:ending_after]&.to_datetime ||
-        Time.now.beginning_of_month
-      )
-      starting_before = (
-      args[:starting_before]&.to_datetime ||
-        Time.now.beginning_of_month.next_month
-      )
       Event
         .readable_by(ctx[:current_user])
         .as_occurrences
-        .starting_before(starting_before)
-        .ending_after(ending_after)
+        .starting_before(args[:starting_before]&.to_datetime)
+        .ending_after(args[:ending_after]&.to_datetime)
     end)
   end
 

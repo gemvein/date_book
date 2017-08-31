@@ -4,6 +4,12 @@
 [![Coverage Status](https://coveralls.io/repos/gemvein/date_book/badge.svg)](https://coveralls.io/r/gemvein/date_book)
 Date Book, still in alpha develpment, is a Rails 5 Engine to give Users the ability to publish and manage calendars of events.
 
+## Requirements
+
+* Ruby 2.4.1 or higher
+* Rails 5 
+* Devise
+
 ## Installation
 Add this line to your application's Gemfile:
 

@@ -4,6 +4,10 @@ Types::EventType = GraphQL::ObjectType.define do
   name 'Event'
   description 'DateBook Events'
 
+  implements GraphQL::Relay::Node.interface
+  # `id` exposes the UUID
+  global_id_field :id
+
   field :id, !types.ID
   field :calendar, Types::CalendarType
   field :name, types.String

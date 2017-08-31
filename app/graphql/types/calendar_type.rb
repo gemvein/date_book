@@ -4,7 +4,11 @@ Types::CalendarType = GraphQL::ObjectType.define do
   name 'Calendar'
   description 'DateBook Calendars'
 
-  field :id, types.ID
+  implements GraphQL::Relay::Node.interface
+  # `id` exposes the UUID
+  global_id_field :id
+
+  field :id, !types.ID
   field :name, types.String
   field :slug, !types.String
   field :description, types.String

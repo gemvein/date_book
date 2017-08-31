@@ -18,9 +18,13 @@ module DateBook
       scope :remaining, -> { where('date >= ?', Time.now) }
       scope :previous, -> { where('date < ?', Time.now) }
       scope :ending_after, (lambda do |start_date|
-        (where 'end_date >= ?', start_date)
+        return where(nil) if start_date.nil?
+        where 'end_date >= ?', start_date
       end)
-      scope :starting_before, ->(end_date) { where 'date < ?', end_date }
+      scope :starting_before, (lambda do |end_date|
+        return where(nil) if end_date.nil?
+        where 'date < ?', end_date
+      end)
       scope :for_events, -> { where(schedulable_type: 'Event') }
       scope :for_schedulables, (lambda do |model_name, ids|
         where(schedulable_type: model_name).where('schedulable_id IN (?)', ids)

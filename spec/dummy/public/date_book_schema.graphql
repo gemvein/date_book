@@ -1,13 +1,16 @@
 # DateBook Calendars
-type Calendar {
+type Calendar implements Node {
+  background_color: String
+  border_color: String
   created_at: DateTime
   css_class: String
   description: String
   event_occurrences: [EventOccurrences]
   events: [Event]
-  id: ID
+  id: ID!
   name: String
   slug: String!
+  text_color: String
   updated_at: DateTime
 }
 
@@ -15,10 +18,8 @@ type Calendar {
 scalar DateTime
 
 # DateBook Events
-type Event {
+type Event implements Node {
   all_day: Boolean
-  background_color: String
-  border_color: String
   calendar: Calendar
   created_at: DateTime
   css_class: String
@@ -29,13 +30,12 @@ type Event {
   name: String
   slug: String
   start: String
-  text_color: String
   updated_at: DateTime
   url: String
 }
 
 # DateBook Event Occurrences
-type EventOccurrences {
+type EventOccurrences implements Node {
   end: String
   event: Event
   id: ID!
@@ -44,10 +44,28 @@ type EventOccurrences {
   url: String
 }
 
+# An object with an ID.
+interface Node {
+  # ID of the object.
+  id: ID!
+}
+
 type Query {
   # Find a calendar by slug
   calendar(slug: String): Calendar
 
   # Find all event occurrences in range
   event_occurrences(ending_after: String, starting_before: String): [EventOccurrences]
+
+  # Fetches an object given its ID.
+  node(
+    # ID of the object.
+    id: ID!
+  ): Node
+
+  # Fetches a list of objects given a list of IDs.
+  nodes(
+    # IDs of the objects.
+    ids: [ID!]!
+  ): [Node]!
 }
