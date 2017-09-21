@@ -6,7 +6,7 @@ after :users do
       :calendar,
       name: 'Admin Calendar',
       css_class: 'admin-calendar',
-      background_color: '#f00',
+      background_color: '#900',
       text_color: '#fff',
       border_color: 'rgba(200,0,0,0.5)'
     )
