@@ -59,7 +59,7 @@ See [Schedulable: Automate Build of Occurences](https://github.com/benignware/sc
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
 ## Contributors
-* [Karen Lundgren](https://github.com/nerakdon)
+* [Loren Lundgren](https://github.com/nerakdon)
 * [Chad Lundgren](https://github.com/chadlundgren)
 
 ## Copyright

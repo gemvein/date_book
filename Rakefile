@@ -12,8 +12,8 @@ Juwelier::Tasks.new do |gem|
   gem.homepage = 'http://www.gemvein.com/museum/cases/date_book'
   gem.license = 'MIT'
   gem.summary = 'Rails 5 Engine to give users their own calendars of events.'
-  gem.email = 'karen.e.lundgren@gmail.com'
-  gem.authors = ['Karen Lundgren']
+  gem.email = 'loren.lundgren@gmail.com'
+  gem.authors = ['Loren Lundgren']
   # dependencies defined in Gemfile
 end
 Juwelier::RubygemsDotOrgTasks.new
